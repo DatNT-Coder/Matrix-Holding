@@ -15,16 +15,14 @@ export function PricingCard({
     <div
       className={cn(
         "relative flex flex-col rounded-2xl bg-white p-8 text-center transition-all duration-300",
-        highlight
-          ? "border-2 border-blue-brand shadow-card-lg lg:-translate-y-3"
-          : "border border-navy/10 shadow-card hover:-translate-y-1"
+        "border border-navy/10 shadow-card hover:-translate-y-1"
       )}
     >
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-yellow-brand/15 text-yellow-brand">
         <Icon size={30} />
       </div>
-      <h3 className="text-xl font-bold text-navy sm:text-2xl">{name}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted">{desc}</p>
+      <h3 className="whitespace-nowrap text-xl font-extrabold text-blue-brand sm:text-2xl">{name}</h3>
+      <p className="mt-2 text-[13px] font-medium leading-relaxed text-navy">{desc}</p>
 
       <ul className="mt-6 flex flex-1 flex-col gap-3 text-left">
         {features.map((f) => (

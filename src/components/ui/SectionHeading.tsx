@@ -3,7 +3,7 @@ import { cn } from "@/lib/cn";
 interface Props {
   title: string;
   subtitle?: string;
-  tone?: "gold" | "navy";
+  tone?: "gold" | "navy" | "white";
   align?: "center" | "left";
   className?: string;
 }
@@ -35,7 +35,7 @@ export function SectionHeading({
         <h2
           className={cn(
             "text-2xl font-extrabold leading-tight sm:text-3xl lg:text-[34px]",
-            tone === "gold" ? "text-yellow-brand" : "text-navy"
+            tone === "gold" ? "text-yellow-brand" : tone === "white" ? "text-white" : "text-navy"
           )}
         >
           {title}
@@ -46,7 +46,7 @@ export function SectionHeading({
         <p
           className={cn(
             "max-w-2xl text-[15px] leading-relaxed",
-            tone === "gold" ? "text-white/70" : "text-muted"
+            tone === "gold" ? "text-white/70" : tone === "white" ? "text-white/80" : "text-muted"
           )}
         >
           {subtitle}

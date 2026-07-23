@@ -16,25 +16,22 @@ export function Hero() {
 
         <div className="container-page relative z-10 flex min-h-[560px] flex-col justify-center pb-24 pt-32 lg:min-h-[660px] lg:pb-28 lg:pt-36">
           <div className="max-w-xl">
-            <h1 className="flex gap-4 text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl lg:text-[52px]">
+            <h1 className="flex gap-4 text-[2rem] font-extrabold leading-[1.15] text-white sm:text-[2.5rem] lg:text-[3rem]">
               <span className="mt-1 hidden w-1.5 shrink-0 rounded-full bg-yellow-brand sm:block" />
               <span>
-                Mạng Lưới Kết Nối
-                <br /> Doanh Nghiệp Toàn Cầu
+                <span className="block">HỆ SINH THÁI TOÀN DIỆN</span>
+                <span className="block">DÀNH CHO DOANH NGHIỆP</span>
               </span>
             </h1>
-            <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-white/80">
-              Trong kỷ nguyên kinh tế số, việc sở hữu một mạng lưới đối tác
-              chất lượng là chìa khóa của thành công. Nền tảng của chúng tôi
-              hỗ trợ doanh nghiệp tiếp cận nhanh chóng với các nhà đầu tư, nhà
-              cung cấp và khách hàng tiềm năng trên toàn quốc.
+            <p className="mt-6 max-w-lg text-justify text-[15px] leading-relaxed text-white/80">
+              Trong bối cảnh thị trường cạnh tranh khốc liệt, hàng trăm nghìn doanh nghiệp phải rời khỏi thị trường mỗi năm. Sứ mệnh của chúng tôi là hỗ trợ các chủ doanh nghiệp xây dựng nền tảng vận hành và đồng hành cùng họ trên hành trình phát triển bền vững.
             </p>
             <div className="mt-8 flex justify-center">
               <Link
                 to="/dang-ky"
                 className="inline-flex items-center gap-2 rounded-full bg-white/10 px-6 py-3 text-[15px] font-semibold text-white ring-1 ring-white/40 backdrop-blur transition-colors hover:bg-white/20"
               >
-                Khám phá thêm <ArrowRight size={18} />
+                Liên hệ chúng tôi <ArrowRight size={18} />
               </Link>
             </div>
           </div>

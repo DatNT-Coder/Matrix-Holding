@@ -22,14 +22,14 @@ export function WhyUs() {
         <div className="flex flex-col gap-8">
           <div className="flex items-center gap-3">
             <h2 className="text-2xl font-extrabold text-navy sm:text-3xl lg:text-[34px]">
-              Tại Sao Chọn Chúng Tôi
+              TẠI SAO LỰA CHỌN MATRIX HOLDING?
             </h2>
             <span className="h-[3px] w-8 rounded-full bg-yellow-brand" />
           </div>
-          <p className="-mt-4 text-[15px] leading-relaxed text-muted">
-            Bằng việc ứng dụng công nghệ kết nối thông minh, chúng tôi giúp doanh
-            nghiệp tối ưu quy trình tìm kiếm nguồn cung, tiết kiệm chi phí và bứt
-            phá doanh thu trong thời gian ngắn nhất.
+          <p className="-mt-4 text-justify text-[15px] leading-relaxed text-muted">
+            Matrix Holding mang đến một hệ sinh thái liên kết, giúp doanh nghiệp
+            tiếp cận đúng nguồn lực, giảm áp lực quản lý và tập trung vào hoạt
+            động kinh doanh cốt lõi.
           </p>
           <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2">
             {REASONS.map(({ icon: Icon, title, desc }) => (

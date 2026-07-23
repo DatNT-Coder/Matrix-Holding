@@ -2,7 +2,6 @@ import {
   Search,
   Layers,
   MapPin,
-  Boxes,
   ShieldCheck,
   Handshake,
   Network,
@@ -14,18 +13,16 @@ import {
   UserCheck,
   Server,
   ScrollText,
-  Award,
-  Zap,
-  Sliders,
-  Briefcase,
+  Globe2,
+  Users,
+  CircleDollarSign,
+  Heart,
   type LucideIcon,
 } from "lucide-react";
 
 export const NAV_LINKS: { label: string; to: string }[] = [
   { label: "Trang chủ", to: "/" },
   { label: "Giới thiệu", to: "/gioi-thieu" },
-  { label: "Đăng yêu cầu", to: "/#mang-luoi" },
-  { label: "Sàn kết nối", to: "/#tinh-nang" },
   { label: "Tuyển dụng", to: "/#quy-trinh" },
   { label: "Tin tức", to: "/#faq" },
   { label: "Liên hệ", to: "/#lien-he" },
@@ -58,72 +55,68 @@ export interface Highlight {
 
 export const HIGHLIGHTS: Highlight[] = [
   {
-    icon: Award,
-    title: "Chuyên Nghiệp",
-    desc: "Xây dựng mạng lưới đối tác dựa trên nền tảng dữ liệu xác thực và quy trình thẩm định nghiêm ngặt.",
+    icon: ShieldCheck,
+    title: "Minh bạch",
+    desc: "Mọi thông tin, quy trình, quyền lợi và trách nhiệm đều được công khai rõ ràng trong mọi hoạt động quản lý, hợp tác và đầu tư.",
   },
   {
-    icon: Zap,
-    title: "Hiệu Quả",
-    desc: "Tối ưu hóa thời gian tìm kiếm, giúp doanh nghiệp khớp nối nhu cầu và chốt giao thương nhanh chóng.",
+    icon: Handshake,
+    title: "Trách Nhiệm",
+    desc: "Mọi quyết định đều được thực hiện nghiêm túc theo cam kết và bảo đảm quyền lợi của khách hàng, đối tác và cộng đồng.",
   },
   {
-    icon: Sliders,
-    title: "Linh Hoạt",
-    desc: "Cung cấp bộ công cụ tra cứu đa dạng, thích ứng hoàn hảo với mọi quy mô và lĩnh vực kinh doanh.",
+    icon: Layers,
+    title: "Nhất Quán",
+    desc: "Mọi tiêu chuẩn, nguyên tắc và chất lượng công việc đều được duy trì và đồng bộ trên toàn hệ thống.",
   },
 ];
 
 export interface Feature {
   icon: LucideIcon;
   title: string;
+  subtitle?: string;
   points: string[];
 }
 
 export const FEATURES: Feature[] = [
   {
     icon: Search,
-    title: "Tra cứu định danh",
+    title: "Matrix Network",
+    subtitle: "Cung cấp mọi nguồn lực thiết yếu để doanh nghiệp vận hành hiệu quả.",
     points: [
-      "Tra cứu trên toàn quốc",
-      "Thông tin pháp lý chuẩn xác 100%",
-      "Tìm kiếm nhanh qua tên hoặc MST",
-      "Xác thực tổ chức, người đại diện",
+      "Dịch vụ toàn diện",
+      "Giải pháp đồng bộ",
+      "Phương án linh hoạt",
+      "Vận hành tối ưu",
     ],
   },
   {
     icon: Layers,
-    title: "Phân loại ngành nghề",
+    title: "Matrix Community",
+    subtitle: "Giúp doanh nhân và doanh nghiệp mở rộng cơ hội hợp tác, chia sẻ nguồn lực và cùng nhau phát triển.",
     points: [
-      "Tiếp cận chính xác ngành thị trường",
-      "Hệ thống phân loại chuẩn hiện đại",
-      "Giảm chi phí tìm kiếm khách hàng",
-      "Bao phủ toàn bộ lĩnh vực kinh doanh",
+      "Cộng đồng gắn kết",
+      "Mạng lưới rộng mở",
+      "Nguồn lực cộng hưởng",
+      "Cơ hội đa dạng",
     ],
   },
   {
     icon: MapPin,
-    title: "Bản đồ khu vực",
+    title: "Matrix Capital",
+    subtitle: "Thực hiện thẩm định, tư vấn và đầu tư vốn nhằm đồng hành cùng các dự án tiềm năng phát triển bền vững.",
     points: [
-      "Định vị đối tác theo vị trí địa lý",
-      "Hiển thị đối tác trên bản đồ số",
-      "Quản lý khu vực kinh doanh hiệu quả",
-      "Phân tích mật độ thị trường tối ưu",
-    ],
-  },
-  {
-    icon: Boxes,
-    title: "Danh mục sản phẩm",
-    points: [
-      "Trưng bày sản phẩm không giới hạn",
-      "Hệ thống danh mục cập nhật liên tục",
-      "Đáp ứng đăng bán và lưu hành",
-      "Gian hàng chuyên nghiệp, hiệu quả",
+      "Nguồn vốn phù hợp",
+      "Thẩm định chuyên sâu",
+      "Tư vấn phát triển",
+      "Đầu tư hiệu quả",
     ],
   },
   {
     icon: ShieldCheck,
-    title: "Kiểm duyệt uy tín",
+    title: "Matrix Cares",
+    subtitle:
+      "Kết nối nguồn lực để triển khai các dự án thiện nguyện, quyên góp và hỗ trợ những hoàn cảnh khó khăn, cần giúp đỡ.",
     points: [
       "Loại bỏ rủi ro doanh nghiệp ảo",
       "Chỉ số uy tín rõ ràng, minh bạch",
@@ -166,41 +159,52 @@ export interface Pricing {
 
 export const PRICING: Pricing[] = [
   {
-    icon: Network,
-    name: "Kết Nối B2B",
-    desc: "Xây dựng mạng lưới đối tác chất lượng toàn quốc.",
+    icon: Globe2,
+    name: "Matrix Network",
+    desc: "Hệ sinh thái dịch vụ toàn diện dành cho doanh nghiệp.",
     features: [
-      "100+ cơ sở dữ liệu xác minh",
-      "Xác minh pháp lý 100%",
-      "Khớp nối nhu cầu tự động",
-      "Miễn phí tham gia",
+      "Dịch vụ toàn diện",
+      "Giải pháp đồng bộ",
+      "Phương án linh hoạt",
+      "Vận hành tối ưu",
     ],
     cta: "Kết Nối Ngay",
   },
   {
-    icon: Award,
-    name: "Quảng Cáo Top",
-    desc: "Đưa thương hiệu lên vị trí \u201cnóng\u201d thu hút mọi ánh nhìn.",
+    icon: Users,
+    name: "Matrix Community",
+    desc: "Hệ sinh thái cộng đồng kết nối doanh nghiệp.",
     features: [
-      "Chiếm lĩnh vị trí Top #1",
-      "Tăng 300% lượt tiếp cận",
-      "Miễn phí xác thực 6 tháng",
-      "Nhắm đúng khách mục tiêu",
+      "Cộng đồng gắn kết",
+      "Mạng lưới rộng mở",
+      "Nguồn lực cộng hưởng",
+      "Cơ hội đa dạng",
     ],
-    highlight: true,
     cta: "Đăng Ký Ngay",
   },
   {
-    icon: Briefcase,
-    name: "Website Pro",
-    desc: "Hàng tấn tính năng chuyên nghiệp trên không gian của bạn.",
+    icon: CircleDollarSign,
+    name: "Matrix Capital",
+    desc: "Hệ sinh thái kết nối nhà đầu tư và startup.",
     features: [
-      "Giao diện chuẩn SEO Google",
-      "Đội ngũ hỗ trợ trong suốt",
-      "Tùy biến theo ngành nghề",
-      "Ưu đãi 50% trong năm đầu",
+      "Nguồn vốn phù hợp",
+      "Thẩm định chuyên sâu",
+      "Tư vấn phát triển",
+      "Đầu tư hiệu quả",
     ],
     cta: "Nhận Ưu Đãi",
+  },
+  {
+    icon: Heart,
+    name: "Matrix Cares",
+    desc: "Hệ sinh thái các chương trình xã hội và hoạt động vì cộng đồng.",
+    features: [
+      "Cộng đồng gắn kết",
+      "Mạng lưới rộng mở",
+      "Nguồn lực cộng hưởng",
+      "Cơ hội đa dạng",
+    ],
+    cta: "Tham Gia Ngay",
   },
 ];
 
@@ -213,23 +217,23 @@ export interface Reason {
 export const REASONS: Reason[] = [
   {
     icon: Network,
-    title: "Hệ Sinh Thái Đa Ngành",
-    desc: "Kết nối hơn 100.000 doanh nghiệp thuộc mọi lĩnh vực, mở rộng cơ hội hợp tác và giao thương không giới hạn.",
+    title: "Hệ sinh thái đa lĩnh vực",
+    desc: "Matrix Holding kết nối dịch vụ doanh nghiệp, nguồn vốn đầu tư, cộng đồng kinh doanh và các hoạt động xã hội trong một hệ sinh thái thống nhất.",
   },
   {
     icon: Eye,
-    title: "Minh Bạch & Tin Cậy",
-    desc: "100% hồ sơ đối tác được kiểm duyệt pháp lý, tạo môi trường giao thương an toàn và loại bỏ mọi rủi ro tiềm ẩn.",
+    title: "Nguồn lực đồng bộ",
+    desc: "Doanh nghiệp có thể tiếp cận nhiều nguồn lực thiết yếu về pháp lý, kế toán, nhân sự, tuyển dụng, truyền thông và công nghệ thông qua hệ thống các đơn vị chuyên môn.",
   },
   {
     icon: BrainCircuit,
-    title: "Công Nghệ Khớp Nối AI",
-    desc: "Hệ thống gợi ý thông minh phân tích và kết nối đối tác phù hợp, giúp tiết kiệm hơn 70% thời gian tìm kiếm.",
+    title: "Giải pháp phù hợp",
+    desc: "Chúng tôi xác định nhu cầu thực tế của từng doanh nghiệp để kết nối đúng đơn vị, đúng nguồn lực và xây dựng phương án phù hợp với từng giai đoạn vận hành.",
   },
   {
     icon: TrendingUp,
-    title: "Giải Pháp Tăng Trưởng",
-    desc: "Không chỉ kết nối, chúng tôi cung cấp công cụ quảng bá, tiếp thị và bứt phá doanh thu bền vững.",
+    title: "Đồng hành lâu dài",
+    desc: "Matrix Holding không chỉ giải quyết những nhu cầu trước mắt mà còn hướng tới giúp doanh nghiệp xây dựng nền tảng vững chắc, vận hành ổn định và chủ động trước những thay đổi của thị trường.",
   },
 ];
 

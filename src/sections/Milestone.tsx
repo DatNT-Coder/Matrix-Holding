@@ -1,5 +1,3 @@
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { MILESTONE_STATS } from "@/data/content";
 
 const offsets = ["lg:mt-0", "lg:mt-12", "lg:mt-4", "lg:mt-16"];
@@ -25,24 +23,7 @@ export function Milestone() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-6">
-          <h2 className="text-3xl font-extrabold leading-tight text-navy lg:text-[40px]">
-            5 Năm Kết Nối
-            <br /> Vươn Tầm Quốc Tế
-          </h2>
-          <p className="text-[15px] leading-relaxed text-muted">
-            Matrix Community tự hào là nền tảng tiên phong trong việc kiến tạo
-            mạng lưới liên kết doanh nghiệp đa ngành. Chúng tôi đồng hành cùng
-            các đối tác để tối ưu hóa nguồn lực và khai phá cơ hội giao thương
-            trên toàn cầu từ năm 2021.
-          </p>
-          <Link
-            to="/#lien-he"
-            className="inline-flex w-fit items-center gap-2 rounded-full bg-yellow-brand px-6 py-3 text-[15px] font-semibold text-navy transition-all hover:brightness-105"
-          >
-            Liên hệ chúng tôi <ArrowRight size={18} />
-          </Link>
-        </div>
+        <div className="flex flex-col gap-6" />
       </div>
     </section>
   );

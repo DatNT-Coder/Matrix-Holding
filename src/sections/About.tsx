@@ -24,18 +24,18 @@ export function About() {
             </h2>
             <span className="h-[3px] w-10 rounded-full bg-yellow-brand" />
           </div>
-          <p className="text-[15px] leading-relaxed text-muted">
-            Chúng tôi là nền tảng kết nối doanh nghiệp với các đối tác và đội ngũ
-            thực thi chất lượng, giúp kiến tạo mạng lưới liên kết bền chặt trên
-            khắp cả nước. Thông qua hệ thống thẩm định dữ liệu chuẩn xác, chúng
-            tôi loại bỏ những rào cản, giúp doanh nghiệp tiếp cận đúng đối tác.
+          <p className="text-justify text-[15px] leading-relaxed text-muted">
+            Matrix Holding là một doanh nghiệp đầu tư và phát triển hệ sinh thái
+            dịch vụ đa ngành tại Việt Nam. Chúng tôi cung cấp các dịch vụ doanh
+            nghiệp, nguồn vốn, cơ hội kinh doanh và kiến tạo nên các giá trị cho
+            cộng đồng trong một hệ sinh thái thống nhất.
           </p>
-          <p className="text-[15px] leading-relaxed text-muted">
-            Trong bối cảnh thị trường thay đổi nhanh chóng, chúng tôi không ngừng
-            đổi mới, ứng dụng công nghệ trí tuệ nhân tạo để tối ưu hóa trải
-            nghiệm và mang lại giá trị thực tiễn. Mục tiêu của chúng tôi là kiến
-            tạo một hệ sinh thái minh bạch, nơi mọi doanh nghiệp đều có cơ hội
-            phát triển bền vững.
+          <p className="text-justify text-[15px] leading-relaxed text-muted">
+            Matrix Holding hướng đến việc cung cấp đầy đủ nguồn lực để doanh
+            nghiệp vận hành hiệu quả, nhà đầu tư được tiếp cận những cơ hội kinh
+            doanh tiềm năng và tạo ra những mối quan hệ hợp tác bền vững. Đồng
+            thời, chúng tôi đề cao trách nhiệm với xã hội và cam kết lan tỏa
+            những giá trị tích cực tới cộng đồng.
           </p>
           <Link
             to="/gioi-thieu"
