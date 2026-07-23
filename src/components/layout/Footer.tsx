@@ -70,7 +70,7 @@ export function Footer() {
 
       <div className="relative z-10 border-t border-white/10">
         <div className="container-page py-6 text-center text-sm text-white/50">
-          © {new Date().getFullYear()} Matrix Community. Bảo lưu mọi quyền.
+          © {new Date().getFullYear()} Matrix Holding. Bảo lưu mọi quyền.
         </div>
       </div>
 
@@ -78,7 +78,7 @@ export function Footer() {
         aria-hidden
         className="pointer-events-none absolute -bottom-4 left-1/2 w-full -translate-x-1/2 select-none whitespace-nowrap text-center text-[15vw] font-extrabold leading-none text-white/[0.04]"
       >
-        Matrix Community
+        Matrix Holding
       </span>
     </footer>
   );

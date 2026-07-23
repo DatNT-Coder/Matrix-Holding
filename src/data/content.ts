@@ -92,7 +92,7 @@ export const FEATURES: Feature[] = [
   },
   {
     icon: Layers,
-    title: "Matrix Community",
+    title: "Matrix Holding",
     subtitle: "Giúp doanh nhân và doanh nghiệp mở rộng cơ hội hợp tác, chia sẻ nguồn lực và cùng nhau phát triển.",
     points: [
       "Cộng đồng gắn kết",
@@ -168,7 +168,7 @@ export const PRICING: Pricing[] = [
       "Phương án linh hoạt",
       "Vận hành tối ưu",
     ],
-    cta: "Kết Nối Ngay",
+    cta: "Khám Phá Ngay",
   },
   {
     icon: Users,
@@ -180,7 +180,7 @@ export const PRICING: Pricing[] = [
       "Nguồn lực cộng hưởng",
       "Cơ hội đa dạng",
     ],
-    cta: "Đăng Ký Ngay",
+    cta: "Khám Phá Ngay",
   },
   {
     icon: CircleDollarSign,
@@ -192,7 +192,7 @@ export const PRICING: Pricing[] = [
       "Tư vấn phát triển",
       "Đầu tư hiệu quả",
     ],
-    cta: "Nhận Ưu Đãi",
+    cta: "Khám Phá Ngay",
   },
   {
     icon: Heart,
@@ -204,7 +204,7 @@ export const PRICING: Pricing[] = [
       "Nguồn lực cộng hưởng",
       "Cơ hội đa dạng",
     ],
-    cta: "Tham Gia Ngay",
+    cta: "Khám Phá Ngay",
   },
 ];
 
@@ -304,7 +304,7 @@ export const FAQS: Faq[] = [
   {
     question: "Đăng ký hồ sơ doanh nghiệp có mất phí không?",
     answer:
-      "Việc đăng ký và tạo hồ sơ doanh nghiệp cơ bản trên Matrix Community là hoàn toàn miễn phí. Bạn chỉ cần trả phí khi nâng cấp lên các gói dịch vụ cao cấp như Quảng Cáo Top hoặc Website Pro.",
+      "Việc đăng ký và tạo hồ sơ doanh nghiệp cơ bản trên Matrix Holding là hoàn toàn miễn phí. Bạn chỉ cần trả phí khi nâng cấp lên các gói dịch vụ cao cấp như Quảng Cáo Top hoặc Website Pro.",
   },
   {
     question: "Thời gian xét duyệt hồ sơ xác thực mất bao lâu?",

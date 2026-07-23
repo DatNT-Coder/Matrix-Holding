@@ -16,11 +16,11 @@ export function Hero() {
 
         <div className="container-page relative z-10 flex min-h-[560px] flex-col justify-center pb-24 pt-32 lg:min-h-[660px] lg:pb-28 lg:pt-36">
           <div className="max-w-xl">
-            <h1 className="flex gap-4 text-[2rem] font-extrabold leading-[1.15] text-white sm:text-[2.5rem] lg:text-[3rem]">
+            <h1 className="flex gap-4 text-[1.8rem] font-extrabold leading-[1.15] text-white sm:text-[2.2rem] lg:text-[2.6rem]">
               <span className="mt-1 hidden w-1.5 shrink-0 rounded-full bg-yellow-brand sm:block" />
               <span>
-                <span className="block">HỆ SINH THÁI TOÀN DIỆN</span>
-                <span className="block">DÀNH CHO DOANH NGHIỆP</span>
+                <span className="block whitespace-nowrap">HỆ SINH THÁI TOÀN DIỆN</span>
+                <span className="block whitespace-nowrap">DÀNH CHO DOANH NGHIỆP</span>
               </span>
             </h1>
             <p className="mt-6 max-w-lg text-justify text-[15px] leading-relaxed text-white/80">

@@ -10,7 +10,7 @@ export function Logo({ light = false, className }: Props) {
     <span className={cn("flex items-center gap-2", className)}>
       <img
         src="/logo.png"
-        alt="Matrix Community"
+        alt="Matrix Holding"
         className={cn("h-7 w-7 object-contain", light && "brightness-0 invert")}
       />
       <span
@@ -19,7 +19,7 @@ export function Logo({ light = false, className }: Props) {
           light ? "text-white" : "text-navy"
         )}
       >
-        Matrix Community
+        Matrix Holding
       </span>
     </span>
   );

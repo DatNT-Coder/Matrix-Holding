@@ -26,7 +26,7 @@ export default function AuthLayout({ title, children, footer }: Props) {
         <div className="relative hidden md:block">
           <img
             src={IMG.authSide}
-            alt="Toà nhà Matrix Community"
+            alt="Toà nhà Matrix Holding"
             className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-navy-dark/10" />
