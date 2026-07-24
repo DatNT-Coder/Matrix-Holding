@@ -344,7 +344,7 @@ export const FOOTER_LINKS = {
 };
 
 export const CONTACT = {
-  email: "matrixCommunity@gmail.com",
-  phone: "+84 378668540",
-  address: "364 Cộng Hòa, P. Tân Bình, TP. HCM",
+  email: "matrixholding.support@gmail.com",
+  phone: "0964 243 026",
+  address: "Số 13 - TT6, M4 Khu đô thị Bắc Linh Đàm, Phường Hoàng Liệt, Thành phố Hà Nội, Việt Nam",
 };

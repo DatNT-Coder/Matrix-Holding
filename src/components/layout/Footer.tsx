@@ -12,7 +12,9 @@ export function Footer() {
           <ul className="mt-2 flex flex-col gap-3 text-sm text-white/70">
             <li className="flex items-center gap-2">
               <Mail size={16} className="shrink-0 text-yellow-brand" />
-              <span>{CONTACT.email}</span>
+              <a href={`mailto:${CONTACT.email}`} className="transition-colors hover:text-yellow-brand">
+                {CONTACT.email}
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <Phone size={16} className="shrink-0 text-yellow-brand" />
