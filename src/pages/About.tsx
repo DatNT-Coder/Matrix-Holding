@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { Figure } from "@/components/ui/Figure";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { REASONS, IMG } from "@/data/content";
+import { useRef } from "react";
 
 interface OrbitStat {
   icon: LucideIcon;
@@ -99,38 +100,99 @@ const SERVICE_PLANS: ServicePlan[] = [
 ];
 
 function AboutHero() {
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = heroRef.current;
+    if (!el) return;
+
+    const rect = el.getBoundingClientRect();
+
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    el.style.setProperty("--x", `${x}%`);
+    el.style.setProperty("--y", `${y}%`);
+  };
+
+  const handleMouseLeave = () => {
+    const el = heroRef.current;
+    if (!el) return;
+
+    el.style.setProperty("--x", "50%");
+    el.style.setProperty("--y", "50%");
+  };
+
   return (
-    <section className="relative overflow-hidden bg-navy-dark">
+    <section
+      ref={heroRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="group relative overflow-hidden bg-navy-dark"
+      style={
+        {
+          "--x": "50%",
+          "--y": "50%",
+        } as React.CSSProperties
+      }
+    >
+      {/* Background */}
       <img
         src={IMG.spaceBg}
         alt=""
         aria-hidden
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[12000ms] group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-navy-dark/50" />
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-navy-dark/60" />
+
+      {/* Mouse Spotlight */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(520px circle at var(--x) var(--y), rgba(255,255,255,.08), rgba(59,130,246,.08) 35%, transparent 70%)",
+          mixBlendMode: "screen",
+        }}
+      />
+
+      {/* Blur Glow */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(380px circle at var(--x) var(--y), rgba(255,200,87,.10), transparent 65%)",
+        }}
+      />
+
       <div className="container-page relative z-10 grid items-center gap-10 pb-20 pt-32 lg:grid-cols-2 lg:pb-24 lg:pt-36">
         <div className="max-w-xl">
           <h1 className="text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl">
             Hỗ trợ kinh doanh.
-            <br /> Xây dựng mạng lưới.
-            <br /> Thúc đẩy <span className="text-sky-400">đổi mới.</span>
+            <br />
+            Xây dựng mạng lưới.
+            <br />
+            Thúc đẩy <span className="text-sky-400">đổi mới.</span>
           </h1>
+
           <p className="mt-6 max-w-md text-[15px] leading-relaxed text-white/70">
-            Matrix Holding cung cấp môi trường kết nối đa chiều, mở ra cơ
-            hội để doanh nghiệp chia sẻ nguồn lực, tìm kiếm đối tác chiến
-            lược và cùng nhau giải quyết các thách thức để đạt được sự thịnh
-            vượng lâu dài.
+            Matrix Holding cung cấp môi trường kết nối đa chiều, mở ra cơ hội để
+            doanh nghiệp chia sẻ nguồn lực, tìm kiếm đối tác chiến lược và cùng
+            nhau giải quyết các thách thức để đạt được sự thịnh vượng lâu dài.
           </p>
+
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
               to="/dang-ky"
-              className="rounded-full bg-yellow-brand px-7 py-3 text-[15px] font-semibold text-navy transition-all hover:brightness-105"
+              className="rounded-full bg-yellow-brand px-7 py-3 text-[15px] font-semibold text-navy transition-all hover:scale-105 hover:brightness-110"
             >
-              Đăng kí miễn phí
+              Đăng ký miễn phí
             </Link>
+
             <Link
               to="/#mang-luoi"
-              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold text-white ring-1 ring-white/40 transition-colors hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold text-white ring-1 ring-white/40 transition-all hover:bg-white/10 hover:scale-105"
             >
               Xem bảng giá <ArrowRight size={18} />
             </Link>

@@ -45,7 +45,21 @@ export default {
       animation: {
         "fade-up": "fade-up 0.6s ease-out both",
       },
-    },
+      keyframes: {
+      "hero-kenburns": {
+        "0%": { transform: "scale(1)" },
+        "100%": { transform: "scale(1.06)" },
+        },
+      },
+      animation: {
+        "hero-kenburns": "hero-kenburns 18s ease-out forwards",
+      },
+      // Nếu bạn chưa có shadow-card-xl, thêm luôn (dùng cho hiệu ứng hover card)
+      boxShadow: {
+        "card-lg": "0 10px 30px -10px rgba(15, 23, 42, 0.15)",
+        "card-xl": "0 20px 40px -12px rgba(15, 23, 42, 0.22)",
+      },
+      },
   },
   plugins: [],
 };

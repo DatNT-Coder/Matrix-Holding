@@ -330,10 +330,10 @@ export const FAQS: Faq[] = [
 
 export const FOOTER_LINKS = {
   services: [
-    "Kết Nối Doanh Nghiệp",
-    "Xác Minh Doanh Nghiệp",
-    "Đăng Ký Gói Tài Trợ",
-    "Đăng Ký Miễn Phí",
+    "Matrix Network",
+    "Matrix Community",
+    "Matrix Capital",
+    "Matrix Cares",
   ],
   about: [
     { label: "Giới Thiệu", to: "/gioi-thieu" },
