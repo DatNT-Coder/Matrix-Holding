@@ -225,16 +225,10 @@ function OrbitDiagram() {
         {/* Center */}
         <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-white/20 bg-navy text-center shadow-card-lg">
           <img
-            src="/logo.png"
+            src="/images/logo-business-transparent.png"
             alt="Matrix Holding"
-            className="h-8 w-8 object-contain brightness-0 invert"
+            className="h-20 w-20 object-contain brightness-0 invert"
           />
-          <span className="mt-1 text-[11px] font-bold uppercase tracking-wide text-white">
-            Matrix
-          </span>
-          <span className="text-[8px] font-semibold uppercase tracking-widest text-white/60">
-            Holding
-          </span>
         </div>
 
         {ORBIT_STATS.map(({ icon: Icon, value, label, pos }) => (

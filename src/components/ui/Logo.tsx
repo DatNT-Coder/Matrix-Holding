@@ -7,20 +7,15 @@ interface Props {
 
 export function Logo({ light = false, className }: Props) {
   return (
-    <span className={cn("flex items-center gap-2", className)}>
+    <span className={cn("flex items-center", className)}>
       <img
-        src="/logo.png"
+        src="/images/logo-business-transparent.png"
         alt="Matrix Holding"
-        className={cn("h-7 w-7 object-contain", light && "brightness-0 invert")}
-      />
-      <span
         className={cn(
-          "text-base font-bold leading-tight",
-          light ? "text-white" : "text-navy"
+          "h-12 w-auto object-contain md:h-14",
+          light && "brightness-0 invert"
         )}
-      >
-        Matrix Holding
-      </span>
+      />
     </span>
   );
 }
