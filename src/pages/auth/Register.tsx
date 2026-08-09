@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Phone, Lock, Gift, CheckCircle2, Loader2 } from "lucide-react";
+import { User, Mail, Lock, Gift, CheckCircle2, Loader2 } from "lucide-react";
 import AuthLayout from "@/layouts/AuthLayout";
 import { AuthFormInput } from "@/components/ui/AuthFormInput";
 import { Button } from "@/components/ui/Button";
 import { OtpStep } from "@/components/auth/OtpStep";
 import { registerSchema, type RegisterForm } from "@/lib/validation";
+import { apiRegister } from "@/lib/api";
 
 type Step = "form" | "otp" | "done";
 
@@ -15,7 +16,8 @@ export default function Register() {
   const navigate = useNavigate();
   const [step, setStep] = useState<Step>("form");
   const [loading, setLoading] = useState(false);
-  const [phone, setPhone] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [registeredEmail, setRegisteredEmail] = useState("");
 
   const {
     register,
@@ -25,11 +27,23 @@ export default function Register() {
 
   const onSubmit = async (data: RegisterForm) => {
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    console.log("Đăng ký:", data);
-    setPhone(data.phone);
-    setLoading(false);
-    setStep("otp");
+    setError(null);
+
+    try {
+      const payload = {
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      };
+
+      await apiRegister(payload);
+      setRegisteredEmail(data.email);
+      setLoading(false);
+      setStep("done");
+    } catch (err) {
+      setLoading(false);
+      setError(err instanceof Error ? err.message : "Đăng ký thất bại");
+    }
   };
 
   const onVerify = async () => {
@@ -56,13 +70,21 @@ export default function Register() {
       {step === "form" && (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <AuthFormInput
-            id="phone"
-            icon={Phone}
-            label="Số điện thoại"
-            placeholder="Nhập số điện thoại"
-            inputMode="tel"
-            error={errors.phone?.message}
-            {...register("phone")}
+            id="username"
+            icon={User}
+            label="Tên đăng nhập"
+            placeholder="Nhập tên đăng nhập"
+            error={errors.username?.message}
+            {...register("username")}
+          />
+          <AuthFormInput
+            id="email"
+            icon={Mail}
+            label="Email"
+            placeholder="Nhập email"
+            inputMode="email"
+            error={errors.email?.message}
+            {...register("email")}
           />
           <AuthFormInput
             id="password"
@@ -90,6 +112,12 @@ export default function Register() {
             {...register("referral")}
           />
 
+          {error && (
+            <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+              {error}
+            </div>
+          )}
+
           <Button type="submit" size="lg" disabled={loading} className="mt-2 w-full">
             {loading ? (
               <>
@@ -103,7 +131,7 @@ export default function Register() {
       )}
 
       {step === "otp" && (
-        <OtpStep phone={phone} onVerify={onVerify} loading={loading} submitLabel="Xác thực" />
+        <OtpStep phone={registeredEmail} onVerify={onVerify} loading={loading} submitLabel="Xác thực" />
       )}
 
       {step === "done" && (

@@ -2,15 +2,17 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Phone, Lock, Loader2 } from "lucide-react";
+import { Mail, Lock, Loader2 } from "lucide-react";
 import AuthLayout from "@/layouts/AuthLayout";
 import { AuthFormInput } from "@/components/ui/AuthFormInput";
 import { Button } from "@/components/ui/Button";
 import { loginSchema, type LoginForm } from "@/lib/validation";
+import { apiLogin, saveAuthSession } from "@/lib/api";
 
 export default function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -19,11 +21,22 @@ export default function Login() {
 
   const onSubmit = async (data: LoginForm) => {
     setLoading(true);
-    // Mock: giả lập gọi API đăng nhập
-    await new Promise((r) => setTimeout(r, 1200));
-    console.log("Đăng nhập:", data);
-    setLoading(false);
-    navigate("/");
+    setError(null);
+
+    try {
+      const payload = {
+        email: data.email,
+        password: data.password,
+      };
+
+      const result = await apiLogin(payload);
+      saveAuthSession(result);
+      navigate("/");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Đăng nhập thất bại");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -40,13 +53,13 @@ export default function Login() {
     >
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <AuthFormInput
-          id="phone"
-          icon={Phone}
-          label="Số điện thoại"
-          placeholder="Nhập số điện thoại"
-          inputMode="tel"
-          error={errors.phone?.message}
-          {...register("phone")}
+          id="email"
+          icon={Mail}
+          label="Email"
+          placeholder="Nhập email"
+          inputMode="email"
+          error={errors.email?.message}
+          {...register("email")}
         />
         <AuthFormInput
           id="password"
@@ -74,6 +87,12 @@ export default function Login() {
             Quên mật khẩu?
           </Link>
         </div>
+
+        {error && (
+          <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+            {error}
+          </div>
+        )}
 
         <Button type="submit" size="lg" disabled={loading} className="w-full">
           {loading ? (

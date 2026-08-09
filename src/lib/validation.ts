@@ -10,8 +10,13 @@ export const passwordSchema = z
   .min(6, "Mật khẩu tối thiểu 6 ký tự")
   .max(50, "Mật khẩu quá dài");
 
+export const emailSchema = z
+  .string()
+  .min(1, "Vui lòng nhập email")
+  .email("Email không hợp lệ");
+
 export const loginSchema = z.object({
-  phone: phoneSchema,
+  email: emailSchema,
   password: passwordSchema,
   remember: z.boolean().optional(),
 });
@@ -19,7 +24,8 @@ export type LoginForm = z.infer<typeof loginSchema>;
 
 export const registerSchema = z
   .object({
-    phone: phoneSchema,
+    username: z.string().min(3, "Tên đăng nhập tối thiểu 3 ký tự").max(50, "Tên đăng nhập tối đa 50 ký tự"),
+    email: emailSchema,
     password: passwordSchema,
     confirm: z.string().min(1, "Vui lòng xác nhận mật khẩu"),
     referral: z.string().optional(),
