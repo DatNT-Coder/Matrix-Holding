@@ -32,6 +32,15 @@ export type LoginResponse = {
   };
 };
 
+export type UserRole =
+  | "DIRECTOR"
+  | "DEPARTMENT_HEAD"
+  | "TEAM_LEAD"
+  | "EMPLOYEE"
+  | "HR";
+
+export type AuthUser = LoginResponse["user"] & { role: UserRole };
+
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
     headers: {
@@ -82,6 +91,16 @@ export function getStoredToken(): string | null {
   const token = localStorage.getItem("access_token");
   const type = localStorage.getItem("token_type") ?? "bearer";
   return token ? `${type} ${token}` : null;
+}
+
+export function getStoredUser(): AuthUser | null {
+  const raw = localStorage.getItem("user");
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as AuthUser;
+  } catch {
+    return null;
+  }
 }
 
 export function clearAuthSession() {

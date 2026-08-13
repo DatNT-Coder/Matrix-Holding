@@ -9,6 +9,14 @@ import { Button } from "@/components/ui/Button";
 import { loginSchema, type LoginForm } from "@/lib/validation";
 import { apiLogin, saveAuthSession } from "@/lib/api";
 
+const dashboardByRole: Record<string, string> = {
+  DIRECTOR: "/dashboard/director",
+  DEPARTMENT_HEAD: "/dashboard/department-head",
+  TEAM_LEAD: "/dashboard/team-lead",
+  EMPLOYEE: "/dashboard/employee",
+  HR: "/dashboard/hr",
+};
+
 export default function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -31,7 +39,7 @@ export default function Login() {
 
       const result = await apiLogin(payload);
       saveAuthSession(result);
-      navigate("/");
+      navigate(dashboardByRole[result.user.role] ?? "/");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Đăng nhập thất bại");
     } finally {
