@@ -16,21 +16,27 @@ const images = {
 };
 
 const ecosystems = [
-  [
-    "MATRIX NETWORK",
-    "Hệ sinh thái dịch vụ toàn diện dành cho doanh nghiệp",
-    Building2,
-  ],
-  [
-    "MATRIX COMMUNITY",
-    "Hệ sinh thái cộng đồng kết nối kinh doanh dành cho doanh nghiệp",
-    UsersRound,
-  ],
-  [
-    "MATRIX CAPITAL",
-    "Hệ sinh thái cộng đồng kết nối đầu tư dành cho doanh nghiệp",
-    BriefcaseBusiness,
-  ],
+  {
+    title: "MATRIX NETWORK",
+    description: "Hệ sinh thái dịch vụ toàn diện dành cho doanh nghiệp.",
+    image: "/images/matrix-network.png",
+    alt: "Hệ sinh thái dịch vụ Matrix Network",
+    Icon: Building2,
+  },
+  {
+    title: "MATRIX COMMUNITY",
+    description: "Hệ sinh thái cộng đồng kết nối doanh nghiệp.",
+    image: "/images/matrix-community.png",
+    alt: "Hệ sinh thái cộng đồng Matrix Community",
+    Icon: UsersRound,
+  },
+  {
+    title: "MATRIX CAPITAL",
+    description: "Hệ sinh thái kết nối nhà đầu tư và startup.",
+    image: "/images/matrix-capital.png",
+    alt: "Hệ sinh thái đầu tư Matrix Capital",
+    Icon: BriefcaseBusiness,
+  },
 ] as const;
 
 export function MatrixLanding() {
@@ -170,21 +176,21 @@ export function MatrixLanding() {
             </p>
           </div>
           <div className="mt-10 grid gap-7 md:grid-cols-3">
-            {ecosystems.map(([title, text, Icon]) => (
+            {ecosystems.map(({ title, description, image, alt, Icon }) => (
               <article
                 key={title}
                 className="overflow-hidden rounded-card bg-white text-navy shadow-card"
               >
                 <img
-                  src={images.documents}
-                  alt="Tài liệu kinh doanh"
+                  src={image}
+                  alt={alt}
                   className="h-36 w-full object-cover"
                 />
                 <div className="p-5">
                   <Icon size={20} className="mb-3 text-blue-brand" />
                   <h3 className="font-extrabold">{title}</h3>
                   <p className="mt-3 min-h-12 text-sm leading-6 text-muted">
-                    {text}
+                    {description}
                   </p>
                   <a
                     href="#lien-he"
