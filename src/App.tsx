@@ -12,6 +12,12 @@ import DepartmentHeadDashboard from "./pages/dashboard/DepartmentHeadDashboard";
 import TeamLeadDashboard from "./pages/dashboard/TeamLeadDashboard";
 import EmployeeDashboard from "./pages/dashboard/EmployeeDashboard";
 import HrDashboard from "./pages/dashboard/HrDashboard";
+import NewsList from "./pages/NewsList";
+import NewsDetail from "./pages/NewsDetail";
+import NewsManager from "./pages/NewsManager";
+import JobsList from "./pages/JobsList";
+import JobDetail from "./pages/JobDetail";
+import JobManager from "./pages/JobManager";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -36,6 +42,10 @@ export default function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/gioi-thieu" element={<About />} />
+          <Route path="/tin-tuc" element={<NewsList />} />
+          <Route path="/tin-tuc/:id" element={<NewsDetail />} />
+          <Route path="/tuyen-dung" element={<JobsList />} />
+          <Route path="/tuyen-dung/:id" element={<JobDetail />} />
         </Route>
         <Route path="/dang-nhap" element={<Login />} />
         <Route path="/dang-ky" element={<Register />} />
@@ -45,6 +55,8 @@ export default function App() {
         <Route path="/dashboard/team-lead" element={<TeamLeadDashboard />} />
         <Route path="/dashboard/employee" element={<EmployeeDashboard />} />
         <Route path="/dashboard/hr" element={<HrDashboard />} />
+        <Route path="/quan-tri/tin-tuc" element={<NewsManager />} />
+        <Route path="/quan-tri/tuyen-dung" element={<JobManager />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

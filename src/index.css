@@ -36,3 +36,10 @@
       linear-gradient(120deg, #0d1430 0%, #161f3e 55%, #0d1430 100%);
   }
 }
+
+/* On wide screens, keep the hero message optically centred instead of anchored to the bottom. */
+@media (min-width: 1024px) {
+  main > section:first-child > div.relative.mx-auto {
+    justify-content: center !important;
+  }
+}

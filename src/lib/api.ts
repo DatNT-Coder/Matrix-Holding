@@ -41,6 +41,36 @@ export type UserRole =
 
 export type AuthUser = LoginResponse["user"] & { role: UserRole };
 
+export type NewsArticle = {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  image_url: string;
+  category: "MATRIX NETWORK" | "MATRIX COMMUNITY" | "MATRIX CAPITAL";
+  published_at: string;
+  author_name: string;
+};
+
+export type NewsArticlePayload = Pick<NewsArticle, "title" | "excerpt" | "content" | "image_url" | "category">;
+
+export type Job = {
+  id: number;
+  title: string;
+  department: string;
+  location: string;
+  salary: string;
+  employment_type: string;
+  summary: string;
+  description: string;
+  requirements: string;
+  created_at: string;
+  author_name: string;
+};
+
+export type JobPayload = Omit<Job, "id" | "created_at" | "author_name">;
+export type JobApplicationPayload = { full_name: string; phone: string; cv_url: string; cover_letter: string };
+
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
     headers: {
@@ -91,6 +121,46 @@ export function getStoredToken(): string | null {
   const token = localStorage.getItem("access_token");
   const type = localStorage.getItem("token_type") ?? "bearer";
   return token ? `${type} ${token}` : null;
+}
+
+export function apiGetNews(limit = 12, category?: NewsArticle["category"]) {
+  const params = new URLSearchParams({ limit: String(limit) });
+  if (category) params.set("category", category);
+  return request<NewsArticle[]>(`/api/news?${params}`);
+}
+
+export function apiGetNewsArticle(id: string) {
+  return request<NewsArticle>(`/api/news/${id}`);
+}
+
+export function apiCreateNews(payload: NewsArticlePayload) {
+  const token = getStoredToken();
+  return request<NewsArticle>("/api/news", {
+    method: "POST",
+    headers: token ? { Authorization: token } : {},
+    body: JSON.stringify(payload),
+  });
+}
+
+export function apiGetJobs(search = "", department?: string) {
+  const params = new URLSearchParams();
+  if (search) params.set("search", search);
+  if (department) params.set("department", department);
+  return request<Job[]>(`/api/jobs?${params}`);
+}
+
+export function apiGetJob(id: string) {
+  return request<Job>(`/api/jobs/${id}`);
+}
+
+export function apiCreateJob(payload: JobPayload) {
+  const token = getStoredToken();
+  return request<Job>("/api/jobs", { method: "POST", headers: token ? { Authorization: token } : {}, body: JSON.stringify(payload) });
+}
+
+export function apiApplyJob(id: string, payload: JobApplicationPayload) {
+  const token = getStoredToken();
+  return request<{ message: string }>(`/api/jobs/${id}/apply`, { method: "POST", headers: token ? { Authorization: token } : {}, body: JSON.stringify(payload) });
 }
 
 export function getStoredUser(): AuthUser | null {
