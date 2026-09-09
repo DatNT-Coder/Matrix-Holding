@@ -7,10 +7,6 @@
     scroll-behavior: smooth;
   }
 
-  html {
-    font-size: 106.25%;
-  }
-
   body {
     @apply bg-cream font-sans text-navy antialiased;
   }
