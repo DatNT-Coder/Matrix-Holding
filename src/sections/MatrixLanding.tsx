@@ -36,9 +36,11 @@ const ecosystems = [
 export function MatrixLanding() {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [featuredJobs, setFeaturedJobs] = useState<Job[]>([]);
+  const [newsLoaded, setNewsLoaded] = useState(false);
+  const [jobsLoaded, setJobsLoaded] = useState(false);
   useEffect(() => {
-    apiGetNews(4).then(setArticles).catch(() => setArticles([]));
-    apiGetJobs().then((jobs) => setFeaturedJobs(jobs.slice(0, 3))).catch(() => setFeaturedJobs([]));
+    apiGetNews(4).then(setArticles).catch(() => setArticles([])).finally(() => setNewsLoaded(true));
+    apiGetJobs().then((jobs) => setFeaturedJobs(jobs.slice(0, 3))).catch(() => setFeaturedJobs([])).finally(() => setJobsLoaded(true));
   }, []);
 
   return (
@@ -250,7 +252,7 @@ export function MatrixLanding() {
                 </Link>
               ))}
             </div>
-          </div> : <div className="mt-8 rounded-card border border-navy/10 bg-[#f6f9fd] p-8 text-sm text-muted">Đang tải các bài viết mới nhất...</div>}
+          </div> : <div className="mt-8 rounded-card border border-navy/10 bg-[#f6f9fd] p-8 text-sm text-muted">{newsLoaded ? "Hiện chưa có bài viết nào." : "Đang tải các bài viết mới nhất..."}</div>}
         </div>
       </section>
 
@@ -287,7 +289,7 @@ export function MatrixLanding() {
                   </Link>
                 ))}
               </div>
-              {featuredJobs.length === 0 && <p className="rounded-btn bg-[#eaf5ff] p-4 text-sm text-muted">Đang tải thông tin tuyển dụng...</p>}
+              {featuredJobs.length === 0 && <p className="rounded-btn bg-[#eaf5ff] p-4 text-sm text-muted">{jobsLoaded ? "Hiện chưa có vị trí tuyển dụng nào." : "Đang tải thông tin tuyển dụng..."}</p>}
             </div>
           </div>
         </div>
