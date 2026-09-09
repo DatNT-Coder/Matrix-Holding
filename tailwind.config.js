@@ -22,7 +22,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Nunito", "system-ui", "sans-serif"],
+        sans: ["Arial", "Helvetica", "sans-serif"],
       },
       borderRadius: {
         card: "16px",
