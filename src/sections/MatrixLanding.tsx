@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { apiGetNews, type NewsArticle } from "@/lib/api";
+import { apiGetJobs, apiGetNews, type Job, type NewsArticle } from "@/lib/api";
 
 const images = {
   house: "/images/matrix-hero-villa.png",
@@ -33,19 +33,12 @@ const ecosystems = [
   ],
 ] as const;
 
-const jobs = [
-  "Nhân viên Kinh doanh",
-  "Chuyên viên Hành chính",
-  "Chuyên viên Nhân sự",
-  "Chuyên viên Truyền thông",
-  "Nhân viên Tuyển dụng",
-  "Chuyên viên Pháp chế",
-];
-
 export function MatrixLanding() {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
+  const [featuredJobs, setFeaturedJobs] = useState<Job[]>([]);
   useEffect(() => {
     apiGetNews(4).then(setArticles).catch(() => setArticles([]));
+    apiGetJobs().then((jobs) => setFeaturedJobs(jobs.slice(0, 3))).catch(() => setFeaturedJobs([]));
   }, []);
 
   return (
@@ -284,52 +277,17 @@ export function MatrixLanding() {
               className="h-40 w-full object-cover"
             />
             <div className="p-6">
-              <div className="mb-5 flex flex-wrap gap-3">
-                {[
-                  "Xem tất cả",
-                  "Hà Nội",
-                  "Pháp chế",
-                  "Hành chính",
-                  "Nhân sự",
-                  "Tuyển dụng",
-                  "Truyền thông",
-                  "Kinh doanh",
-                ].map((filter) => (
-                  <button
-                    key={filter}
-                    className="rounded-btn bg-navy px-4 py-2 text-xs font-semibold text-white"
-                  >
-                    {filter}
-                  </button>
-                ))}
-              </div>
+              <p className="mb-5 text-sm text-muted">Các vị trí dưới đây được cập nhật trực tiếp từ trang tuyển dụng.</p>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {jobs.map((job) => (
-                  <article
-                    key={job}
-                    className="rounded-btn border border-navy bg-[#eaf5ff] p-4"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <span className="flex h-9 w-9 items-center justify-center rounded bg-white text-blue-brand">
-                        <BriefcaseBusiness size={17} />
-                      </span>
-                      <button className="rounded-btn bg-navy px-3 py-2 text-xs text-white">
-                        Đăng ký ngay
-                      </button>
-                    </div>
-                    <h3 className="mt-4 text-sm font-extrabold">
-                      MATRIX HOLDING: {job}
-                    </h3>
-                    <p className="mt-2 text-xs leading-5 text-muted">
-                      Thu nhập: 10 - 20 triệu
-                      <br />
-                      Ngoại hình: Ưa nhìn, chuyên nghiệp
-                      <br />
-                      Kỹ năng: Giao tiếp tốt
-                    </p>
-                  </article>
+                {featuredJobs.map((job) => (
+                  <Link key={job.id} to={`/tuyen-dung/${job.id}`} className="rounded-btn border border-navy bg-[#eaf5ff] p-4 transition hover:-translate-y-0.5 hover:bg-white">
+                    <div className="flex items-start justify-between gap-3"><span className="flex h-9 w-9 items-center justify-center rounded bg-white text-blue-brand"><BriefcaseBusiness size={17} /></span><span className="rounded-btn bg-navy px-3 py-2 text-xs text-white">Xem việc làm</span></div>
+                    <h3 className="mt-4 text-sm font-extrabold">MATRIX HOLDING: {job.title}</h3>
+                    <p className="mt-2 text-xs leading-5 text-muted">Phòng ban: {job.department}<br />Thu nhập: {job.salary}<br />Địa điểm: {job.location}</p>
+                  </Link>
                 ))}
               </div>
+              {featuredJobs.length === 0 && <p className="rounded-btn bg-[#eaf5ff] p-4 text-sm text-muted">Đang tải thông tin tuyển dụng...</p>}
             </div>
           </div>
         </div>
