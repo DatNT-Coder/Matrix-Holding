@@ -18,6 +18,8 @@ import NewsManager from "./pages/NewsManager";
 import JobsList from "./pages/JobsList";
 import JobDetail from "./pages/JobDetail";
 import JobManager from "./pages/JobManager";
+import ApplicationManager from "./pages/ApplicationManager";
+import DashboardShell from "./pages/dashboard/DashboardShell";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -50,13 +52,16 @@ export default function App() {
         <Route path="/dang-nhap" element={<Login />} />
         <Route path="/dang-ky" element={<Register />} />
         <Route path="/quen-mat-khau" element={<ForgotPassword />} />
-        <Route path="/dashboard/director" element={<DirectorDashboard />} />
-        <Route path="/dashboard/department-head" element={<DepartmentHeadDashboard />} />
-        <Route path="/dashboard/team-lead" element={<TeamLeadDashboard />} />
-        <Route path="/dashboard/employee" element={<EmployeeDashboard />} />
-        <Route path="/dashboard/hr" element={<HrDashboard />} />
-        <Route path="/quan-tri/tin-tuc" element={<NewsManager />} />
-        <Route path="/quan-tri/tuyen-dung" element={<JobManager />} />
+        <Route element={<DashboardShell />}>
+          <Route path="dashboard/director" element={<DirectorDashboard />} />
+          <Route path="dashboard/department-head" element={<DepartmentHeadDashboard />} />
+          <Route path="dashboard/team-lead" element={<TeamLeadDashboard />} />
+          <Route path="dashboard/employee" element={<EmployeeDashboard />} />
+          <Route path="dashboard/hr" element={<HrDashboard />} />
+          <Route path="quan-tri/tin-tuc" element={<NewsManager />} />
+          <Route path="quan-tri/tuyen-dung" element={<JobManager />} />
+          <Route path="quan-tri/ho-so-ung-tuyen" element={<ApplicationManager />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

@@ -69,7 +69,14 @@ export type Job = {
 };
 
 export type JobPayload = Omit<Job, "id" | "created_at" | "author_name">;
-export type JobApplicationPayload = { full_name: string; phone: string; cv_url: string; cover_letter: string };
+export type JobApplicationPayload = { full_name: string; email: string; phone: string; cv_url: string; cover_letter: string; experience?: string };
+export type ApplicationStatus = "NEW" | "REVIEWING" | "CONTACTED" | "INTERVIEW" | "OFFERED" | "REJECTED";
+export type RecruitmentApplication = {
+  id: number; job_id: number; job_title: string; cover_letter: string; status: ApplicationStatus; hr_note: string | null; created_at: string;
+  assigned_hr: Recruiter | null;
+  candidate: { id: number; full_name: string; email: string; phone: string; cv_url: string; experience: string | null };
+};
+export type Recruiter = { id: number; username: string; email: string };
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -159,8 +166,32 @@ export function apiCreateJob(payload: JobPayload) {
 }
 
 export function apiApplyJob(id: string, payload: JobApplicationPayload) {
+  return request<{ message: string }>(`/api/jobs/${id}/apply`, { method: "POST", body: JSON.stringify(payload) });
+}
+
+export async function apiUploadCV(file: File): Promise<{ url: string; filename: string }> {
+  const data = new FormData(); data.append("file", file);
+  const response = await fetch(`${API_BASE_URL}/api/uploads/cv`, { method: "POST", body: data });
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ detail: "Không thể tải CV lên." }));
+    throw new Error(typeof error.detail === "string" ? error.detail : "Không thể tải CV lên.");
+  }
+  return response.json() as Promise<{ url: string; filename: string }>;
+}
+
+export function apiGetApplications(search = "", status?: ApplicationStatus, scope: "MINE" | "UNASSIGNED" | "ALL" = "MINE") {
+  const token = getStoredToken(); const params = new URLSearchParams();
+  if (search) params.set("search", search); if (status) params.set("status", status); params.set("scope", scope);
+  return request<RecruitmentApplication[]>(`/api/recruitment/applications?${params}`, { headers: token ? { Authorization: token } : {} });
+}
+
+export function apiGetRecruitmentTeam() { const token = getStoredToken(); return request<Recruiter[]>("/api/recruitment/hr-team", { headers: token ? { Authorization: token } : {} }); }
+export function apiClaimApplication(id: number) { const token = getStoredToken(); return request<RecruitmentApplication>(`/api/recruitment/applications/${id}/claim`, { method: "POST", headers: token ? { Authorization: token } : {} }); }
+export function apiAssignApplication(id: number, assigned_hr_id: number | null) { const token = getStoredToken(); return request<RecruitmentApplication>(`/api/recruitment/applications/${id}/assignment`, { method: "PATCH", headers: token ? { Authorization: token } : {}, body: JSON.stringify({ assigned_hr_id }) }); }
+
+export function apiUpdateApplication(id: number, payload: Pick<RecruitmentApplication, "status" | "hr_note">) {
   const token = getStoredToken();
-  return request<{ message: string }>(`/api/jobs/${id}/apply`, { method: "POST", headers: token ? { Authorization: token } : {}, body: JSON.stringify(payload) });
+  return request<RecruitmentApplication>(`/api/recruitment/applications/${id}`, { method: "PATCH", headers: token ? { Authorization: token } : {}, body: JSON.stringify(payload) });
 }
 
 export function getStoredUser(): AuthUser | null {
