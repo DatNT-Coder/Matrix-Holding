@@ -19,6 +19,8 @@ import JobsList from "./pages/JobsList";
 import JobDetail from "./pages/JobDetail";
 import JobManager from "./pages/JobManager";
 import ApplicationManager from "./pages/ApplicationManager";
+import ScheduleManager from "./pages/ScheduleManager";
+import RecruitmentJobDetail from "./pages/RecruitmentJobDetail";
 import DashboardShell from "./pages/dashboard/DashboardShell";
 
 function ScrollToTop() {
@@ -60,7 +62,9 @@ export default function App() {
           <Route path="dashboard/hr" element={<HrDashboard />} />
           <Route path="quan-tri/tin-tuc" element={<NewsManager />} />
           <Route path="quan-tri/tuyen-dung" element={<JobManager />} />
+          <Route path="quan-tri/tuyen-dung/:id" element={<RecruitmentJobDetail />} />
           <Route path="quan-tri/ho-so-ung-tuyen" element={<ApplicationManager />} />
+          <Route path="quan-tri/lich-lam-viec" element={<ScheduleManager />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

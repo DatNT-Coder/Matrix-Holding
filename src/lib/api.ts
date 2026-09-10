@@ -69,6 +69,7 @@ export type Job = {
 };
 
 export type JobPayload = Omit<Job, "id" | "created_at" | "author_name">;
+export type RecruitmentJob = Job & { application_count: number; new_application_count: number };
 export type JobApplicationPayload = { full_name: string; email: string; phone: string; cv_url: string; cover_letter: string; experience?: string };
 export type ApplicationStatus = "NEW" | "REVIEWING" | "CONTACTED" | "INTERVIEW" | "OFFERED" | "REJECTED";
 export type RecruitmentApplication = {
@@ -80,12 +81,18 @@ export type Recruiter = { id: number; username: string; email: string };
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
+    ...options,
     headers: {
       "Content-Type": "application/json",
       ...(options.headers ?? {}),
     },
-    ...options,
   });
+
+  if (response.status === 401) {
+    clearAuthSession();
+    if (window.location.pathname !== "/dang-nhap") window.location.assign("/dang-nhap");
+    throw new Error("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
+  }
 
   if (!response.ok) {
     let detail = "Có lỗi xảy ra";
@@ -179,13 +186,14 @@ export async function apiUploadCV(file: File): Promise<{ url: string; filename: 
   return response.json() as Promise<{ url: string; filename: string }>;
 }
 
-export function apiGetApplications(search = "", status?: ApplicationStatus, scope: "MINE" | "UNASSIGNED" | "ALL" = "MINE") {
+export function apiGetApplications(search = "", status?: ApplicationStatus, scope: "MINE" | "UNASSIGNED" | "ALL" = "MINE", jobId?: number) {
   const token = getStoredToken(); const params = new URLSearchParams();
-  if (search) params.set("search", search); if (status) params.set("status", status); params.set("scope", scope);
+  if (search) params.set("search", search); if (status) params.set("status", status); if (jobId) params.set("job_id", String(jobId)); params.set("scope", scope);
   return request<RecruitmentApplication[]>(`/api/recruitment/applications?${params}`, { headers: token ? { Authorization: token } : {} });
 }
 
 export function apiGetRecruitmentTeam() { const token = getStoredToken(); return request<Recruiter[]>("/api/recruitment/hr-team", { headers: token ? { Authorization: token } : {} }); }
+export function apiGetRecruitmentJobs() { const token = getStoredToken(); return request<RecruitmentJob[]>("/api/recruitment/jobs-overview", { headers: token ? { Authorization: token } : {} }); }
 export function apiClaimApplication(id: number) { const token = getStoredToken(); return request<RecruitmentApplication>(`/api/recruitment/applications/${id}/claim`, { method: "POST", headers: token ? { Authorization: token } : {} }); }
 export function apiAssignApplication(id: number, assigned_hr_id: number | null) { const token = getStoredToken(); return request<RecruitmentApplication>(`/api/recruitment/applications/${id}/assignment`, { method: "PATCH", headers: token ? { Authorization: token } : {}, body: JSON.stringify({ assigned_hr_id }) }); }
 
