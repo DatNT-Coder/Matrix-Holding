@@ -40,6 +40,7 @@ export type UserRole =
   | "HR";
 
 export type AuthUser = LoginResponse["user"] & { role: UserRole };
+export type ProfileUpdatePayload = { username?: string; email?: string; current_password?: string; new_password?: string };
 
 export type NewsArticle = {
   id: number;
@@ -194,6 +195,8 @@ export function apiGetApplications(search = "", status?: ApplicationStatus, scop
 
 export function apiGetRecruitmentTeam() { const token = getStoredToken(); return request<Recruiter[]>("/api/recruitment/hr-team", { headers: token ? { Authorization: token } : {} }); }
 export function apiGetRecruitmentJobs() { const token = getStoredToken(); return request<RecruitmentJob[]>("/api/recruitment/jobs-overview", { headers: token ? { Authorization: token } : {} }); }
+export function apiGetMyProfile() { const token = getStoredToken(); return request<AuthUser>("/api/users/me", { headers: token ? { Authorization: token } : {} }); }
+export function apiUpdateMyProfile(payload: ProfileUpdatePayload) { const token = getStoredToken(); return request<AuthUser>("/api/users/me", { method: "PATCH", headers: token ? { Authorization: token } : {}, body: JSON.stringify(payload) }); }
 export function apiClaimApplication(id: number) { const token = getStoredToken(); return request<RecruitmentApplication>(`/api/recruitment/applications/${id}/claim`, { method: "POST", headers: token ? { Authorization: token } : {} }); }
 export function apiAssignApplication(id: number, assigned_hr_id: number | null) { const token = getStoredToken(); return request<RecruitmentApplication>(`/api/recruitment/applications/${id}/assignment`, { method: "PATCH", headers: token ? { Authorization: token } : {}, body: JSON.stringify({ assigned_hr_id }) }); }
 
