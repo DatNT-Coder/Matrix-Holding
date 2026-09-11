@@ -18,21 +18,21 @@ const images = {
 const ecosystems = [
   {
     title: "MATRIX NETWORK",
-    description: "Hệ sinh thái dịch vụ toàn diện dành cho doanh nghiệp.",
+    description: "“Matrix Network” là thương hiệu thành viên được Matrix Holding thành lập với sứ mệnh trở thành doanh nghiệp hệ sinh thái dịch vụ toàn diện dành riêng cho Startup và SMEs.",
     image: "/images/matrix-network.png",
     alt: "Hệ sinh thái dịch vụ Matrix Network",
     Icon: Building2,
   },
   {
     title: "MATRIX COMMUNITY",
-    description: "Hệ sinh thái cộng đồng kết nối doanh nghiệp.",
+    description: "“Matrix Community” là thương hiệu thành viên được Matrix Holding thành lập với sứ mệnh trở thành hệ sinh thái cộng đồng kết nối kinh doanh dành riêng cho Startup và SMEs.",
     image: "/images/matrix-community.png",
     alt: "Hệ sinh thái cộng đồng Matrix Community",
     Icon: UsersRound,
   },
   {
     title: "MATRIX CAPITAL",
-    description: "Hệ sinh thái kết nối nhà đầu tư và startup.",
+    description: "“Matrix Capital” là thương hiệu thành viên được Matrix Holding thành lập với sứ mệnh trở thành hệ sinh thái cộng đồng kết nối đầu tư dành riêng cho Startup và SMEs.",
     image: "/images/matrix-capital.png",
     alt: "Hệ sinh thái đầu tư Matrix Capital",
     Icon: BriefcaseBusiness,
@@ -68,52 +68,52 @@ export function MatrixLanding() {
               </p>
             </div>
             <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.08] tracking-[-0.035em] sm:text-6xl lg:text-7xl">
-              Kiến tạo <span className="text-[#bfe5ff]">hệ sinh thái</span>
+              Doanh nghiệp đầu tư và phát triển
               <br />
-              kinh doanh bền vững.
+              <span className="text-[#bfe5ff]">hệ sinh thái kinh doanh đa ngành.</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-8 text-white/82 sm:text-lg">
-              Đầu tư đúng hướng, phát triển có chiều sâu và kết nối những cơ hội
-              tạo nên giá trị dài hạn cho doanh nghiệp Việt Nam.
+              Người đồng hành trên hành trình xây dựng và phát triển, kiến tạo
+              những giá trị thiết thực dành cho doanh nghiệp.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <a
                 href="#gioi-thieu"
                 className="inline-flex items-center gap-3 rounded-btn bg-white px-6 py-4 text-sm font-bold text-navy transition hover:bg-[#bfe5ff]"
               >
-                Khám phá Matrix <ArrowRight size={18} />
+                Khám phá Matrix Holding <ArrowRight size={18} />
               </a>
               <a
                 href="#lien-he"
                 className="inline-flex items-center gap-3 rounded-btn border border-white/70 px-6 py-4 text-sm font-bold text-white transition hover:bg-white/10"
               >
-                Liên hệ hợp tác
+                Liên hệ với chúng tôi
               </a>
             </div>
           </div>
           <div className="mt-12 grid max-w-3xl grid-cols-3 border-t border-white/30 pt-6 text-white/95">
             <div>
-              <p className="text-2xl font-extrabold sm:text-3xl">03</p>
+              <p className="text-2xl font-extrabold sm:text-3xl">06+</p>
               <p className="mt-1 text-xs leading-5 text-white/70">
-                Mảng hệ sinh thái
+                Doanh nghiệp
                 <br />
-                trọng tâm
+                Thành viên
               </p>
             </div>
             <div className="border-x border-white/30 px-5">
-              <p className="text-2xl font-extrabold sm:text-3xl">360°</p>
+              <p className="text-2xl font-extrabold sm:text-3xl">10+</p>
               <p className="mt-1 text-xs leading-5 text-white/70">
-                Giải pháp phát triển
+                Năm
                 <br />
-                doanh nghiệp
+                Kinh nghiệm
               </p>
             </div>
             <div className="pl-5">
-              <p className="text-2xl font-extrabold sm:text-3xl">01</p>
+              <p className="text-2xl font-extrabold sm:text-3xl">1250+</p>
               <p className="mt-1 text-xs leading-5 text-white/70">
-                Tầm nhìn chung
+                Dự án
                 <br />
-                cho tăng trưởng
+                Thành công
               </p>
             </div>
           </div>
@@ -136,10 +136,13 @@ export function MatrixLanding() {
               GIỚI THIỆU MATRIX HOLDING
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-7 text-muted">
-              Matrix Holding là doanh nghiệp hoạt động trong lĩnh vực đầu tư và
-              phát triển hệ sinh thái kinh doanh tại Việt Nam. Chúng tôi cung
-              cấp các giải pháp dành riêng cho doanh nghiệp, hỗ trợ nguồn vốn và
-              kết nối cơ hội kinh doanh nhằm kiến tạo những giá trị thiết thực.
+              Matrix Holding là doanh nghiệp được thành lập năm 2023, hoạt động
+              trong lĩnh vực đầu tư và phát triển hệ sinh thái kinh doanh đa
+              ngành tại Việt Nam.
+              <br /><br />
+              Chúng tôi mang đến những giải pháp toàn diện dành riêng cho doanh
+              nghiệp, giúp doanh nghiệp xây dựng nền tảng vận hành chắc, tối ưu
+              nguồn vốn và giới thiệu cơ hội kinh doanh tiềm năng dài hạn.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
@@ -152,7 +155,7 @@ export function MatrixLanding() {
                 href="#lien-he"
                 className="rounded-btn border border-navy px-5 py-3 text-sm font-semibold text-navy"
               >
-                Liên hệ hợp tác
+                Xem Hồ sơ năng lực
               </a>
             </div>
           </div>
@@ -172,7 +175,7 @@ export function MatrixLanding() {
               HỆ SINH THÁI CỦA MATRIX HOLDING
             </h2>
             <p className="mt-4 text-sm text-white/75">
-              Khám phá hệ sinh thái kinh doanh của Matrix Holding
+              Khám phá Hệ sinh thái kinh doanh đa ngành của chúng tôi
             </p>
           </div>
           <div className="mt-10 grid gap-7 md:grid-cols-3">
@@ -189,7 +192,7 @@ export function MatrixLanding() {
                 <div className="p-5">
                   <Icon size={20} className="mb-3 text-blue-brand" />
                   <h3 className="font-extrabold">{title}</h3>
-                  <p className="mt-3 min-h-12 text-sm leading-6 text-muted">
+                  <p className="mt-3 text-sm leading-6 text-muted">
                     {description}
                   </p>
                   <a
