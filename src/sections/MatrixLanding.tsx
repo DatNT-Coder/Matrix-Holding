@@ -68,8 +68,9 @@ export function MatrixLanding() {
               </p>
             </div>
             <h1 className="max-w-4xl text-3xl font-bold leading-[1.16] tracking-[-0.025em] sm:text-5xl lg:text-[3.7rem]">
-              <span className="block">Doanh nghiệp đầu tư và phát triển</span>
-              <span className="mt-1 block text-[#bfe5ff]">hệ sinh thái kinh doanh đa ngành.</span>
+              <span className="block">Doanh nghiệp đầu tư</span>
+              <span className="block">và phát triển hệ sinh thái</span>
+              <span className="block text-[#bfe5ff]">kinh doanh đa ngành.</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-8 text-white/82 sm:text-lg">
               Người đồng hành trên hành trình xây dựng và phát triển, kiến tạo
