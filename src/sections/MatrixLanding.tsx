@@ -192,7 +192,7 @@ export function MatrixLanding() {
                 <div className="p-5">
                   <Icon size={20} className="mb-3 text-blue-brand" />
                   <h3 className="font-extrabold">{title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-muted">
+                  <p className="mt-3 text-justify text-sm leading-6 text-muted">
                     {description}
                   </p>
                   <a

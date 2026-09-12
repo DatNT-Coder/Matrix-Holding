@@ -11,7 +11,7 @@ export function FAQ() {
       <div className="container-page grid items-start gap-12 lg:grid-cols-2">
         <div className="flex flex-col gap-6">
           <div className="flex items-center gap-3">
-            <h2 className="bg-[#cbe7fb] px-1 text-2xl font-extrabold text-navy sm:text-3xl lg:text-[34px]">
+            <h2 className="text-2xl font-extrabold text-navy sm:text-3xl lg:text-[34px]">
               Câu Hỏi Thường Gặp
             </h2>
             <span className="h-[3px] w-8 rounded-full bg-blue-brand" />
