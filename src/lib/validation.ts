@@ -24,7 +24,6 @@ export type LoginForm = z.infer<typeof loginSchema>;
 
 export const registerSchema = z
   .object({
-    username: z.string().min(3, "Tên đăng nhập tối thiểu 3 ký tự").max(50, "Tên đăng nhập tối đa 50 ký tự"),
     email: emailSchema,
     password: passwordSchema,
     confirm: z.string().min(1, "Vui lòng xác nhận mật khẩu"),

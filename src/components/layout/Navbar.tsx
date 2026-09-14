@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, LogIn, Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 
-const links = [["Trang chủ", "/"], ["Hệ sinh thái", "/#he-sinh-thai"], ["Tin tức", "/tin-tuc"], ["Tuyển dụng", "/tuyen-dung"], ["Liên hệ", "/#lien-he"]] as const;
+const links = [["Trang chủ", "/"], ["Giới thiệu", "/gioi-thieu"], ["Hệ sinh thái", "/#he-sinh-thai"], ["Tin tức", "/tin-tuc"], ["Tuyển dụng", "/tuyen-dung"], ["Liên hệ", "/#lien-he"]] as const;
 
 export function Navbar() {
   const [open, setOpen] = useState(false);

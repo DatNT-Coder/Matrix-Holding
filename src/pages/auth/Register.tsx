@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { User, Mail, Lock, Gift, CheckCircle2, Loader2 } from "lucide-react";
+import { Mail, Lock, Gift, CheckCircle2, Loader2 } from "lucide-react";
 import AuthLayout from "@/layouts/AuthLayout";
 import { AuthFormInput } from "@/components/ui/AuthFormInput";
 import { Button } from "@/components/ui/Button";
@@ -31,7 +31,6 @@ export default function Register() {
 
     try {
       const payload = {
-        username: data.username,
         email: data.email,
         password: data.password,
       };
@@ -69,14 +68,6 @@ export default function Register() {
     >
       {step === "form" && (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-          <AuthFormInput
-            id="username"
-            icon={User}
-            label="Tên đăng nhập"
-            placeholder="Nhập tên đăng nhập"
-            error={errors.username?.message}
-            {...register("username")}
-          />
           <AuthFormInput
             id="email"
             icon={Mail}
