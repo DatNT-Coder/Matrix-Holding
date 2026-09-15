@@ -55,6 +55,7 @@ export type NewsArticle = {
 
 export type NewsArticlePayload = Pick<NewsArticle, "title" | "excerpt" | "content" | "image_url" | "category">;
 export type ManagedNewsArticle = NewsArticle & { author_id: number; is_archived: boolean; archived_at: string | null; updated_at: string };
+export type PageResult<T> = { items: T[]; page: number; page_size: number; total: number; total_pages: number };
 
 export type Job = {
   id: number;
@@ -145,6 +146,12 @@ export function apiGetNews(limit = 12, category?: NewsArticle["category"]) {
   return request<NewsArticle[]>(`/api/news?${params}`);
 }
 
+export function apiGetNewsPage(page = 1, pageSize = 9, category?: NewsArticle["category"], search = "") {
+  const params = new URLSearchParams({ page: String(page), page_size: String(pageSize) });
+  if (category) params.set("category", category); if (search) params.set("search", search);
+  return request<PageResult<NewsArticle>>(`/api/news/page?${params}`);
+}
+
 export function apiGetNewsArticle(id: string) {
   return request<NewsArticle>(`/api/news/${id}`);
 }
@@ -178,6 +185,12 @@ export function apiGetJobs(search = "", department?: string) {
   if (search) params.set("search", search);
   if (department) params.set("department", department);
   return request<Job[]>(`/api/jobs?${params}`);
+}
+
+export function apiGetJobsPage(page = 1, pageSize = 8, search = "", department?: string) {
+  const params = new URLSearchParams({ page: String(page), page_size: String(pageSize) });
+  if (search) params.set("search", search); if (department) params.set("department", department);
+  return request<PageResult<Job>>(`/api/jobs/page?${params}`);
 }
 
 export function apiGetJob(id: string) {

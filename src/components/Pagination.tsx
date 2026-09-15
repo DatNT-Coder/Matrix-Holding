@@ -1,0 +1,7 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+export default function Pagination({ page, totalPages, onChange }: { page: number; totalPages: number; onChange: (page: number) => void }) {
+  if (totalPages <= 1) return null;
+  const pages = Array.from({ length: totalPages }, (_, index) => index + 1).filter((item) => totalPages <= 5 || item === 1 || item === totalPages || Math.abs(item - page) <= 1);
+  return <nav className="mt-10 flex items-center justify-center gap-1.5" aria-label="Phân trang"><button disabled={page === 1} onClick={() => onChange(page - 1)} className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-navy disabled:cursor-not-allowed disabled:opacity-35"><ChevronLeft size={18} /></button>{pages.map((item, index) => <span key={item} className="contents">{index > 0 && item - pages[index - 1] > 1 && <span className="px-1 text-muted">…</span>}<button onClick={() => onChange(item)} className={`h-10 min-w-10 rounded-lg px-3 text-sm font-bold ${item === page ? "bg-navy text-white" : "border border-slate-200 bg-white text-navy hover:border-blue-brand"}`}>{item}</button></span>)}<button disabled={page === totalPages} onClick={() => onChange(page + 1)} className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-navy disabled:cursor-not-allowed disabled:opacity-35"><ChevronRight size={18} /></button></nav>;
+}

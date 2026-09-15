@@ -68,9 +68,8 @@ export function MatrixLanding() {
               </p>
             </div>
             <h1 className="max-w-4xl text-3xl font-bold leading-[1.16] tracking-[-0.025em] sm:text-5xl lg:text-[3.7rem]">
-              <span className="block">Doanh nghiệp đầu tư</span>
-              <span className="block">và phát triển hệ sinh thái</span>
-              <span className="block text-[#bfe5ff]">kinh doanh đa ngành.</span>
+              <span className="block">DOANH NGHIỆP ĐẦU TƯ VÀ PHÁT TRIỂN</span>
+              <span className="block text-[#bfe5ff]">HỆ SINH THÁI KINH DOANH ĐA NGÀNH</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-8 text-white/82 sm:text-lg">
               Matrix Holding tự hào là thương hiệu tiên phong, giúp doanh nghiệp tiếp cận hệ sinh thái dịch vụ toàn diện,  mở rộng quan hệ hợp tác và tạo ra cơ hội phát triển.
