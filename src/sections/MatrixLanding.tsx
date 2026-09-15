@@ -132,6 +132,8 @@ export function MatrixLanding() {
             <p className="text-xs font-bold text-blue-brand">VỀ CHÚNG TÔI</p>
             <h2 className="mt-3 text-3xl font-extrabold text-navy">
               GIỚI THIỆU DOANH NGHIỆP
+            </h2>
+            <h2 className="mt-3 text-3xl font-extrabold text-navy">
               MATRIX HOLDING
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-7 text-muted">
