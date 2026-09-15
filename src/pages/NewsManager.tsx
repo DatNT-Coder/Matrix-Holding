@@ -1,132 +1,42 @@
-import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { ArrowLeft, Loader2 } from "lucide-react";
-import {
-  apiCreateNews,
-  getStoredUser,
-  type NewsArticlePayload,
-} from "@/lib/api";
+import { useEffect, useMemo, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { Archive, FilePenLine, Loader2, Pencil, Plus, RotateCcw, Search, X } from "lucide-react";
+import { apiArchiveNews, apiCreateNews, apiGetManagedNews, apiUpdateNews, getStoredUser, type ManagedNewsArticle, type NewsArticlePayload } from "@/lib/api";
 
-const empty: NewsArticlePayload = {
-  title: "",
-  excerpt: "",
-  content: "",
-  image_url: "/images/matrix-interior-lounge.png",
-  category: "MATRIX NETWORK",
-};
+const empty: NewsArticlePayload = { title: "", excerpt: "", content: "", image_url: "/images/matrix-interior-lounge.png", category: "MATRIX NETWORK" };
+const formatDate = (value: string) => new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(value));
 
 export default function NewsManager() {
   const user = getStoredUser();
-  const navigate = useNavigate();
-  const [form, setForm] = useState(empty);
-  const [error, setError] = useState("");
+  const [articles, setArticles] = useState<ManagedNewsArticle[]>([]);
+  const [query, setQuery] = useState("");
+  const [showArchived, setShowArchived] = useState(false);
+  const [form, setForm] = useState<NewsArticlePayload>(empty);
+  const [editing, setEditing] = useState<ManagedNewsArticle | null>(null);
+  const [openForm, setOpenForm] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
   if (!user) return <Navigate to="/dang-nhap" replace />;
-  if (!["DIRECTOR", "HR"].includes(user.role))
-    return <Navigate to="/" replace />;
-  const update = (key: keyof NewsArticlePayload, value: string) =>
-    setForm({ ...form, [key]: value });
-  const submit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setSaving(true);
-    setError("");
-    try {
-      const article = await apiCreateNews(form);
-      navigate(`/tin-tuc/${article.id}`);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Không thể đăng bài.");
-    } finally {
-      setSaving(false);
-    }
-  };
-  return (
-    <div className="min-h-screen bg-[#f6f9fd] py-12">
-      <form
-        onSubmit={submit}
-        className="mx-auto max-w-[860px] rounded-3xl bg-white p-6 shadow-card sm:p-10"
-      >
-        <button
-          type="button"
-          onClick={() => navigate(-1)}
-          className="inline-flex items-center gap-2 text-sm font-bold text-blue-brand"
-        >
-          <ArrowLeft size={16} />
-          Quay lại
-        </button>
-        <p className="mt-8 text-xs font-bold tracking-[.18em] text-blue-brand">
-          QUẢN TRỊ NỘI DUNG
-        </p>
-        <h1 className="mt-3 text-3xl font-extrabold text-navy">
-          Tạo bài viết mới
-        </h1>
-        <p className="mt-3 text-sm text-muted">
-          Bài viết sẽ hiển thị ngay trong mục Tin tức sau khi đăng.
-        </p>
-        {error && (
-          <p className="mt-6 rounded-xl bg-red-50 p-4 text-sm text-red-600">
-            {error}
-          </p>
-        )}
-        <div className="mt-8 space-y-5">
-          <label className="block text-sm font-bold text-navy">
-            Tiêu đề
-            <input
-              required
-              minLength={8}
-              value={form.title}
-              onChange={(e) => update("title", e.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand"
-            />
-          </label>
-          <label className="block text-sm font-bold text-navy">
-            Category
-            <select
-              value={form.category}
-              onChange={(e) => update("category", e.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand"
-            >
-              <option>MATRIX NETWORK</option>
-              <option>MATRIX COMMUNITY</option>
-              <option>MATRIX CAPITAL</option>
-            </select>
-          </label>
-          <label className="block text-sm font-bold text-navy">
-            Tóm tắt
-            <textarea
-              required
-              minLength={20}
-              value={form.excerpt}
-              onChange={(e) => update("excerpt", e.target.value)}
-              className="mt-2 min-h-24 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand"
-            />
-          </label>
-          <label className="block text-sm font-bold text-navy">
-            Nội dung
-            <textarea
-              required
-              minLength={50}
-              value={form.content}
-              onChange={(e) => update("content", e.target.value)}
-              className="mt-2 min-h-56 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand"
-            />
-          </label>
-          <label className="block text-sm font-bold text-navy">
-            Đường dẫn ảnh
-            <input
-              value={form.image_url}
-              onChange={(e) => update("image_url", e.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand"
-            />
-          </label>
-        </div>
-        <button
-          disabled={saving}
-          className="mt-8 inline-flex items-center gap-2 rounded-btn bg-navy px-6 py-3.5 text-sm font-bold text-white disabled:opacity-60"
-        >
-          {saving && <Loader2 size={17} className="animate-spin" />}
-          {saving ? "Đang đăng..." : "Đăng bài viết"}
-        </button>
-      </form>
-    </div>
-  );
+  if (!['DIRECTOR', 'HR'].includes(user.role)) return <Navigate to="/" replace />;
+
+  const load = () => { setLoading(true); apiGetManagedNews().then(setArticles).catch((err) => setError(err instanceof Error ? err.message : "Không thể tải danh sách bài viết.")).finally(() => setLoading(false)); };
+  useEffect(() => { load(); }, []);
+  const visible = useMemo(() => articles.filter((article) => (showArchived ? article.is_archived : !article.is_archived) && `${article.title} ${article.category}`.toLocaleLowerCase("vi-VN").includes(query.toLocaleLowerCase("vi-VN"))), [articles, query, showArchived]);
+  const activeCount = articles.filter((article) => !article.is_archived).length;
+  const archivedCount = articles.length - activeCount;
+  const beginCreate = () => { setEditing(null); setForm(empty); setError(""); setOpenForm(true); };
+  const beginEdit = (article: ManagedNewsArticle) => { setEditing(article); setForm({ title: article.title, excerpt: article.excerpt, content: article.content, image_url: article.image_url, category: article.category }); setError(""); setOpenForm(true); };
+  const update = (key: keyof NewsArticlePayload, value: string) => setForm((current) => ({ ...current, [key]: value }));
+  const submit = async (event: React.FormEvent) => { event.preventDefault(); setSaving(true); setError(""); try { if (editing) await apiUpdateNews(editing.id, form); else await apiCreateNews(form); setOpenForm(false); load(); } catch (err) { setError(err instanceof Error ? err.message : "Không thể lưu bài viết."); } finally { setSaving(false); } };
+  const archive = async (article: ManagedNewsArticle) => { if (!window.confirm(article.is_archived ? "Khôi phục bài viết này?" : "Lưu trữ bài viết này? Bài sẽ không còn hiển thị ngoài website.")) return; setError(""); try { await apiArchiveNews(article.id, article.is_archived); load(); } catch (err) { setError(err instanceof Error ? err.message : "Không thể cập nhật bài viết."); } };
+
+  return <div className="min-h-full bg-[#f5f8fc] px-5 py-8 sm:px-8 lg:px-10"><div className="mx-auto max-w-[1280px]">
+    <div className="flex flex-col justify-between gap-5 border-b border-[#dce4ed] pb-7 md:flex-row md:items-end"><div><p className="text-xs font-extrabold tracking-[.18em] text-blue-brand">NỘI BỘ · QUẢN LÝ NỘI DUNG</p><h1 className="mt-2 text-3xl font-extrabold text-navy">Tin tức Matrix Holding</h1><p className="mt-2 text-sm text-muted">Đăng bài, cập nhật nội dung và lưu trữ các bài không còn sử dụng.</p></div><button onClick={beginCreate} className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3 text-sm font-bold text-white transition hover:bg-[#123563]"><Plus size={18} />Tạo bài viết</button></div>
+    <div className="mt-6 grid gap-4 sm:grid-cols-3"><div className="rounded-2xl border border-[#dfe7ef] bg-white p-5"><p className="text-sm text-muted">Đang hiển thị</p><p className="mt-2 text-3xl font-extrabold text-navy">{activeCount}</p></div><div className="rounded-2xl border border-[#dfe7ef] bg-white p-5"><p className="text-sm text-muted">Đã lưu trữ</p><p className="mt-2 text-3xl font-extrabold text-navy">{archivedCount}</p></div><div className="rounded-2xl border border-[#dfe7ef] bg-white p-5"><p className="text-sm text-muted">Quyền của bạn</p><p className="mt-2 text-sm font-bold text-navy">{user.role === "DIRECTOR" ? "Quản lý tất cả bài viết" : "Quản lý bài viết do bạn tạo"}</p></div></div>
+    <div className="mt-7 rounded-2xl border border-[#dfe7ef] bg-white"><div className="flex flex-col gap-4 border-b border-[#e5ebf1] p-5 md:flex-row md:items-center md:justify-between"><div className="flex rounded-xl bg-[#eef3f8] p-1"><button onClick={() => setShowArchived(false)} className={`rounded-lg px-4 py-2 text-sm font-bold ${!showArchived ? "bg-white text-navy shadow-sm" : "text-muted"}`}>Đang hiển thị</button><button onClick={() => setShowArchived(true)} className={`rounded-lg px-4 py-2 text-sm font-bold ${showArchived ? "bg-white text-navy shadow-sm" : "text-muted"}`}>Lưu trữ</button></div><label className="flex h-10 items-center gap-2 rounded-xl border border-slate-200 px-3 text-slate-400 md:w-80"><Search size={16} /><input value={query} onChange={(event) => setQuery(event.target.value)} className="w-full outline-none" placeholder="Tìm theo tiêu đề hoặc chuyên mục" /></label></div>{error && <p className="m-5 rounded-xl bg-red-50 p-4 text-sm text-red-600">{error}</p>}
+      {loading ? <div className="flex justify-center py-16"><Loader2 className="animate-spin text-blue-brand" /></div> : visible.length === 0 ? <div className="py-16 text-center"><FilePenLine className="mx-auto text-slate-300" size={34} /><p className="mt-4 font-bold text-navy">{showArchived ? "Chưa có bài viết lưu trữ" : "Chưa có bài viết nào"}</p><p className="mt-2 text-sm text-muted">{showArchived ? "Các bài được lưu trữ sẽ xuất hiện tại đây." : "Tạo bài viết đầu tiên để bắt đầu cập nhật website."}</p>{!showArchived && <button onClick={beginCreate} className="mt-5 text-sm font-bold text-blue-brand">Tạo bài viết</button>}</div> : <div className="overflow-x-auto"><table className="w-full min-w-[760px] text-left"><thead className="bg-[#f8fafc] text-[11px] font-extrabold tracking-[.08em] text-[#6f8194]"><tr><th className="px-5 py-4">BÀI VIẾT</th><th className="px-4 py-4">CHUYÊN MỤC</th><th className="px-4 py-4">CẬP NHẬT</th><th className="px-4 py-4">TÁC GIẢ</th><th className="px-5 py-4 text-right">THAO TÁC</th></tr></thead><tbody className="divide-y divide-[#e8edf2]">{visible.map((article) => <tr key={article.id} className="hover:bg-[#fbfcfe]"><td className="max-w-[420px] px-5 py-4"><p className="font-bold text-navy">{article.title}</p><p className="mt-1 line-clamp-1 text-sm text-muted">{article.excerpt}</p></td><td className="px-4 py-4"><span className="rounded-full bg-[#e9f4ff] px-2.5 py-1 text-[11px] font-bold text-blue-brand">{article.category.replace("MATRIX ", "")}</span></td><td className="px-4 py-4 text-sm text-muted">{formatDate(article.updated_at)}</td><td className="px-4 py-4 text-sm text-muted">{article.author_name}</td><td className="px-5 py-4"><div className="flex justify-end gap-2"><button onClick={() => beginEdit(article)} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-bold text-navy hover:border-blue-brand"><Pencil size={14} />Sửa</button><button onClick={() => archive(article)} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-bold text-[#62758b] hover:border-blue-brand">{article.is_archived ? <><RotateCcw size={14} />Khôi phục</> : <><Archive size={14} />Lưu trữ</>}</button></div></td></tr>)}</tbody></table></div>}</div>
+  </div>
+  {openForm && <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-[#071c36]/55 p-4 py-8"><form onSubmit={submit} className="w-full max-w-3xl rounded-2xl bg-white shadow-2xl"><div className="flex items-start justify-between border-b border-slate-200 px-6 py-5"><div><p className="text-xs font-extrabold tracking-[.15em] text-blue-brand">NỘI DUNG WEBSITE</p><h2 className="mt-1 text-2xl font-extrabold text-navy">{editing ? "Cập nhật bài viết" : "Tạo bài viết mới"}</h2></div><button type="button" onClick={() => setOpenForm(false)} className="rounded-lg p-2 text-slate-500 hover:bg-slate-100"><X /></button></div><div className="space-y-5 p-6">{error && <p className="rounded-xl bg-red-50 p-3 text-sm text-red-600">{error}</p>}<div className="grid gap-5 sm:grid-cols-[1fr_210px]"><label className="text-sm font-bold text-navy">Tiêu đề<input required value={form.title} onChange={(e) => update("title", e.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand" /></label><label className="text-sm font-bold text-navy">Chuyên mục<select value={form.category} onChange={(e) => update("category", e.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand"><option>MATRIX NETWORK</option><option>MATRIX COMMUNITY</option><option>MATRIX CAPITAL</option></select></label></div><label className="block text-sm font-bold text-navy">Tóm tắt<textarea required value={form.excerpt} onChange={(e) => update("excerpt", e.target.value)} className="mt-2 min-h-24 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand" /></label><label className="block text-sm font-bold text-navy">Nội dung<textarea required value={form.content} onChange={(e) => update("content", e.target.value)} className="mt-2 min-h-56 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand" /></label><label className="block text-sm font-bold text-navy">Đường dẫn ảnh<input value={form.image_url} onChange={(e) => update("image_url", e.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand" /></label></div><div className="flex justify-end gap-3 border-t border-slate-200 px-6 py-4"><button type="button" onClick={() => setOpenForm(false)} className="rounded-xl px-4 py-2.5 text-sm font-bold text-muted">Hủy</button><button disabled={saving} className="inline-flex items-center gap-2 rounded-xl bg-navy px-5 py-2.5 text-sm font-bold text-white disabled:opacity-60">{saving && <Loader2 size={16} className="animate-spin" />}{saving ? "Đang lưu..." : editing ? "Lưu thay đổi" : "Đăng bài"}</button></div></form></div>}
+  </div>;
 }

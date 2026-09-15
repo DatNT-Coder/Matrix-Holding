@@ -54,6 +54,7 @@ export type NewsArticle = {
 };
 
 export type NewsArticlePayload = Pick<NewsArticle, "title" | "excerpt" | "content" | "image_url" | "category">;
+export type ManagedNewsArticle = NewsArticle & { author_id: number; is_archived: boolean; archived_at: string | null; updated_at: string };
 
 export type Job = {
   id: number;
@@ -155,6 +156,21 @@ export function apiCreateNews(payload: NewsArticlePayload) {
     headers: token ? { Authorization: token } : {},
     body: JSON.stringify(payload),
   });
+}
+
+export function apiGetManagedNews() {
+  const token = getStoredToken();
+  return request<ManagedNewsArticle[]>("/api/news/manage", { headers: token ? { Authorization: token } : {} });
+}
+
+export function apiUpdateNews(id: number, payload: NewsArticlePayload) {
+  const token = getStoredToken();
+  return request<NewsArticle>(`/api/news/${id}`, { method: "PUT", headers: token ? { Authorization: token } : {}, body: JSON.stringify(payload) });
+}
+
+export function apiArchiveNews(id: number, restore = false) {
+  const token = getStoredToken();
+  return request<ManagedNewsArticle>(`/api/news/${id}/${restore ? "restore" : "archive"}`, { method: "PATCH", headers: token ? { Authorization: token } : {} });
 }
 
 export function apiGetJobs(search = "", department?: string) {

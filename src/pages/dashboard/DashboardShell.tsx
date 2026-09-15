@@ -1,4 +1,4 @@
-import { Bell, BriefcaseBusiness, CalendarDays, CircleHelp, ClipboardCheck, LayoutDashboard, LogOut, Menu, Search, Settings, UserRound, UsersRound, X } from "lucide-react";
+import { Bell, BriefcaseBusiness, CalendarDays, CircleHelp, ClipboardCheck, LayoutDashboard, LogOut, Menu, Newspaper, Search, Settings, UserRound, UsersRound, X } from "lucide-react";
 import { useState } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { clearAuthSession, getStoredUser, type UserRole } from "@/lib/api";
@@ -16,6 +16,7 @@ export default function DashboardShell() {
   const nav = [
     { label: "Tổng quan", icon: LayoutDashboard, path: dashboardPath[user.role] },
     ...(hasRecruitmentAccess ? [{ label: "Nhân sự & tuyển dụng", icon: UsersRound, path: "/quan-tri/ho-so-ung-tuyen" }, { label: "Tin tuyển dụng", icon: BriefcaseBusiness, path: "/quan-tri/tuyen-dung" }] : [{ label: "Công việc", icon: ClipboardCheck, path: "" }]),
+    ...(hasRecruitmentAccess ? [{ label: "Quản lý tin tức", icon: Newspaper, path: "/quan-tri/tin-tuc" }] : []),
     { label: "Lịch làm việc", icon: CalendarDays, path: "/quan-tri/lich-lam-viec" },
   ];
   return <div className="min-h-screen bg-[#f5f7fc] text-navy">
