@@ -60,6 +60,9 @@ export type PageResult<T> = { items: T[]; page: number; page_size: number; total
 export type Job = {
   id: number;
   title: string;
+  company_name: string;
+  company_logo: string | null;
+  company_summary: string | null;
   department: string;
   location: string;
   salary: string;
