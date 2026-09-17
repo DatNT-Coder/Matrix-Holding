@@ -68,6 +68,26 @@
   display: none;
 }
 
+.about-page > section:not(:first-child) {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.about-timeline {
+  scrollbar-width: none;
+}
+
+.about-timeline::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .about-page > section:not(:first-child) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
 @media (max-width: 519px) {
   .job-detail-columns {
     grid-template-columns: minmax(0, 1fr);
