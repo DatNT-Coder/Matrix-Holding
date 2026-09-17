@@ -38,10 +38,9 @@ export function Partners() {
       previousTime = currentTime;
 
       if (!dragState.current.active && !hoverState.current && track.scrollWidth > track.clientWidth) {
-        track.scrollLeft += elapsed * 0.035;
-        if (track.scrollLeft >= track.scrollWidth / 2) {
-          track.scrollLeft = 0;
-        }
+        const loopWidth = track.scrollWidth / 2;
+        const nextPosition = track.scrollLeft + elapsed * 0.035;
+        track.scrollLeft = nextPosition >= loopWidth ? nextPosition - loopWidth : nextPosition;
       }
       animationFrame = requestAnimationFrame(move);
     };
@@ -120,7 +119,8 @@ export function Partners() {
               <img
                 src={`/images/partner-${String((index % partners.length) + 1).padStart(2, "0")}.png`}
                 alt={`Logo ${partner}`}
-                loading={index < 6 ? "eager" : "lazy"}
+                loading="eager"
+                decoding="async"
                 draggable={false}
                 className="h-full w-full object-contain"
               />

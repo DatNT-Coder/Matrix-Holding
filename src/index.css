@@ -60,7 +60,8 @@
 
 .partner-scrollbar {
   scrollbar-width: none;
-  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  touch-action: pan-y;
 }
 
 .partner-scrollbar::-webkit-scrollbar {
