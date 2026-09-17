@@ -18,21 +18,21 @@ const images = {
 const ecosystems = [
   {
     title: "MATRIX NETWORK",
-    description: "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các đơn vị cung cấp dịch vụ toàn diện cho doanh nghiệp. ",
+    description: "Thương hiệu thành viên thuộc Matrix Holding, đảm nhiệm vai trò xây dựng, quản lý và điều phối các đơn vị cung cấp dịch vụ cho doanh nghiệp.",
     image: "/images/matrix-network.png",
     alt: "Hệ sinh thái dịch vụ Matrix Network",
     Icon: Building2,
   },
   {
     title: "MATRIX COMMUNITY",
-    description: "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối kinh doanh cho doanh nghiệp.",
+    description: "Thương hiệu thành viên thuộc Matrix Holding, đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối kinh doanh cho doanh nghiệp.",
     image: "/images/matrix-community.png",
     alt: "Hệ sinh thái cộng đồng Matrix Community",
     Icon: UsersRound,
   },
   {
     title: "MATRIX CAPITAL",
-    description: "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối đầu tư cho doanh nghiệp.",
+    description: "Thương hiệu thành viên thuộc Matrix Holding, đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối đầu tư cho doanh nghiệp.",
     image: "/images/matrix-capital.png",
     alt: "Hệ sinh thái đầu tư Matrix Capital",
     Icon: BriefcaseBusiness,
@@ -68,11 +68,11 @@ export function MatrixLanding() {
               </p>
             </div>
             <h1 className="max-w-[1100px] text-3xl font-bold leading-[1.16] tracking-[-0.025em] sm:text-[2.65rem] lg:text-[3rem] xl:text-[3.2rem]">
-              <span className="block lg:whitespace-nowrap">DOANH NGHIỆP ĐẦU TƯ VÀ PHÁT TRIỂN</span>
+              <span className="block lg:whitespace-nowrap">ĐƠN VỊ KIẾN TẠO</span>
               <span className="block text-[#bfe5ff] lg:whitespace-nowrap">HỆ SINH THÁI KINH DOANH ĐA NGÀNH</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-8 text-white/82 sm:text-lg">
-              Matrix Holding tự hào là thương hiệu tiên phong, giúp doanh nghiệp tiếp cận hệ sinh thái dịch vụ toàn diện,  mở rộng quan hệ hợp tác và tạo ra cơ hội phát triển.
+              Chúng tôi tập trung xây dựng một môi trường kinh doanh hiệu quả, nơi các doanh nghiệp có thể tiếp cận với nhiều nguồn lực và mở ra cơ hội tiếp cận thị trường bền vững.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <a
@@ -137,10 +137,10 @@ export function MatrixLanding() {
               MATRIX HOLDING
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-7 text-muted">
-              Matrix Holding là một doanh nghiệp hoạt động trong lĩnh vực đầu tư và phát triển hệ sinh thái kinh doanh đa ngành tại Việt Nam. 
+              Matrix Holding là doanh nghiệp hoạt động trong lĩnh vực đầu tư và phát triển hệ sinh thái kinh doanh đa ngành tại Việt Nam.
 
               <br /><br />
-              Chúng tôi tập trung xây dựng, quản lý và vận hành các nền tảng thuộc hệ sinh thái Matrix, từng bước tạo ra một môi trường kinh doanh hiệu quả, minh bạch và bền vững.
+              Với khát vọng đưa các doanh nghiệp tiềm năng trở thành kỳ lân trong lĩnh vực, chúng tôi cam kết sẽ không ngừng nỗ lực, phát huy sự sáng tạo và kiến tạo những giải pháp phù hợp với nhu cầu của từng doanh nghiệp.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
@@ -173,7 +173,7 @@ export function MatrixLanding() {
               HỆ SINH THÁI CỦA MATRIX HOLDING
             </h2>
             <p className="mt-4 text-sm text-white/75">
-              Khám phá Hệ sinh thái kinh doanh đa ngành của chúng tôi
+              Khám phá hệ sinh thái kinh doanh đa ngành của chúng tôi
             </p>
           </div>
           <div className="mt-10 grid gap-7 md:grid-cols-3">

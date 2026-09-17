@@ -302,29 +302,29 @@ export interface Faq {
 
 export const FAQS: Faq[] = [
   {
-    question: "Đăng ký hồ sơ doanh nghiệp có mất phí không?",
+    question: "Matrix Holding là doanh nghiệp gì?",
     answer:
-      "Việc đăng ký và tạo hồ sơ doanh nghiệp cơ bản trên Matrix Holding là hoàn toàn miễn phí. Bạn chỉ cần trả phí khi nâng cấp lên các gói dịch vụ cao cấp như Quảng Cáo Top hoặc Website Pro.",
+      "Matrix Holding là doanh nghiệp hoạt động theo mô hình hệ sinh thái khép kín, giữ vai trò là công ty mẹ, chịu trách nhiệm quản trị, vận hành và điều phối các hoạt động kinh doanh, giúp các công ty thành viên có đầy đủ nguồn lực để phát triển dài hạn.",
   },
   {
-    question: "Thời gian xét duyệt hồ sơ xác thực mất bao lâu?",
+    question: "Matrix Holding hoạt động trong những lĩnh vực nào?",
     answer:
-      "Thông thường hồ sơ xác thực doanh nghiệp được xét duyệt trong vòng 24 - 48 giờ làm việc kể từ khi bạn cung cấp đầy đủ giấy tờ hợp lệ.",
+      "Matrix Holding hoạt động trong lĩnh vực tư vấn, đầu tư và phát triển hệ sinh thái kinh doanh. Đồng thời, kiến tạo môi trường để ươm mầm, nuôi dưỡng và thúc đẩy sự phát triển của những ý tưởng kinh doanh tiềm năng.",
   },
   {
-    question: "Tôi cần chuẩn bị giấy tờ gì để xác thực?",
+    question: "Matrix Holding kinh doanh sản phẩm, dịch vụ gì?",
     answer:
-      "Bạn cần chuẩn bị Giấy chứng nhận đăng ký doanh nghiệp (hoặc mã số thuế) và giấy tờ tùy thân của người đại diện pháp luật để hoàn tất quá trình xác thực.",
+      "Matrix Holding không trực tiếp kinh doanh bất kỳ sản phẩm hay dịch vụ cụ thể nào. Chúng tôi tập trung vào hoạt động nghiên cứu thị trường chuyên sâu nhằm xây dựng những chiến lược và mô hình kinh doanh phù hợp với từng lĩnh vực.",
   },
   {
-    question: "Có xuất hóa đơn VAT khi thanh toán gói dịch vụ không?",
+    question: "Matrix Holding được thành lập khi nào?",
     answer:
-      "Có. Chúng tôi xuất hóa đơn VAT đầy đủ cho tất cả các giao dịch thanh toán gói dịch vụ, đảm bảo minh bạch cho công tác kế toán của doanh nghiệp.",
+      "Matrix Holding được chính thức ra đời và hoàn thiện thủ tục pháp lý năm 2023, hướng đến mục tiêu đồng hành cùng các doanh nghiệp trên hành trình xây dựng và phát triển thông qua các công ty cung cấp dịch vụ, các cộng đồng kết nối kinh doanh và đầu tư.",
   },
   {
-    question: "Thông tin cá nhân người đại diện có bị công khai không?",
+    question: "Chủ tịch của Matrix Holding là ai?",
     answer:
-      "Không. Thông tin cá nhân của người đại diện được bảo mật tuyệt đối và chỉ hiển thị công khai khi có sự đồng thuận rõ ràng từ phía doanh nghiệp.",
+      "Chủ tịch của Matrix Holding là Hồ Anh Tuấn – một doanh nhân trẻ với khát vọng trở thành người dẫn đường cho thế hệ doanh nhân trẻ khởi nghiệp, kiến tạo một môi trường kinh doanh minh bạch, hiệu quả và bền vững.",
   },
 ];
 

@@ -17,8 +17,8 @@ export function FAQ() {
             <span className="h-[3px] w-8 rounded-full bg-blue-brand" />
           </div>
           <p className="-mt-2 text-[15px] leading-relaxed text-muted">
-            Giải đáp nhanh những thắc mắc phổ biến nhất để giúp bạn tiến hành và
-            cách thức vận hành và các câu quyết trong hệ sinh thái của chúng tôi.
+            Giải đáp những thắc mắc phổ biến về Matrix Holding và hệ sinh thái
+            kinh doanh mà chúng tôi đang kiến tạo.
           </p>
           <Figure
             src={IMG.faq}
