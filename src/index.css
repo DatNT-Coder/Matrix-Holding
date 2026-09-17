@@ -50,3 +50,16 @@
     justify-content: center !important;
   }
 }
+
+/* Job detail remains two-column in desktop windows even when browser zoom reduces CSS width. */
+.job-detail-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.48fr) minmax(240px, 0.72fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 519px) {
+  .job-detail-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

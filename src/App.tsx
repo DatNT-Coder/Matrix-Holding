@@ -22,6 +22,7 @@ import ApplicationManager from "./pages/ApplicationManager";
 import ScheduleManager from "./pages/ScheduleManager";
 import RecruitmentJobDetail from "./pages/RecruitmentJobDetail";
 import ProfilePage from "./pages/ProfilePage";
+import CandidateProfile from "./pages/CandidateProfile";
 import DashboardShell from "./pages/dashboard/DashboardShell";
 
 function ScrollToTop() {
@@ -51,6 +52,7 @@ export default function App() {
           <Route path="/tin-tuc/:id" element={<NewsDetail />} />
           <Route path="/tuyen-dung" element={<JobsList />} />
           <Route path="/tuyen-dung/:id" element={<JobDetail />} />
+          <Route path="/ho-so-ung-vien" element={<CandidateProfile />} />
         </Route>
         <Route path="/dang-nhap" element={<Login />} />
         <Route path="/dang-ky" element={<Register />} />

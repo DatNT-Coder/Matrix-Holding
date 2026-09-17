@@ -70,6 +70,7 @@ export type Job = {
   summary: string;
   description: string;
   requirements: string;
+  expires_at: string | null;
   created_at: string;
   author_name: string;
 };
@@ -84,6 +85,9 @@ export type RecruitmentApplication = {
   candidate: { id: number; full_name: string; email: string; phone: string; cv_url: string; experience: string | null };
 };
 export type Recruiter = { id: number; username: string; email: string };
+export type CandidateProfile = { id: number; full_name: string; email: string; phone: string; cv_url: string; experience: string | null; profile_summary: string | null };
+export type CandidateProfilePayload = Pick<CandidateProfile, "full_name" | "phone" | "cv_url" | "experience" | "profile_summary">;
+export type CandidateApplication = { id: number; job_id: number; job_title: string; company_name: string; status: ApplicationStatus; created_at: string };
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
@@ -205,6 +209,15 @@ export function apiCreateJob(payload: JobPayload) {
   return request<Job>("/api/jobs", { method: "POST", headers: token ? { Authorization: token } : {}, body: JSON.stringify(payload) });
 }
 
+export function apiRenewJob(id: number, expires_at: string) {
+  const token = getStoredToken();
+  return request<Job>(`/api/jobs/${id}/renew`, {
+    method: "PATCH",
+    headers: token ? { Authorization: token } : {},
+    body: JSON.stringify({ expires_at }),
+  });
+}
+
 export function apiApplyJob(id: string, payload: JobApplicationPayload) {
   return request<{ message: string }>(`/api/jobs/${id}/apply`, { method: "POST", body: JSON.stringify(payload) });
 }
@@ -236,6 +249,10 @@ export function apiUpdateApplication(id: number, payload: Pick<RecruitmentApplic
   const token = getStoredToken();
   return request<RecruitmentApplication>(`/api/recruitment/applications/${id}`, { method: "PATCH", headers: token ? { Authorization: token } : {}, body: JSON.stringify(payload) });
 }
+
+export function apiGetCandidateProfile() { const token = getStoredToken(); return request<CandidateProfile>("/api/candidates/me", { headers: token ? { Authorization: token } : {} }); }
+export function apiSaveCandidateProfile(payload: CandidateProfilePayload) { const token = getStoredToken(); return request<CandidateProfile>("/api/candidates/me", { method: "PUT", headers: token ? { Authorization: token } : {}, body: JSON.stringify(payload) }); }
+export function apiGetMyCandidateApplications() { const token = getStoredToken(); return request<CandidateApplication[]>("/api/candidates/me/applications", { headers: token ? { Authorization: token } : {} }); }
 
 export function getStoredUser(): AuthUser | null {
   const raw = localStorage.getItem("user");
