@@ -58,6 +58,15 @@
   gap: 1.5rem;
 }
 
+.partner-scrollbar {
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.partner-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @media (max-width: 519px) {
   .job-detail-columns {
     grid-template-columns: minmax(0, 1fr);
