@@ -26,7 +26,7 @@ const empty: NewsArticlePayload = {
   title: "",
   excerpt: "",
   content: "",
-  image_url: "/images/matrix-interior-lounge.png",
+  image_url: "",
   category: "MATRIX NETWORK",
 };
 const formatDate = (value: string) =>
@@ -47,6 +47,7 @@ export default function NewsManager() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [imageUploading, setImageUploading] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [error, setError] = useState("");
   if (!user) return <Navigate to="/dang-nhap" replace />;
   if (!["DIRECTOR", "HR"].includes(user.role))
@@ -84,6 +85,7 @@ export default function NewsManager() {
   const beginCreate = () => {
     setEditing(null);
     setForm(empty);
+    setImagePreview(null);
     setError("");
     setOpenForm(true);
   };
@@ -96,6 +98,7 @@ export default function NewsManager() {
       image_url: article.image_url,
       category: article.category,
     });
+    setImagePreview(null);
     setError("");
     setOpenForm(true);
   };
@@ -103,7 +106,16 @@ export default function NewsManager() {
     setForm((current) => ({ ...current, [key]: value }));
   const uploadImage = async (file?: File) => {
     if (!file) return;
+    if (!file.type.match(/^image\/(jpeg|png|webp)$/)) {
+      setError("Ảnh bài viết chỉ hỗ trợ định dạng JPG, PNG hoặc WebP.");
+      return;
+    }
+    if (file.size > 8 * 1024 * 1024) {
+      setError("Ảnh bài viết tối đa 8 MB.");
+      return;
+    }
     setError("");
+    setImagePreview(URL.createObjectURL(file));
     setImageUploading(true);
     try {
       const uploaded = await apiUploadNewsImage(file);
@@ -118,6 +130,14 @@ export default function NewsManager() {
   };
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (imageUploading) {
+      setError("Ảnh đang được tải lên. Vui lòng chờ trong giây lát.");
+      return;
+    }
+    if (!form.image_url) {
+      setError("Vui lòng tải ảnh đại diện bài viết trước khi lưu.");
+      return;
+    }
     setSaving(true);
     setError("");
     try {
@@ -411,24 +431,21 @@ export default function NewsManager() {
                     <p className="mt-1">Hỗ trợ JPG, PNG, WebP · tối đa 8 MB</p>
                   </div>
                 </div>
-                {form.image_url && (
+                {(imagePreview ?? form.image_url) && (
                   <div className="mt-4 overflow-hidden rounded-lg border border-[#d9e8f5] bg-white">
                     <img
-                      src={form.image_url}
+                      src={imagePreview ?? form.image_url}
                       alt="Xem trước ảnh đại diện"
                       className="h-40 w-full object-cover sm:h-52"
                     />
                   </div>
                 )}
-                <label className="mt-4 block text-xs font-medium text-[#59718c]">
-                  Hoặc dùng đường dẫn ảnh
-                  <input
-                    value={form.image_url}
-                    onChange={(e) => update("image_url", e.target.value)}
-                    placeholder="https://..."
-                    className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-normal text-navy outline-none focus:border-blue-brand"
-                  />
-                </label>
+                {!imagePreview && !form.image_url && (
+                  <p className="mt-4 text-sm text-[#59718c]">
+                    Chưa chọn ảnh. Ảnh sẽ hiển thị xem trước ngay tại đây sau
+                    khi bạn chọn file.
+                  </p>
+                )}
               </div>
             </div>
             <div className="flex justify-end gap-3 border-t border-slate-200 px-6 py-4">
