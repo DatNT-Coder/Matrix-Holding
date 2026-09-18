@@ -428,18 +428,32 @@ export function apiGetRecruitmentJobs() {
   });
 }
 
-export function apiGetRecruitmentJobsPage(page = 1, pageSize = 10) {
+export async function apiGetRecruitmentJobsPage(page = 1, pageSize = 10) {
   const token = getStoredToken();
   const params = new URLSearchParams({
     page: String(page),
     page_size: String(pageSize),
   });
-  return request<PageResult<RecruitmentJob>>(
-    `/api/recruitment/jobs-overview/page?${params}`,
-    {
-      headers: token ? { Authorization: token } : {},
-    },
-  );
+  try {
+    return await request<PageResult<RecruitmentJob>>(
+      `/api/recruitment/jobs-overview/page?${params}`,
+      { headers: token ? { Authorization: token } : {} },
+    );
+  } catch (error) {
+    // Allows a new frontend to work while a Render backend is still deploying.
+    if (!(error instanceof Error) || error.message !== "Not Found") throw error;
+    const jobs = await apiGetRecruitmentJobs();
+    const total = jobs.length;
+    const totalPages = Math.max(1, Math.ceil(total / pageSize));
+    const safePage = Math.min(page, totalPages);
+    return {
+      items: jobs.slice((safePage - 1) * pageSize, safePage * pageSize),
+      page: safePage,
+      page_size: pageSize,
+      total,
+      total_pages: totalPages,
+    };
+  }
 }
 export function apiGetMyProfile() {
   const token = getStoredToken();
