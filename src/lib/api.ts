@@ -87,11 +87,16 @@ export type Job = {
   description: string;
   requirements: string;
   expires_at: string | null;
+  is_featured: boolean;
+  featured_until: string | null;
   created_at: string;
   author_name: string;
 };
 
-export type JobPayload = Omit<Job, "id" | "created_at" | "author_name">;
+export type JobPayload = Omit<
+  Job,
+  "id" | "created_at" | "author_name" | "is_featured" | "featured_until"
+>;
 export type RecruitmentJob = Job & {
   application_count: number;
   new_application_count: number;
@@ -322,6 +327,15 @@ export function apiRenewJob(id: number, expires_at: string) {
     method: "PATCH",
     headers: token ? { Authorization: token } : {},
     body: JSON.stringify({ expires_at }),
+  });
+}
+
+export function apiFeatureJob(id: number, featuredUntil: string) {
+  const token = getStoredToken();
+  return request<Job>(`/api/jobs/${id}/featured`, {
+    method: "PATCH",
+    headers: token ? { Authorization: token } : {},
+    body: JSON.stringify({ featured_until: featuredUntil }),
   });
 }
 
