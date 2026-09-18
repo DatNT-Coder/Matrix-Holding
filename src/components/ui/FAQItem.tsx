@@ -43,7 +43,7 @@ export function FAQItem({ index, question, answer, open, onToggle }: Props) {
         )}
       >
         <div className="overflow-hidden">
-          <p className="px-5 pb-5 pl-[68px] text-sm leading-relaxed text-muted">
+          <p className="px-5 pb-5 pl-[68px] text-justify text-sm leading-relaxed text-muted">
             {answer}
           </p>
         </div>
