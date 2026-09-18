@@ -71,8 +71,8 @@ export function MatrixLanding() {
               </p>
             </div>
             <h1 className="max-w-[1100px] text-3xl font-bold leading-[1.16] tracking-[-0.025em] sm:text-[2.65rem] lg:text-[3rem] xl:text-[3.2rem]">
-              <span className="block lg:whitespace-nowrap">ĐƠN VỊ KIẾN TẠO</span>
-              <span className="block text-[#bfe5ff] lg:whitespace-nowrap">HỆ SINH THÁI KINH DOANH ĐA NGÀNH</span>
+              <span className="block lg:whitespace-nowrap">Kiến Tạo Hệ Sinh Thái</span>
+              <span className="block text-[#bfe5ff] lg:whitespace-nowrap">Kinh Doanh Đa Ngành.</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-8 text-white/82 sm:text-lg">
               Chúng tôi tập trung xây dựng một môi trường kinh doanh hiệu quả, nơi các doanh nghiệp có thể tiếp cận với nhiều nguồn lực và mở ra cơ hội tiếp cận thị trường bền vững.
@@ -94,7 +94,7 @@ export function MatrixLanding() {
           </div>
           <div className="mt-12 grid max-w-3xl grid-cols-3 border-t border-white/30 pt-6 text-white/95">
             <div>
-              <p className="text-2xl font-extrabold sm:text-3xl">06+</p>
+              <p className="text-2xl font-extrabold sm:text-3xl">06 +</p>
               <p className="mt-1 text-xs leading-5 text-white/70">
                 Doanh nghiệp
                 <br />
@@ -102,7 +102,7 @@ export function MatrixLanding() {
               </p>
             </div>
             <div className="border-x border-white/30 px-5">
-              <p className="text-2xl font-extrabold sm:text-3xl">10+</p>
+              <p className="text-2xl font-extrabold sm:text-3xl">10 +</p>
               <p className="mt-1 text-xs leading-5 text-white/70">
                 Năm
                 <br />
@@ -110,7 +110,7 @@ export function MatrixLanding() {
               </p>
             </div>
             <div className="pl-5">
-              <p className="text-2xl font-extrabold sm:text-3xl">1250+</p>
+              <p className="text-2xl font-extrabold sm:text-3xl">1250 +</p>
               <p className="mt-1 text-xs leading-5 text-white/70">
                 Dự án
                 <br />
