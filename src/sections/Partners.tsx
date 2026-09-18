@@ -75,7 +75,7 @@ export function Partners() {
         <div className="flex flex-wrap items-end justify-between gap-5">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-brand">
-              Đối tác & nhà tài trợ
+              Đối tác
             </p>
             <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">
               Đồng hành cùng Matrix Holding

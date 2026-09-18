@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowRight, Compass, Handshake, Landmark, Lightbulb, Network, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { Link } from "react-router-dom";
 import { IMG } from "@/data/content";
+import { Partners } from "@/sections/Partners";
 
 const foundations = [
   { icon: Compass, label: "Tầm nhìn", title: "Kiến tạo hệ sinh thái kinh doanh hàng đầu tại Việt Nam", text: "Matrix Holding hướng đến việc xây dựng hệ sinh thái kinh doanh đa ngành có khả năng tạo ra giá trị thiết thực, nơi các ý tưởng kinh doanh được ươm mầm, nuôi dưỡng và phát triển." },
@@ -55,4 +56,4 @@ function Timeline() { const [active, setActive] = useState(0); const milestone =
 
 function ProcessAndTrust() { return <><section className="bg-white py-20 lg:py-28"><div className="container-page"><Heading eyebrow="Quy trình làm việc" title="Đồng hành theo một quy trình rõ ràng" /><div className="mt-12 grid gap-5 lg:grid-cols-3">{process.map(([number, title, text]) => <article key={number} className="rounded-3xl border border-navy/10 p-7"><span className="text-4xl font-bold text-[#d5e9f8]">{number}</span><h3 className="mt-8 text-xl font-bold text-navy">{title}</h3><p className="mt-4 text-sm leading-7 text-muted">{text}</p></article>)}</div></div></section><section className="bg-[#eef6fc] py-20 lg:py-28"><div className="container-page grid gap-12 lg:grid-cols-[.86fr_1.14fr]"><div><Heading eyebrow="Điều khoản cam kết" title="Tận tâm trong mọi mối quan hệ hợp tác" /><div className="mt-8 space-y-4">{commitments.map(([title, text]) => <article key={title} className="flex gap-4 rounded-2xl bg-white p-5 shadow-[0_8px_22px_rgba(5,31,69,.05)]"><ShieldCheck className="mt-0.5 shrink-0 text-blue-brand" size={22} /><div><h3 className="font-bold text-navy">{title}</h3><p className="mt-2 text-sm leading-6 text-muted">{text}</p></div></article>)}</div></div><div><Heading eyebrow="Lợi thế Matrix Holding" title="Những khác biệt tạo giá trị lâu dài" /><div className="mt-8 grid gap-4 sm:grid-cols-2">{advantages.map(([title, text], index) => <article key={title} className="rounded-2xl border border-navy/10 bg-white p-5"><span className="text-xs font-bold text-blue-brand">0{index + 1}</span><h3 className="mt-3 font-bold text-navy">{title}</h3><p className="mt-3 text-sm leading-6 text-muted">{text}</p></article>)}</div></div></div></section></>; }
 
-export default function About() { return <main className="about-page"><Hero /><BrandStory /><Ecosystems /><Timeline /><ProcessAndTrust /></main>; }
+export default function About() { return <main className="about-page"><Hero /><Partners /><BrandStory /><Ecosystems /><Timeline /><ProcessAndTrust /></main>; }
