@@ -7,6 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiGetJobs, apiGetNews, type Job, type NewsArticle } from "@/lib/api";
+import { ArticleImage } from "@/components/ui/ArticleImage";
 
 const images = {
   house: "/images/matrix-hero-villa.png",
@@ -273,7 +274,7 @@ export function MatrixLanding() {
                 to={`/tin-tuc/${articles[0].id}`}
                 className="group relative min-h-[340px] overflow-hidden rounded-card bg-navy text-white"
               >
-                <img
+                <ArticleImage
                   src={articles[0].image_url}
                   alt={articles[0].title}
                   className="absolute inset-0 h-full w-full object-cover opacity-65"
@@ -302,7 +303,7 @@ export function MatrixLanding() {
                     to={`/tin-tuc/${article.id}`}
                     className="flex gap-4 py-3 first:pt-0"
                   >
-                    <img
+                    <ArticleImage
                       src={article.image_url}
                       alt={article.title}
                       className="h-24 w-32 rounded-btn object-cover"
