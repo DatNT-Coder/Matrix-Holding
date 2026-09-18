@@ -98,6 +98,20 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
     },
   });
 
+  if (response.status === 401 && path === "/api/auth/login") {
+    let detail = "Email hoặc mật khẩu không đúng.";
+    try {
+      const errorJson = await response.json();
+      if (errorJson.detail === "User is disabled") {
+        detail = "Tài khoản này hiện đã bị vô hiệu hóa.";
+      }
+    } catch {
+      // Use the safe, user-facing default above when the API does not return JSON.
+    }
+
+    throw new Error(detail);
+  }
+
   if (response.status === 401) {
     clearAuthSession();
     if (window.location.pathname !== "/dang-nhap") window.location.assign("/dang-nhap");
