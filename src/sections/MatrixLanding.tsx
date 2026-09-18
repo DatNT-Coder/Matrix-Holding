@@ -18,21 +18,24 @@ const images = {
 const ecosystems = [
   {
     title: "MATRIX NETWORK",
-    description: "Thương hiệu thành viên thuộc Matrix Holding, đảm nhiệm vai trò xây dựng, quản lý và điều phối các đơn vị cung cấp dịch vụ cho doanh nghiệp.",
+    member: "Thương hiệu thành viên thuộc MATRIX HOLDING",
+    description: "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các đơn vị cung cấp dịch vụ cho doanh nghiệp.",
     image: "/images/matrix-network.png",
     alt: "Hệ sinh thái dịch vụ Matrix Network",
     Icon: Building2,
   },
   {
     title: "MATRIX COMMUNITY",
-    description: "Thương hiệu thành viên thuộc Matrix Holding, đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối kinh doanh cho doanh nghiệp.",
+    member: "Thương hiệu thành viên thuộc MATRIX HOLDING",
+    description: "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối kinh doanh cho doanh nghiệp.",
     image: "/images/matrix-community.png",
     alt: "Hệ sinh thái cộng đồng Matrix Community",
     Icon: UsersRound,
   },
   {
     title: "MATRIX CAPITAL",
-    description: "Thương hiệu thành viên thuộc Matrix Holding, đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối đầu tư cho doanh nghiệp.",
+    member: "Thương hiệu thành viên thuộc MATRIX HOLDING",
+    description: "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối đầu tư cho doanh nghiệp.",
     image: "/images/matrix-capital.png",
     alt: "Hệ sinh thái đầu tư Matrix Capital",
     Icon: BriefcaseBusiness,
@@ -136,7 +139,7 @@ export function MatrixLanding() {
             <h2 className="mt-3 text-3xl font-extrabold text-navy">
               MATRIX HOLDING
             </h2>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-muted">
+            <p className="mt-5 max-w-xl text-justify text-sm leading-7 text-muted">
               Matrix Holding là doanh nghiệp hoạt động trong lĩnh vực đầu tư và phát triển hệ sinh thái kinh doanh đa ngành tại Việt Nam.
 
               <br /><br />
@@ -160,7 +163,7 @@ export function MatrixLanding() {
           <img
             src={images.interior}
             alt="Không gian Matrix Holding"
-            className="h-[340px] w-full rounded-card object-cover"
+            className="h-[420px] w-full rounded-card object-cover lg:h-[460px]"
           />
         </div>
       </section>
@@ -177,7 +180,7 @@ export function MatrixLanding() {
             </p>
           </div>
           <div className="mt-10 grid gap-7 md:grid-cols-3">
-            {ecosystems.map(({ title, description, image, alt, Icon }) => (
+            {ecosystems.map(({ title, member, description, image, alt, Icon }) => (
               <article
                 key={title}
                 className="overflow-hidden rounded-card bg-white text-navy shadow-card"
@@ -190,6 +193,9 @@ export function MatrixLanding() {
                 <div className="p-5">
                   <Icon size={20} className="mb-3 text-blue-brand" />
                   <h3 className="font-extrabold">{title}</h3>
+                  <p className="mt-3 inline-flex rounded-full bg-[#eaf5ff] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-blue-brand">
+                    {member}
+                  </p>
                   <p className="mt-3 text-justify text-sm leading-6 text-muted">
                     {description}
                   </p>

@@ -73,6 +73,11 @@
   padding-bottom: 4rem;
 }
 
+/* Keep labels compact while giving multi-line editorial copy clean, even edges. */
+.about-page p:not([class*="text-xs"]) {
+  text-align: justify;
+}
+
 .about-timeline {
   scrollbar-width: none;
 }
