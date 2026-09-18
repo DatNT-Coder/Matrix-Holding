@@ -321,6 +321,15 @@ export function apiCreateJob(payload: JobPayload) {
   });
 }
 
+export function apiUpdateJob(id: number, payload: JobPayload) {
+  const token = getStoredToken();
+  return request<Job>(`/api/jobs/${id}`, {
+    method: "PATCH",
+    headers: token ? { Authorization: token } : {},
+    body: JSON.stringify(payload),
+  });
+}
+
 export function apiRenewJob(id: number, expires_at: string) {
   const token = getStoredToken();
   return request<Job>(`/api/jobs/${id}/renew`, {
@@ -417,6 +426,20 @@ export function apiGetRecruitmentJobs() {
   return request<RecruitmentJob[]>("/api/recruitment/jobs-overview", {
     headers: token ? { Authorization: token } : {},
   });
+}
+
+export function apiGetRecruitmentJobsPage(page = 1, pageSize = 10) {
+  const token = getStoredToken();
+  const params = new URLSearchParams({
+    page: String(page),
+    page_size: String(pageSize),
+  });
+  return request<PageResult<RecruitmentJob>>(
+    `/api/recruitment/jobs-overview/page?${params}`,
+    {
+      headers: token ? { Authorization: token } : {},
+    },
+  );
 }
 export function apiGetMyProfile() {
   const token = getStoredToken();

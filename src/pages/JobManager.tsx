@@ -1,9 +1,12 @@
 import {
   BriefcaseBusiness,
   CalendarDays,
+  ChevronLeft,
+  ChevronRight,
   FilePlus2,
   Loader2,
   MapPin,
+  Pencil,
   RefreshCw,
   Star,
   UsersRound,
@@ -15,7 +18,9 @@ import {
   apiCreateJob,
   apiFeatureJob,
   apiGetRecruitmentJobs,
+  apiGetRecruitmentJobsPage,
   apiRenewJob,
+  apiUpdateJob,
   getStoredUser,
   type JobPayload,
   type RecruitmentJob,
@@ -53,8 +58,10 @@ export default function JobManager() {
   const user = getStoredUser();
   const navigate = useNavigate();
   const [jobs, setJobs] = useState<RecruitmentJob[]>([]);
+  const [allJobs, setAllJobs] = useState<RecruitmentJob[]>([]);
   const [form, setForm] = useState<JobPayload>(initial);
   const [showForm, setShowForm] = useState(false);
+  const [editingJob, setEditingJob] = useState<RecruitmentJob | null>(null);
   const [renewingJob, setRenewingJob] = useState<RecruitmentJob | null>(null);
   const [featuringJob, setFeaturingJob] = useState<RecruitmentJob | null>(null);
   const [renewDate, setRenewDate] = useState(defaultExpiry());
@@ -62,11 +69,17 @@ export default function JobManager() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [page, setPage] = useState(1);
+  const [pageInfo, setPageInfo] = useState({ total: 0, totalPages: 1 });
 
   const load = () => {
     setLoading(true);
-    apiGetRecruitmentJobs()
-      .then(setJobs)
+    Promise.all([apiGetRecruitmentJobs(), apiGetRecruitmentJobsPage(page)])
+      .then(([overview, result]) => {
+        setAllJobs(overview);
+        setJobs(result.items);
+        setPageInfo({ total: result.total, totalPages: result.total_pages });
+      })
       .catch((err) =>
         setError(
           err instanceof Error && err.message === "Not Found"
@@ -80,21 +93,24 @@ export default function JobManager() {
   };
   useEffect(() => {
     load();
-  }, []);
+  }, [page]);
   if (!user) return <Navigate to="/dang-nhap" replace />;
   if (!["DIRECTOR", "HR"].includes(user.role))
     return <Navigate to="/" replace />;
 
   const stats = useMemo(
     () => ({
-      active: jobs.filter((job) => !isExpired(job)).length,
-      applications: jobs.reduce((sum, job) => sum + job.application_count, 0),
-      newApplications: jobs.reduce(
+      active: allJobs.filter((job) => !isExpired(job)).length,
+      applications: allJobs.reduce(
+        (sum, job) => sum + job.application_count,
+        0,
+      ),
+      newApplications: allJobs.reduce(
         (sum, job) => sum + job.new_application_count,
         0,
       ),
     }),
-    [jobs],
+    [allJobs],
   );
 
   const update = (key: keyof JobPayload, value: string) =>
@@ -104,13 +120,16 @@ export default function JobManager() {
     setSaving(true);
     setError("");
     try {
-      await apiCreateJob(form);
+      if (editingJob) await apiUpdateJob(editingJob.id, form);
+      else await apiCreateJob(form);
       setForm(initial());
+      setEditingJob(null);
       setShowForm(false);
-      load();
+      if (page !== 1) setPage(1);
+      else load();
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Không thể đăng tin tuyển dụng.",
+        err instanceof Error ? err.message : "Không thể lưu tin tuyển dụng.",
       );
     } finally {
       setSaving(false);
@@ -152,6 +171,25 @@ export default function JobManager() {
         : defaultExpiry(),
     );
     setFeaturingJob(job);
+  };
+  const openEdit = (job: RecruitmentJob) => {
+    setError("");
+    setEditingJob(job);
+    setForm({
+      title: job.title,
+      company_name: job.company_name,
+      company_logo: job.company_logo ?? "",
+      company_summary: job.company_summary ?? "",
+      department: job.department,
+      location: job.location,
+      salary: job.salary,
+      employment_type: job.employment_type,
+      summary: job.summary,
+      description: job.description,
+      requirements: job.requirements,
+      expires_at: job.expires_at ?? `${defaultExpiry()}T23:59:59.000Z`,
+    });
+    setShowForm(true);
   };
   const feature = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -214,6 +252,7 @@ export default function JobManager() {
           <button
             onClick={() => {
               setError("");
+              setEditingJob(null);
               setForm(initial());
               setShowForm(true);
             }}
@@ -371,20 +410,61 @@ export default function JobManager() {
                             <span className="text-sm text-slate-400">—</span>
                           )}
                         </td>
-                        <td className="px-6 py-4 text-right">
-                          <button
-                            onClick={() => openRenew(job)}
-                            className="inline-flex items-center gap-1.5 rounded-lg border border-blue-brand px-3 py-2 text-xs font-bold text-blue-brand transition hover:bg-[#edf6ff]"
-                          >
-                            <RefreshCw size={14} />
-                            {expired ? "Đăng lại" : "Gia hạn"}
-                          </button>
+                        <td className="px-6 py-4">
+                          <div className="flex justify-end gap-2">
+                            <button
+                              onClick={() => openEdit(job)}
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-2 text-xs font-bold text-navy transition hover:border-blue-brand hover:bg-[#edf6ff]"
+                            >
+                              <Pencil size={14} />
+                              Cập nhật
+                            </button>
+                            <button
+                              onClick={() => openRenew(job)}
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-blue-brand px-3 py-2 text-xs font-bold text-blue-brand transition hover:bg-[#edf6ff]"
+                            >
+                              <RefreshCw size={14} />
+                              {expired ? "Đăng lại" : "Gia hạn"}
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
+            </div>
+          )}
+          {!loading && pageInfo.total > 0 && (
+            <div className="flex flex-col gap-3 border-t border-slate-100 px-5 py-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+              <p>
+                Hiển thị {(page - 1) * 10 + 1}–
+                {Math.min(page * 10, pageInfo.total)} trong tổng số{" "}
+                {pageInfo.total} tin
+              </p>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  disabled={page === 1}
+                  onClick={() => setPage((current) => current - 1)}
+                  className="inline-flex h-9 items-center gap-1 rounded-lg border border-slate-200 px-3 font-bold text-navy disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <ChevronLeft size={16} />
+                  Trước
+                </button>
+                <span className="min-w-20 text-center text-xs font-bold text-slate-500">
+                  Trang {page}/{pageInfo.totalPages}
+                </span>
+                <button
+                  type="button"
+                  disabled={page === pageInfo.totalPages}
+                  onClick={() => setPage((current) => current + 1)}
+                  className="inline-flex h-9 items-center gap-1 rounded-lg border border-slate-200 px-3 font-bold text-navy disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Sau
+                  <ChevronRight size={16} />
+                </button>
+              </div>
             </div>
           )}
         </section>
@@ -394,7 +474,11 @@ export default function JobManager() {
             update={update}
             saving={saving}
             submit={submit}
-            close={() => setShowForm(false)}
+            editing={editingJob}
+            close={() => {
+              setShowForm(false);
+              setEditingJob(null);
+            }}
           />
         )}
         {renewingJob && (
@@ -445,18 +529,24 @@ function JobForm({
   update,
   saving,
   submit,
+  editing,
   close,
 }: {
   form: JobPayload;
   update: (key: keyof JobPayload, value: string) => void;
   saving: boolean;
   submit: (event: React.FormEvent) => void;
+  editing: RecruitmentJob | null;
   close: () => void;
 }) {
   return (
     <Modal
-      title="Tạo tin tuyển dụng mới"
-      subtitle="Các trường có dấu * là thông tin bắt buộc."
+      title={editing ? "Cập nhật tin tuyển dụng" : "Tạo tin tuyển dụng mới"}
+      subtitle={
+        editing
+          ? `Cập nhật thông tin hiển thị cho vị trí “${editing.title}”.`
+          : "Các trường có dấu * là thông tin bắt buộc."
+      }
       close={close}
     >
       <form onSubmit={submit} className="mt-7">
@@ -577,7 +667,11 @@ function JobForm({
             className="inline-flex items-center gap-2 rounded-xl bg-navy px-6 py-3 text-sm font-bold text-white hover:bg-blue-brand disabled:opacity-60"
           >
             {saving && <Loader2 size={17} className="animate-spin" />}
-            {saving ? "Đang đăng..." : "Đăng tin tuyển dụng"}
+            {saving
+              ? "Đang lưu..."
+              : editing
+                ? "Lưu thay đổi"
+                : "Đăng tin tuyển dụng"}
           </button>
         </div>
       </form>
