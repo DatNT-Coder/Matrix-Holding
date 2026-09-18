@@ -9,6 +9,7 @@ import {
   Pencil,
   RefreshCw,
   Star,
+  Trash2,
   UsersRound,
   X,
 } from "lucide-react";
@@ -16,6 +17,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import {
   apiCreateJob,
+  apiDeleteJob,
   apiFeatureJob,
   apiGetRecruitmentJobs,
   apiGetRecruitmentJobsPage,
@@ -191,6 +193,27 @@ export default function JobManager() {
     });
     setShowForm(true);
   };
+  const remove = async (job: RecruitmentJob) => {
+    if (
+      !window.confirm(
+        `Xóa tin “${job.title}” khỏi website? Hồ sơ ứng viên đã nộp vẫn được lưu để tra cứu.`,
+      )
+    )
+      return;
+    setSaving(true);
+    setError("");
+    try {
+      await apiDeleteJob(job.id);
+      if (jobs.length === 1 && page > 1) setPage((current) => current - 1);
+      else load();
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Không thể xóa tin tuyển dụng.",
+      );
+    } finally {
+      setSaving(false);
+    }
+  };
   const feature = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!featuringJob) return;
@@ -296,15 +319,18 @@ export default function JobManager() {
           <div className="flex items-center justify-between border-b border-slate-100 px-5 py-5 sm:px-6">
             <div>
               <h2 className="font-bold text-navy">
-                Danh sách vị trí tuyển dụng
+                {user.role === "HR"
+                  ? "Tin tuyển dụng do bạn đăng"
+                  : "Danh sách vị trí tuyển dụng"}
               </h2>
               <p className="mt-1 text-sm text-slate-500">
-                Tin hết hạn sẽ tự ẩn khỏi trang ứng viên nhưng vẫn giữ ở đây để
-                gia hạn và đăng lại.
+                {user.role === "HR"
+                  ? "Chỉ hiển thị các tin được tạo bởi tài khoản của bạn."
+                  : "Tin hết hạn sẽ tự ẩn khỏi trang ứng viên nhưng vẫn giữ ở đây để gia hạn và đăng lại."}
               </p>
             </div>
             <span className="rounded-full bg-[#edf6ff] px-3 py-1.5 text-xs font-bold text-blue-brand">
-              {jobs.length} tin
+              {pageInfo.total} tin
             </span>
           </div>
           {loading ? (
@@ -425,6 +451,14 @@ export default function JobManager() {
                             >
                               <RefreshCw size={14} />
                               {expired ? "Đăng lại" : "Gia hạn"}
+                            </button>
+                            <button
+                              disabled={saving}
+                              onClick={() => remove(job)}
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-rose-200 px-3 py-2 text-xs font-bold text-rose-700 transition hover:bg-rose-50 disabled:opacity-50"
+                            >
+                              <Trash2 size={14} />
+                              Xóa
                             </button>
                           </div>
                         </td>

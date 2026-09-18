@@ -330,6 +330,14 @@ export function apiUpdateJob(id: number, payload: JobPayload) {
   });
 }
 
+export function apiDeleteJob(id: number) {
+  const token = getStoredToken();
+  return request<void>(`/api/jobs/${id}`, {
+    method: "DELETE",
+    headers: token ? { Authorization: token } : {},
+  });
+}
+
 export function apiRenewJob(id: number, expires_at: string) {
   const token = getStoredToken();
   return request<Job>(`/api/jobs/${id}/renew`, {
