@@ -116,12 +116,12 @@ export function MatrixLanding() {
               >
                 Khám phá Matrix Holding <ArrowRight size={18} />
               </a>
-              <a
-                href="#lien-he"
+              <Link
+                to="/lien-he"
                 className="inline-flex items-center gap-3 rounded-btn border border-white/70 px-6 py-4 text-sm font-bold text-white transition hover:bg-white/10"
               >
                 Liên hệ với chúng tôi
-              </a>
+              </Link>
             </div>
           </div>
           <div className="mt-12 grid max-w-3xl grid-cols-3 border-t border-white/30 pt-6 text-white/95">

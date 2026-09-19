@@ -25,7 +25,7 @@ export const NAV_LINKS: { label: string; to: string }[] = [
   { label: "Giới thiệu", to: "/gioi-thieu" },
   { label: "Tuyển dụng", to: "/#quy-trinh" },
   { label: "Tin tức", to: "/#faq" },
-  { label: "Liên hệ", to: "/#lien-he" },
+  { label: "Liên hệ", to: "/lien-he" },
 ];
 
 export const IMG = {
