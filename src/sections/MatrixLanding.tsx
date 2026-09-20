@@ -98,10 +98,10 @@ export function MatrixLanding() {
             </div>
             <h1 className="max-w-[1100px] text-3xl font-bold leading-[1.16] tracking-[-0.025em] sm:text-[2.65rem] lg:text-[3rem] xl:text-[3.2rem]">
               <span className="block lg:whitespace-nowrap">
-                Kiến Tạo Hệ Sinh Thái
+                KIẾN TẠO HỆ SINH THÁI
               </span>
               <span className="block text-[#bfe5ff] lg:whitespace-nowrap">
-                Kinh Doanh Đa Ngành.
+                KINH DOANH ĐA NGÀNH.
               </span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-8 text-white/82 sm:text-lg">
@@ -172,14 +172,7 @@ export function MatrixLanding() {
               MATRIX HOLDING
             </h2>
             <p className="mt-5 max-w-xl text-justify text-sm leading-7 text-muted">
-              Matrix Holding là doanh nghiệp hoạt động trong lĩnh vực đầu tư và
-              phát triển hệ sinh thái kinh doanh đa ngành tại Việt Nam.
-              <br />
-              <br />
-              Với khát vọng đưa các doanh nghiệp tiềm năng trở thành kỳ lân
-              trong lĩnh vực, chúng tôi cam kết sẽ không ngừng nỗ lực, phát huy
-              sự sáng tạo và kiến tạo những giải pháp phù hợp với nhu cầu của
-              từng doanh nghiệp.
+              Matrix Holding là doanh nghiệp hoạt động trong lĩnh vực đầu tư và phát triển hệ sinh thái kinh doanh đa ngành tại Việt Nam. Với khát vọng đưa các doanh nghiệp tiềm năng trở thành kỳ lân trong lĩnh vực, chúng tôi cam kết sẽ không ngừng nỗ lực, phát huy sự sáng tạo và kiến tạo những giải pháp phù hợp với nhu cầu của từng doanh nghiệp.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
