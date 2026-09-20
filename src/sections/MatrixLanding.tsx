@@ -19,7 +19,7 @@ const images = {
 const ecosystems = [
   {
     title: "MATRIX NETWORK",
-    member: "Thương hiệu thành viên thuộc MATRIX HOLDING",
+    member: "— Thành viên của Matrix Holding",
     description:
       "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các đơn vị cung cấp dịch vụ cho doanh nghiệp.",
     image: "/images/matrix-network.png",
@@ -28,7 +28,7 @@ const ecosystems = [
   },
   {
     title: "MATRIX COMMUNITY",
-    member: "Thương hiệu thành viên thuộc MATRIX HOLDING",
+    member: "— Thành viên của Matrix Holding",
     description:
       "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối kinh doanh cho doanh nghiệp.",
     image: "/images/matrix-community.png",
@@ -37,7 +37,7 @@ const ecosystems = [
   },
   {
     title: "MATRIX CAPITAL",
-    member: "Thương hiệu thành viên thuộc MATRIX HOLDING",
+    member: "— Thành viên của Matrix Holding",
     description:
       "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối đầu tư cho doanh nghiệp.",
     image: "/images/matrix-capital.png",
@@ -205,7 +205,7 @@ export function MatrixLanding() {
               HỆ SINH THÁI CỦA MATRIX HOLDING
             </h2>
             <p className="mt-4 text-sm text-white/75">
-              Khám phá hệ sinh thái kinh doanh đa ngành của chúng tôi
+              Khám phá hệ sinh thái kinh doanh của Matrix Holding
             </p>
           </div>
           <div className="mt-10 grid gap-7 md:grid-cols-3">
@@ -223,7 +223,7 @@ export function MatrixLanding() {
                   <div className="p-5">
                     <Icon size={20} className="mb-3 text-blue-brand" />
                     <h3 className="font-extrabold">{title}</h3>
-                    <p className="mt-3 inline-flex rounded-full bg-[#eaf5ff] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-blue-brand">
+                    <p className="mt-3 text-sm font-medium text-slate-600">
                       {member}
                     </p>
                     <p className="mt-3 text-justify text-sm leading-6 text-muted">
