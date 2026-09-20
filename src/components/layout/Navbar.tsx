@@ -17,7 +17,7 @@ import { clearAuthSession, getStoredUser, type UserRole } from "@/lib/api";
 const links = [
   ["Trang chủ", "/"],
   ["Giới thiệu", "/gioi-thieu"],
-  ["Hệ sinh thái", "/#he-sinh-thai"],
+  ["Hệ sinh thái", "/he-sinh-thai"],
   ["Tin tức", "/tin-tuc"],
   ["Tuyển dụng", "/tuyen-dung"],
   ["Liên hệ", "/lien-he"],
@@ -43,7 +43,7 @@ export function Navbar() {
     setAccountOpen(false);
   }, [pathname]);
   useEffect(() => {
-    const sectionIds = ["he-sinh-thai", "tin-tuc", "tuyen-dung"];
+    const sectionIds = ["tin-tuc", "tuyen-dung"];
     const update = () => {
       if (pathname !== "/") return setActiveTarget(null);
       const visible = sectionIds.find((id) => {
@@ -65,7 +65,7 @@ export function Navbar() {
     };
   }, [pathname, hash]);
   const isActive = (to: string) =>
-    ["/tin-tuc", "/tuyen-dung", "/lien-he"].includes(to)
+    ["/he-sinh-thai", "/tin-tuc", "/tuyen-dung", "/lien-he"].includes(to)
       ? pathname.startsWith(to)
       : activeTarget === to;
   const logout = () => {
