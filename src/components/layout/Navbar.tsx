@@ -65,7 +65,7 @@ export function Navbar() {
     };
   }, [pathname, hash]);
   const isActive = (to: string) =>
-    ["/he-sinh-thai", "/tin-tuc", "/tuyen-dung", "/lien-he"].includes(to)
+    ["/gioi-thieu", "/he-sinh-thai", "/tin-tuc", "/tuyen-dung", "/lien-he"].includes(to)
       ? pathname.startsWith(to)
       : activeTarget === to;
   const logout = () => {
