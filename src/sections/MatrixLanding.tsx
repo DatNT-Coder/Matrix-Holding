@@ -330,7 +330,7 @@ export function MatrixLanding() {
         </div>
       </section>
 
-      <section id="tuyen-dung" className="bg-[#f4f8fc] py-20">
+      <section id="tuyen-dung" className="bg-[#001a3b] py-20">
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="overflow-hidden rounded-[1.75rem] bg-[#082d57] text-white shadow-[0_18px_45px_rgba(6,39,75,.16)]">
             <div className="relative min-h-[150px] overflow-hidden px-7 py-8 sm:px-10">

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export function CTA() {
   return (
-    <section className="bg-[#dceefa] px-6 py-14 lg:py-16">
+    <section className="bg-[#001a3b] px-6 py-14 lg:py-16">
       <div
         className="relative mx-auto max-w-[1100px] overflow-hidden rounded-[2rem] border border-white/20 px-7 py-14 text-center text-white shadow-[0_20px_45px_rgba(5,56,105,.25)] sm:px-12 lg:py-16"
-        style={{ background: "linear-gradient(120deg, #063f73 0%, #0e69a7 54%, #07518d 100%)" }}
+        style={{ background: "#001a3b" }}
       >
         <div className="absolute -left-20 top-1/2 h-52 w-52 -translate-y-1/2 rounded-full border-[24px] border-white/10" />
         <div className="absolute -right-12 -top-16 h-48 w-48 rounded-full border-[22px] border-white/10" />
