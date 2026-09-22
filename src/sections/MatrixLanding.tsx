@@ -332,17 +332,10 @@ export function MatrixLanding() {
 
       <section id="tuyen-dung" className="bg-[#001a3b] py-20">
         <div className="mx-auto max-w-[1220px] px-6">
-          <div className="overflow-hidden rounded-[1.75rem] border border-[#83c9f0]/50 bg-[#125b89] text-white shadow-[0_22px_60px_rgba(0,0,0,.3)]">
-            <div className="relative min-h-[150px] overflow-hidden px-7 py-8 sm:px-10">
-              <img
-                src={images.stones}
-                alt="Cơ hội nghề nghiệp tại Matrix Holding"
-                className="absolute inset-0 h-full w-full object-cover opacity-35"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,#125b89_0%,rgba(18,91,137,.95)_43%,rgba(8,45,87,.55)_100%)]" />
+            <div className="mb-9 text-white">
               <div className="relative flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[.18em] text-[#bfe5ff]">
+                  <p className="text-xs font-bold uppercase tracking-[.18em] text-yellow-brand">
                     THÔNG TIN TUYỂN DỤNG
                   </p>
                   <h2 className="mt-3 text-2xl font-extrabold text-white sm:text-3xl">
@@ -362,7 +355,8 @@ export function MatrixLanding() {
               </div>
             </div>
 
-            <div className="border-t border-white/10 bg-white px-4 py-4 sm:px-6">
+          <div className="overflow-hidden rounded-[1.75rem] border border-white/15 bg-white shadow-[0_22px_60px_rgba(0,0,0,.2)]">
+            <div className="border-b border-slate-100 bg-white px-4 py-4 sm:px-6">
               <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {recruitmentFilters.map((filter) => (
                   <button
