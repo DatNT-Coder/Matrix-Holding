@@ -332,20 +332,20 @@ export function MatrixLanding() {
 
       <section id="tuyen-dung" className="bg-[#001a3b] py-20">
         <div className="mx-auto max-w-[1220px] px-6">
-          <div className="overflow-hidden rounded-[1.75rem] bg-[#082d57] text-white shadow-[0_18px_45px_rgba(6,39,75,.16)]">
+          <div className="overflow-hidden rounded-[1.75rem] border border-[#83c9f0]/50 bg-[#125b89] text-white shadow-[0_22px_60px_rgba(0,0,0,.3)]">
             <div className="relative min-h-[150px] overflow-hidden px-7 py-8 sm:px-10">
               <img
                 src={images.stones}
                 alt="Cơ hội nghề nghiệp tại Matrix Holding"
                 className="absolute inset-0 h-full w-full object-cover opacity-35"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,#082d57_0%,rgba(8,45,87,.92)_43%,rgba(8,45,87,.3)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,#125b89_0%,rgba(18,91,137,.95)_43%,rgba(8,45,87,.55)_100%)]" />
               <div className="relative flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[.18em] text-[#bfe5ff]">
                     THÔNG TIN TUYỂN DỤNG
                   </p>
-                  <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl">
+                  <h2 className="mt-3 text-2xl font-extrabold text-white sm:text-3xl">
                     THÔNG TIN VIỆC LÀM NỔI BẬT
                   </h2>
                   <p className="mt-2 text-sm text-white/75">

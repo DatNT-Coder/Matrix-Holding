@@ -5,8 +5,8 @@ export function CTA() {
   return (
     <section className="bg-[#001a3b] px-6 py-14 lg:py-16">
       <div
-        className="relative mx-auto max-w-[1100px] overflow-hidden rounded-[2rem] border border-white/20 px-7 py-14 text-center text-white shadow-[0_20px_45px_rgba(5,56,105,.25)] sm:px-12 lg:py-16"
-        style={{ background: "#001a3b" }}
+        className="relative mx-auto max-w-[1100px] overflow-hidden rounded-[2rem] border border-[#83c9f0]/50 px-7 py-14 text-center text-white shadow-[0_24px_60px_rgba(0,0,0,.3)] sm:px-12 lg:py-16"
+        style={{ background: "linear-gradient(120deg, #124f7a 0%, #1676a5 55%, #125b89 100%)" }}
       >
         <div className="absolute -left-20 top-1/2 h-52 w-52 -translate-y-1/2 rounded-full border-[24px] border-white/10" />
         <div className="absolute -right-12 -top-16 h-48 w-48 rounded-full border-[22px] border-white/10" />
@@ -14,7 +14,7 @@ export function CTA() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[.12em] text-white/95">
             <Sparkles size={14} /> Cùng phát triển bền vững
           </span>
-          <h2 className="mt-5 text-3xl font-bold leading-tight sm:text-4xl lg:text-[2.65rem]">
+          <h2 className="mt-5 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[2.65rem]">
             Bạn đã sẵn sàng trở thành đối tác của chúng tôi?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-white/85">
