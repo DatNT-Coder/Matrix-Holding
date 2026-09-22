@@ -24,7 +24,7 @@ import RecruitmentJobDetail from "./pages/RecruitmentJobDetail";
 import ProfilePage from "./pages/ProfilePage";
 import CandidateProfile from "./pages/CandidateProfile";
 import Contact from "./pages/Contact";
-import Ecosystem from "./pages/Ecosystem";
+import Ecosystem from "./pages/EcosystemOrbit";
 import DashboardShell from "./pages/dashboard/DashboardShell";
 
 function ScrollToTop() {
