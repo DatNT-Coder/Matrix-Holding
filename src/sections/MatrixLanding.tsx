@@ -356,6 +356,12 @@ export function MatrixLanding() {
             </div>
 
           <div className="overflow-hidden rounded-[1.75rem] border border-white/15 bg-white shadow-[0_22px_60px_rgba(0,0,0,.2)]">
+            <div className="relative flex min-h-[140px] items-center overflow-hidden bg-[#03172e] px-6 py-7 sm:px-9">
+              <img src={images.house} alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-45" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#03172e] via-[#03172e]/70 to-transparent" />
+              <div className="relative text-white"><p className="text-xs font-bold uppercase tracking-[.18em] text-yellow-brand">Matrix Holding Careers</p><p className="mt-3 text-xl font-bold sm:text-2xl">Kết nối doanh nghiệp.<br />Mở lối sự nghiệp.</p></div>
+              <img src="/images/logo-mark.png" alt="Matrix Holding" className="relative ml-auto h-14 w-14 object-contain brightness-0 invert sm:h-20 sm:w-20" />
+            </div>
             <div className="border-b border-slate-100 bg-white px-4 py-4 sm:px-6">
               <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {recruitmentFilters.map((filter) => (
@@ -373,18 +379,18 @@ export function MatrixLanding() {
 
             <div className="bg-white p-4 text-navy sm:p-6">
               {featuredCompanyJob ? (
-                <div className="grid gap-4 lg:grid-cols-[.78fr_1.22fr]">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
                   <Link
                     to={`/tuyen-dung/${featuredCompanyJob.id}`}
-                    className="group relative min-h-[290px] overflow-hidden rounded-2xl bg-[#092e56] p-6 text-white"
+                    className="group relative min-h-[320px] overflow-hidden rounded-xl bg-[#092e56] p-6 text-white sm:row-span-2"
                   >
                     <img
-                      src={featuredCompanyJob.company_logo || images.interior}
+                      src={images.house}
                       alt=""
-                      className="absolute inset-0 h-full w-full object-cover opacity-20 transition duration-500 group-hover:scale-105 group-hover:opacity-30"
+                      className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(2,27,55,.96),rgba(6,61,105,.74))]" />
-                    <div className="relative flex h-full flex-col items-start">
+                    <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(2,15,30,.4),rgba(2,15,30,.88))]" />
+                    <div className="relative flex h-full flex-col items-center justify-center text-center">
                       <span className="grid h-16 w-16 place-items-center overflow-hidden rounded-2xl bg-white p-2 shadow-lg">
                         <img
                           src={
@@ -398,25 +404,23 @@ export function MatrixLanding() {
                       <p className="mt-5 text-xs font-bold uppercase tracking-[.16em] text-[#bfe5ff]">
                         DOANH NGHIỆP NỔI BẬT
                       </p>
-                      <h3 className="mt-2 text-xl font-extrabold">
+                      <h3 className="mt-2 text-lg font-extrabold uppercase text-white">
                         {featuredCompanyJob.company_name || "Matrix Holding"}
                       </h3>
-                      <p className="mt-3 line-clamp-2 text-sm leading-6 text-white/75">
-                        {featuredCompanyJob.company_summary ||
-                          "Cơ hội phát triển cùng hệ sinh thái doanh nghiệp Matrix Holding."}
-                      </p>
-                      <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-bold text-yellow-brand">
-                        Xem vị trí đang tuyển <ArrowRight size={16} />
+                      <p className="mt-2 text-sm font-bold text-white">THÔNG BÁO TUYỂN DỤNG</p>
+                      <span className="mt-5 rounded-full bg-yellow-brand px-4 py-2 text-xs font-bold text-navy">Cơ hội nghề nghiệp</span>
+                      <span className="mt-3 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-navy">
+                        Ứng tuyển ngay <ArrowRight size={16} />
                       </span>
                     </div>
                   </Link>
 
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {visibleFeaturedJobs.slice(1, 7).map((job) => (
+                  <div className="contents">
+                    {visibleFeaturedJobs.slice(0, 7).map((job) => (
                       <Link
                         key={job.id}
                         to={`/tuyen-dung/${job.id}`}
-                        className="group rounded-2xl border border-[#d8e5f0] bg-white p-4 transition hover:-translate-y-0.5 hover:border-[#6daddd] hover:shadow-[0_10px_24px_rgba(15,67,112,.1)]"
+                        className="group rounded-xl border border-[#dedfe1] bg-[#eeeef0] p-4 transition hover:-translate-y-0.5 hover:border-[#9baabd] hover:bg-[#e4e8ee] hover:shadow-lg"
                       >
                         <div className="flex items-start gap-3">
                           <span className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-[#e1eaf2] bg-white p-1.5">
@@ -427,7 +431,7 @@ export function MatrixLanding() {
                             />
                           </span>
                           <div className="min-w-0">
-                            <p className="truncate text-xs font-bold uppercase tracking-[.04em] text-blue-brand">
+                            <p className="line-clamp-2 text-xs font-extrabold uppercase tracking-[.02em] text-navy">
                               {job.company_name || "Matrix Holding"}
                             </p>
                             <p className="mt-1 line-clamp-2 text-[13px] leading-5 text-[#60758b]">
@@ -435,15 +439,11 @@ export function MatrixLanding() {
                             </p>
                           </div>
                         </div>
-                        <h3 className="mt-4 line-clamp-2 text-[15px] font-extrabold leading-5 text-navy transition group-hover:text-blue-brand">
+                        <h3 className="mt-3 line-clamp-2 text-[13px] font-extrabold uppercase leading-5 text-navy transition group-hover:text-blue-brand">
                           {job.title}
                         </h3>
-                        <div className="mt-3 flex items-center justify-between gap-2 text-xs text-[#657a8f]">
-                          <span className="truncate">{job.location}</span>
-                          <span className="inline-flex shrink-0 items-center gap-1 font-bold text-[#3f6586]">
-                            <BriefcaseBusiness size={13} />
-                            Xem việc
-                          </span>
+                        <div className="mt-3 flex flex-wrap gap-1.5 text-[11px] leading-4 text-[#465569]">
+                          {[job.employment_type, job.salary, job.location].filter(Boolean).map((label, index) => <span key={index} className="rounded-full bg-white px-2.5 py-1">{label}</span>)}
                         </div>
                       </Link>
                     ))}
