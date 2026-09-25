@@ -14,7 +14,7 @@ export function FAQ() {
         <div className="mt-9 grid items-start gap-8 lg:grid-cols-[.85fr_1.15fr]">
         <div className="flex flex-col gap-6">
           <Figure
-            src="/images/matrix-interior-lounge.png"
+            src="/images/home-lounge-v2.png"
             alt="Hỗ trợ doanh nghiệp"
             className="h-72 w-full rounded-lg"
           />

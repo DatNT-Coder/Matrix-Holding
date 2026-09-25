@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export function CTA() {
   return (
     <section className="relative isolate overflow-hidden bg-[#101010] px-6 py-16 lg:py-20">
-      <img src="/images/matrix-interior-lounge.png" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+      <img src="/images/home-lounge-v2.png" alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
       <div className="absolute inset-0 -z-10 bg-black/75" />
       <div
         className="mx-auto grid max-w-[1172px] items-center gap-9 text-white"

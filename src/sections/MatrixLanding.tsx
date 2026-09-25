@@ -8,10 +8,11 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiGetJobs, apiGetNews, type Job, type NewsArticle } from "@/lib/api";
 import { ArticleImage } from "@/components/ui/ArticleImage";
+import { HeroMedia } from "@/components/ui/HeroMedia";
 
 const images = {
-  house: "/images/matrix-hero-villa.png",
-  interior: "/images/matrix-interior-lounge.png",
+  house: "/images/home-villa-v2.png",
+  interior: "/images/home-about-v2.png",
   documents: "/images/matrix-interior-lounge.png",
   stones: "/images/matrix-hero-villa.png",
 };
@@ -22,7 +23,7 @@ const ecosystems = [
     member: "— Thành viên của Matrix Holding",
     description:
       "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các đơn vị cung cấp dịch vụ cho doanh nghiệp.",
-    image: "/images/matrix-network.png",
+    image: "/images/home-cafe-v2.png",
     alt: "Hệ sinh thái dịch vụ Matrix Network",
     Icon: Building2,
   },
@@ -31,7 +32,7 @@ const ecosystems = [
     member: "— Thành viên của Matrix Holding",
     description:
       "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối kinh doanh cho doanh nghiệp.",
-    image: "/images/matrix-community.png",
+    image: "/images/home-cafe-v2.png",
     alt: "Hệ sinh thái cộng đồng Matrix Community",
     Icon: UsersRound,
   },
@@ -40,7 +41,7 @@ const ecosystems = [
     member: "— Thành viên của Matrix Holding",
     description:
       "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối đầu tư cho doanh nghiệp.",
-    image: "/images/matrix-capital.png",
+    image: "/images/home-cafe-v2.png",
     alt: "Hệ sinh thái đầu tư Matrix Capital",
     Icon: BriefcaseBusiness,
   },
@@ -81,13 +82,9 @@ export function MatrixLanding() {
   return (
     <>
       <section className="relative h-[calc(100svh-5rem)] min-h-[650px] overflow-hidden bg-[#001a3b] text-white">
-        <img
-          src={images.house}
-          alt="Không gian sống hiện đại"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,20,48,.95)_0%,rgba(0,20,48,.67)_36%,rgba(0,20,48,.10)_72%,rgba(0,20,48,.30)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#00142f]/80 to-transparent" />
+        <HeroMedia poster={images.house} />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,.73)_0%,rgba(0,0,0,.48)_38%,rgba(0,0,0,.12)_75%,rgba(0,0,0,.20)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" />
         <div className="relative mx-auto flex h-full max-w-[1220px] flex-col justify-end px-6 pb-10 pt-16 sm:px-8 sm:pb-14 lg:pb-16">
           <div className="max-w-3xl">
             <div className="mb-7 flex items-center gap-4">
@@ -356,7 +353,7 @@ export function MatrixLanding() {
 
           <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
             <div className="relative flex min-h-[140px] items-center overflow-hidden bg-[#03172e] px-6 py-7 sm:px-9">
-              <img src={images.house} alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-45" />
+              <img src="/images/home-office-v2.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-70" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#03172e] via-[#03172e]/70 to-transparent" />
               <div className="relative text-white"><p className="text-xs font-bold uppercase tracking-[.18em] text-yellow-brand">Matrix Holding Careers</p><p className="mt-3 text-xl font-bold sm:text-2xl">Kết nối doanh nghiệp.<br />Mở lối sự nghiệp.</p></div>
               <img src="/images/logo-mark.png" alt="Matrix Holding" className="relative ml-auto h-14 w-14 object-contain brightness-0 invert sm:h-20 sm:w-20" />
@@ -384,7 +381,7 @@ export function MatrixLanding() {
                     className="group relative min-h-[320px] overflow-hidden rounded-xl bg-[#092e56] p-6 text-white sm:row-span-2"
                   >
                     <img
-                      src={images.house}
+                      src="/images/home-office-v2.png"
                       alt=""
                       className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-500 group-hover:scale-105"
                     />
