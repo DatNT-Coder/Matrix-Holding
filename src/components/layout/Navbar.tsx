@@ -34,6 +34,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
   const [activeTarget, setActiveTarget] = useState<string | null>(null);
+  const [isAtHero, setIsAtHero] = useState(false);
   const { pathname, hash } = useLocation();
   const navigate = useNavigate();
   const user = getStoredUser();
@@ -41,6 +42,14 @@ export function Navbar() {
   useEffect(() => {
     setOpen(false);
     setAccountOpen(false);
+  }, [pathname]);
+  useEffect(() => {
+    const updateHeaderMode = () => {
+      setIsAtHero(pathname === "/" && window.scrollY < 64);
+    };
+    updateHeaderMode();
+    window.addEventListener("scroll", updateHeaderMode, { passive: true });
+    return () => window.removeEventListener("scroll", updateHeaderMode);
   }, [pathname]);
   useEffect(() => {
     const sectionIds = ["tin-tuc", "tuyen-dung"];
@@ -68,6 +77,7 @@ export function Navbar() {
     ["/gioi-thieu", "/he-sinh-thai", "/tin-tuc", "/tuyen-dung", "/lien-he"].includes(to)
       ? pathname.startsWith(to)
       : activeTarget === to;
+  const heroHeader = pathname === "/" && isAtHero;
   const logout = () => {
     clearAuthSession();
     setAccountOpen(false);
@@ -170,7 +180,9 @@ export function Navbar() {
     ) : null;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 text-navy shadow-sm backdrop-blur-xl">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 ${heroHeader ? "border-b border-transparent bg-transparent text-white shadow-none backdrop-blur-none" : "border-b border-slate-200 bg-white/95 text-navy shadow-sm backdrop-blur-xl"}`}
+    >
       <nav className="mx-auto flex h-20 max-w-[1360px] items-center px-5 sm:px-8 lg:px-10">
         <Link
           to="/"
@@ -180,9 +192,9 @@ export function Navbar() {
           <img
             src="/images/logo-mark.png"
             alt="Matrix Holding"
-            className="h-11 w-11 object-contain transition duration-300 group-hover:scale-[1.03]"
+            className={`h-11 w-11 object-contain transition duration-300 group-hover:scale-[1.03] ${heroHeader ? "brightness-0 invert" : ""}`}
           />
-          <span className="ml-4 hidden border-l border-navy/20 pl-4 text-sm font-bold tracking-[0.08em] text-navy xl:block">
+          <span className={`ml-4 hidden border-l pl-4 text-sm font-bold tracking-[0.08em] xl:block ${heroHeader ? "border-white/30 text-white" : "border-navy/20 text-navy"}`}>
             Matrix Holding
           </span>
         </Link>
@@ -191,11 +203,11 @@ export function Navbar() {
             <Link
               key={to}
               to={to}
-              className={`relative px-4 py-7 text-sm font-semibold transition ${isActive(to) ? "text-navy" : "text-slate-600 hover:text-navy"}`}
+              className={`relative px-4 py-7 text-sm font-semibold transition ${heroHeader ? (isActive(to) ? "text-white" : "text-white/80 hover:text-white") : (isActive(to) ? "text-navy" : "text-slate-600 hover:text-navy")}`}
             >
               {label}
               <span
-                className={`absolute bottom-0 left-4 right-4 h-0.5 origin-left bg-navy transition-transform duration-300 ${isActive(to) ? "scale-x-100" : "scale-x-0"}`}
+                className={`absolute bottom-0 left-4 right-4 h-0.5 origin-left transition-transform duration-300 ${heroHeader ? "bg-white" : "bg-navy"} ${isActive(to) ? "scale-x-100" : "scale-x-0"}`}
               />
             </Link>
           ))}
@@ -204,7 +216,7 @@ export function Navbar() {
           <div className="relative ml-auto hidden lg:block">
             <button
               onClick={() => setAccountOpen((value) => !value)}
-              className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 py-1.5 pl-2 pr-3 text-sm font-bold text-navy transition hover:bg-slate-100"
+              className={`flex items-center gap-2 rounded-full border py-1.5 pl-2 pr-3 text-sm font-bold transition ${heroHeader ? "border-white/35 bg-black/20 text-white hover:bg-black/35" : "border-slate-200 bg-slate-50 text-navy hover:bg-slate-100"}`}
             >
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#bfe5ff] text-xs font-extrabold text-navy">
                 {user.username.charAt(0).toUpperCase()}
@@ -220,14 +232,14 @@ export function Navbar() {
         ) : (
           <Link
             to="/dang-nhap"
-            className="ml-auto hidden items-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-bold text-white transition hover:bg-navy lg:inline-flex"
+            className={`ml-auto hidden items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-bold transition lg:inline-flex ${heroHeader ? "border border-white/70 bg-white/10 text-white hover:bg-white hover:text-navy" : "bg-black text-white hover:bg-navy"}`}
           >
             <LogIn size={16} /> Đăng nhập
           </Link>
         )}
         <button
           onClick={() => setOpen(!open)}
-          className="ml-auto rounded-full border border-slate-200 p-2.5 text-navy transition hover:bg-slate-100 lg:hidden"
+          className={`ml-auto rounded-full border p-2.5 transition lg:hidden ${heroHeader ? "border-white/45 text-white hover:bg-white/15" : "border-slate-200 text-navy hover:bg-slate-100"}`}
           aria-label={open ? "Đóng menu" : "Mở menu"}
         >
           {open ? <X size={21} /> : <Menu size={21} />}

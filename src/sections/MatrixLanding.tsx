@@ -81,11 +81,11 @@ export function MatrixLanding() {
 
   return (
     <>
-      <section className="relative h-[calc(100svh-5rem)] min-h-[650px] overflow-hidden bg-[#001a3b] text-white">
+      <section className="relative h-[100svh] min-h-[650px] overflow-hidden bg-[#001a3b] text-white">
         <HeroMedia poster={images.house} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,.73)_0%,rgba(0,0,0,.48)_38%,rgba(0,0,0,.12)_75%,rgba(0,0,0,.20)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" />
-        <div className="relative mx-auto flex h-full max-w-[1220px] flex-col justify-end px-6 pb-10 pt-16 sm:px-8 sm:pb-14 lg:pb-16">
+        <div className="relative mx-auto flex h-full max-w-[1220px] flex-col justify-end px-6 pb-10 pt-28 sm:px-8 sm:pb-14 lg:pb-16">
           <div className="max-w-3xl">
             <div className="mb-7 flex items-center gap-4">
               <span className="h-px w-12 bg-[#bfe5ff]" />
