@@ -14,19 +14,19 @@ export function FAQItem({ index, question, answer, open, onToggle }: Props) {
     <div
       className={cn(
         "overflow-hidden rounded-card-sm border transition-colors",
-        open ? "border-navy bg-[#dceeff] shadow-card" : "border-navy bg-[#eef6ff]"
+        open ? "border-[#bfc4ca] bg-[#eeeeee]" : "border-transparent bg-[#dedede]"
       )}
     >
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={open}
-        className="flex w-full items-center gap-4 px-5 py-4 text-left"
+        className="flex w-full items-center gap-3 px-4 py-3 text-left"
       >
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-white">
+        <span className="flex w-7 shrink-0 items-center justify-center text-xs font-bold text-[#222222]">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <span className="flex-1 font-bold text-navy">{question}</span>
+        <span className="flex-1 text-sm font-medium text-[#222222]">{question}</span>
         <span
           className={cn(
             "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors",

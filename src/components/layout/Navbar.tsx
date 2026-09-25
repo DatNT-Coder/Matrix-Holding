@@ -170,7 +170,7 @@ export function Navbar() {
     ) : null;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#001a3b]/95 text-white shadow-[0_10px_30px_rgba(0,18,48,.18)] backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 text-navy shadow-sm backdrop-blur-xl">
       <nav className="mx-auto flex h-20 max-w-[1360px] items-center px-5 sm:px-8 lg:px-10">
         <Link
           to="/"
@@ -180,9 +180,9 @@ export function Navbar() {
           <img
             src="/images/logo-mark.png"
             alt="Matrix Holding"
-            className="h-11 w-11 object-contain brightness-0 invert transition duration-300 group-hover:scale-[1.03]"
+            className="h-11 w-11 object-contain transition duration-300 group-hover:scale-[1.03]"
           />
-          <span className="ml-4 hidden border-l border-white/25 pl-4 text-sm font-bold tracking-[0.08em] text-white xl:block">
+          <span className="ml-4 hidden border-l border-navy/20 pl-4 text-sm font-bold tracking-[0.08em] text-navy xl:block">
             Matrix Holding
           </span>
         </Link>
@@ -191,11 +191,11 @@ export function Navbar() {
             <Link
               key={to}
               to={to}
-              className={`relative px-4 py-7 text-sm font-semibold transition ${isActive(to) ? "text-[#bfe5ff]" : "text-white/85 hover:text-white"}`}
+              className={`relative px-4 py-7 text-sm font-semibold transition ${isActive(to) ? "text-navy" : "text-slate-600 hover:text-navy"}`}
             >
               {label}
               <span
-                className={`absolute bottom-0 left-4 right-4 h-0.5 origin-left bg-[#bfe5ff] transition-transform duration-300 ${isActive(to) ? "scale-x-100" : "scale-x-0"}`}
+                className={`absolute bottom-0 left-4 right-4 h-0.5 origin-left bg-navy transition-transform duration-300 ${isActive(to) ? "scale-x-100" : "scale-x-0"}`}
               />
             </Link>
           ))}
@@ -204,7 +204,7 @@ export function Navbar() {
           <div className="relative ml-auto hidden lg:block">
             <button
               onClick={() => setAccountOpen((value) => !value)}
-              className="flex items-center gap-2 rounded-full border border-[#bfe5ff]/45 bg-white/10 py-1.5 pl-2 pr-3 text-sm font-bold transition hover:border-[#bfe5ff] hover:bg-white/15"
+              className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 py-1.5 pl-2 pr-3 text-sm font-bold text-navy transition hover:bg-slate-100"
             >
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#bfe5ff] text-xs font-extrabold text-navy">
                 {user.username.charAt(0).toUpperCase()}
@@ -220,14 +220,14 @@ export function Navbar() {
         ) : (
           <Link
             to="/dang-nhap"
-            className="ml-auto hidden items-center gap-2 rounded-full border border-[#bfe5ff]/45 bg-white/10 px-4 py-2.5 text-sm font-bold text-white transition hover:border-[#bfe5ff] hover:bg-[#bfe5ff] hover:text-navy lg:inline-flex"
+            className="ml-auto hidden items-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-bold text-white transition hover:bg-navy lg:inline-flex"
           >
             <LogIn size={16} /> Đăng nhập
           </Link>
         )}
         <button
           onClick={() => setOpen(!open)}
-          className="ml-auto rounded-full border border-white/20 p-2.5 transition hover:bg-white/10 lg:hidden"
+          className="ml-auto rounded-full border border-slate-200 p-2.5 text-navy transition hover:bg-slate-100 lg:hidden"
           aria-label={open ? "Đóng menu" : "Mở menu"}
         >
           {open ? <X size={21} /> : <Menu size={21} />}

@@ -312,7 +312,7 @@ export const FAQS: Faq[] = [
       "Matrix Holding hoạt động trong lĩnh vực tư vấn, đầu tư và phát triển hệ sinh thái kinh doanh. Đồng thời, kiến tạo môi trường để ươm mầm, nuôi dưỡng và thúc đẩy sự phát triển của những ý tưởng kinh doanh tiềm năng.",
   },
   {
-    question: "Matrix Holding kinh doanh sản phẩm, dịch vụ gì?",
+    question: "Matrix Holding cung cấp sản phẩm, dịch vụ gì?",
     answer:
       "Matrix Holding không trực tiếp kinh doanh bất kỳ sản phẩm hay dịch vụ cụ thể nào. Chúng tôi tập trung vào hoạt động nghiên cứu thị trường chuyên sâu nhằm xây dựng những chiến lược và mô hình kinh doanh phù hợp với từng lĩnh vực.",
   },
