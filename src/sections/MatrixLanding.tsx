@@ -294,7 +294,7 @@ export function MatrixLanding() {
       <section id="tuyen-dung" className="bg-[#efefef] py-20">
         <div className="mx-auto max-w-[1220px] px-6">
             <div className="mb-9 text-[#111111]">
-              <div className="relative flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+              <div>
                 <div>
                   <p className="text-sm font-extrabold uppercase tracking-[.08em] text-[#444444]">
                     THÔNG TIN TUYỂN DỤNG
@@ -307,12 +307,6 @@ export function MatrixLanding() {
                     sinh thái Matrix.
                   </p>
                 </div>
-                <Link
-                  to="/tuyen-dung"
-                  className="inline-flex w-fit shrink-0 items-center gap-2 rounded-lg bg-navy px-5 py-3 text-sm font-bold text-white transition hover:bg-black"
-                >
-                  Xem tất cả việc làm <ArrowRight size={17} />
-                </Link>
               </div>
             </div>
 
@@ -347,11 +341,11 @@ export function MatrixLanding() {
                     <img
                       src="/images/home-office-v2.png"
                       alt=""
-                      className="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-500 group-hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover opacity-65 transition duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(2,15,30,.4),rgba(2,15,30,.88))]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(2,15,30,.38),rgba(2,15,30,.84))]" />
                     <div className="relative flex h-full flex-col items-center justify-center text-center">
-                      <span className="grid h-16 w-16 place-items-center overflow-hidden rounded-2xl bg-white p-2 shadow-lg">
+                      <span className="grid h-16 w-16 place-items-center overflow-hidden rounded-xl bg-white p-2 shadow-lg">
                         <img
                           src={
                             featuredCompanyJob.company_logo ||
@@ -361,16 +355,16 @@ export function MatrixLanding() {
                           className="h-full w-full object-contain"
                         />
                       </span>
-                      <p className="mt-5 text-xs font-bold uppercase tracking-[.16em] text-[#bfe5ff]">
-                        DOANH NGHIỆP NỔI BẬT
-                      </p>
-                      <h3 className="mt-2 text-lg font-extrabold uppercase text-white">
+                      <h3 className="mt-5 max-w-[240px] text-base font-extrabold uppercase leading-6 text-white">
                         {featuredCompanyJob.company_name || "Matrix Holding"}
                       </h3>
-                      <p className="mt-2 text-sm font-bold text-white">THÔNG BÁO TUYỂN DỤNG</p>
-                      <span className="mt-5 rounded-full bg-yellow-brand px-4 py-2 text-xs font-bold text-navy">Cơ hội nghề nghiệp</span>
-                      <span className="mt-3 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-navy">
-                        Ứng tuyển ngay <ArrowRight size={16} />
+                      <p className="text-sm font-extrabold uppercase text-white">THÔNG BÁO TUYỂN DỤNG</p>
+                      <span className="mt-5 inline-flex items-center gap-2 rounded-lg bg-black/75 px-4 py-2 text-xs font-bold text-white shadow-sm">
+                        <BriefcaseBusiness size={14} /> {visibleFeaturedJobs.length} việc làm
+                      </span>
+                      <span className="mt-3 rounded-lg bg-[#ffe600] px-5 py-2 text-xs font-extrabold text-[#17213a] shadow-sm">Pro Company</span>
+                      <span className="mt-3 inline-flex items-center justify-center rounded-lg bg-white px-5 py-2 text-xs font-extrabold text-navy shadow-sm transition group-hover:bg-[#eef6ff]">
+                        Đăng ký ngay
                       </span>
                     </div>
                   </Link>
