@@ -393,11 +393,23 @@ export function MatrixLanding() {
                         <h3 className="mt-3 line-clamp-2 text-[13px] font-extrabold uppercase leading-5 text-navy transition group-hover:text-blue-brand">
                           {job.title}
                         </h3>
-                        <div className="mt-3 flex flex-wrap gap-1.5 text-[10px] leading-4 text-[#465569]">
+                        <div className="mt-3 grid grid-cols-[1.12fr_.9fr_.78fr] gap-1.5 text-[9px] leading-4 text-[#465569] xl:text-[10px]">
                           {[
                             { label: "Hình thức", value: job.employment_type },
                             { label: "Lương", value: job.salary },
                             { label: "Khu vực", value: job.location },
+                          ].map(({ label, value }) => (
+                            <span
+                              key={label}
+                              className="min-w-0 whitespace-nowrap rounded-full bg-white px-1.5 py-1 text-center"
+                            >
+                              <strong className="font-extrabold text-navy">{label}:</strong>{" "}
+                              {value}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="mt-1.5 flex flex-wrap gap-1.5 text-[10px] leading-4 text-[#465569]">
+                          {[
                             {
                               label: "Kinh nghiệm",
                               value: job.experience_required,
@@ -410,7 +422,7 @@ export function MatrixLanding() {
                             },
                           ].map(({ label, value, emptyText }) => (
                             <span key={label} className="rounded-full bg-white px-2.5 py-1">
-                              {emptyText && hasNoRequirement(value) ? (
+                              {hasNoRequirement(value) ? (
                                 emptyText
                               ) : (
                                 <>
