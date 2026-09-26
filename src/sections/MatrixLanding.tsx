@@ -48,11 +48,22 @@ const ecosystems = [
 
 const recruitmentFilters = [
   "Tất cả",
-  "Kinh doanh",
+  "Quản trị",
+  "Chiến lược",
+  "Pháp lý",
+  "Tài chính",
+  "Vận hành",
   "Nhân sự",
+  "Kinh doanh",
   "Truyền thông",
-  "Hành chính",
-  "Pháp chế",
+  "Công nghệ",
+  "Đào tạo",
+  "An ninh",
+  "Hải sản",
+  "Bất động sản",
+  "Cà phê",
+  "Trò chơi trực tuyến",
+  "Cửa hàng trò chơi",
 ];
 
 export function MatrixLanding() {
@@ -356,7 +367,7 @@ export function MatrixLanding() {
                         />
                       </span>
                       <h3 className="mt-5 max-w-[240px] text-base font-extrabold uppercase leading-6 text-white">
-                        {featuredCompanyJob.company_name || "Matrix Holding"}
+                        CÔNG TY TNHH MATRIX HOLDING
                       </h3>
                       <p className="text-sm font-extrabold uppercase text-white">THÔNG BÁO TUYỂN DỤNG</p>
                       <span className="mt-5 inline-flex items-center gap-2 rounded-lg bg-black/75 px-4 py-2 text-xs font-bold text-white shadow-sm">
