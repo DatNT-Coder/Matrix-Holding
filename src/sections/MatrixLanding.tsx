@@ -220,10 +220,10 @@ export function MatrixLanding() {
             </Link>
           </div>
           {articles.length > 0 ? (
-            <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+            <div className="mt-8 grid items-stretch gap-6 lg:h-[380px] lg:grid-cols-[1fr_1.1fr]">
               <Link
                 to={`/tin-tuc/${articles[0].id}`}
-                className="group relative min-h-[340px] overflow-hidden rounded-card bg-navy text-white"
+                className="group relative h-full min-h-[340px] overflow-hidden rounded-card bg-navy text-white"
               >
                 <ArticleImage
                   src={articles[0].image_url}
@@ -247,19 +247,19 @@ export function MatrixLanding() {
                   </span>
                 </div>
               </Link>
-              <div className="divide-y divide-navy/30">
+              <div className="grid h-full grid-rows-3 divide-y divide-navy/30 overflow-hidden">
                 {articles.slice(1).map((article) => (
                   <Link
                     key={article.id}
                     to={`/tin-tuc/${article.id}`}
-                    className="flex gap-4 py-3 first:pt-0"
+                    className="flex min-h-0 items-center gap-4 py-3"
                   >
                     <ArticleImage
                       src={article.image_url}
                       alt={article.title}
                       className="h-24 w-32 rounded-btn object-cover"
                     />
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <p className="text-xs text-muted">
                         {new Intl.DateTimeFormat("vi-VN", {
                           day: "2-digit",
@@ -267,7 +267,7 @@ export function MatrixLanding() {
                           year: "numeric",
                         }).format(new Date(article.published_at))}
                       </p>
-                      <h3 className="mt-2 text-sm font-extrabold text-navy">
+                      <h3 className="mt-2 line-clamp-2 text-sm font-extrabold text-navy">
                         {article.title}
                       </h3>
                       <span className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-blue-brand">
