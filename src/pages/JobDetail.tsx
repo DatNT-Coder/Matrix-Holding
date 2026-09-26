@@ -77,7 +77,7 @@ export default function JobDetail() {
 
             <div className="mt-7 grid gap-5 sm:grid-cols-2">
               <JobOverview icon={<MapPin size={22} />} label="Địa điểm" value={job.location} />
-              <JobOverview icon={<BriefcaseBusiness size={22} />} label="Phòng ban" value={job.department} />
+              <JobOverview icon={<BriefcaseBusiness size={22} />} label="Danh mục công việc" value={job.department} />
               <JobOverview icon={<WalletCards size={22} />} label="Hình thức" value={job.employment_type} />
               <JobOverview icon={<CalendarDays size={22} />} label="Hạn ứng tuyển" value={formatDeadline(job.expires_at)} />
             </div>
@@ -117,7 +117,7 @@ export default function JobDetail() {
               <h2 className="flex items-center gap-3 text-2xl font-extrabold text-navy"><span className="h-8 w-1 rounded-full bg-[#f6b73c]" />Tổng quan</h2>
               <div className="mt-6 grid gap-4 border-t border-slate-100 pt-6 text-sm sm:grid-cols-[112px_1fr]">
                 <span className="font-bold text-navy">Vị trí</span><span className="text-muted">{job.title}</span>
-                <span className="font-bold text-navy">Phòng ban</span><span className="text-muted">{job.department}</span>
+                <span className="font-bold text-navy">Danh mục công việc</span><span className="text-muted">{job.department}</span>
                 <span className="font-bold text-navy">Hình thức</span><span className="text-muted">{job.employment_type}</span>
               </div>
             </section>
@@ -140,7 +140,7 @@ export default function JobDetail() {
               <InfoRow label="Mức lương" value={job.salary} />
               <InfoRow label="Địa điểm" value={job.location} />
               <InfoRow label="Hình thức" value={job.employment_type} />
-              <InfoRow label="Phòng ban" value={job.department} />
+              <InfoRow label="Danh mục công việc" value={job.department} />
               <InfoRow label="Hạn ứng tuyển" value={formatDeadline(job.expires_at)} />
             </div>
           </aside>

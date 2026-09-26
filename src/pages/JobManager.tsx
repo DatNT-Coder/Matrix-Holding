@@ -27,6 +27,7 @@ import {
   type JobPayload,
   type RecruitmentJob,
 } from "@/lib/api";
+import { JOB_CATEGORIES } from "@/data/jobCategories";
 
 const dateInputValue = (date: Date) => date.toISOString().slice(0, 10);
 const defaultExpiry = () =>
@@ -345,7 +346,7 @@ export default function JobManager() {
                 <thead>
                   <tr className="bg-[#fbfcfe] text-[11px] font-bold uppercase tracking-[.1em] text-slate-500">
                     <th className="px-6 py-4">Vị trí & doanh nghiệp</th>
-                    <th className="px-5 py-4">Phòng ban</th>
+                    <th className="px-5 py-4">Danh mục</th>
                     <th className="px-5 py-4">Hạn ứng tuyển</th>
                     {user.role === "DIRECTOR" && (
                       <th className="px-5 py-4">Đối tác nổi bật</th>
@@ -600,16 +601,14 @@ function JobForm({
               onChange={(e) => update("company_name", e.target.value)}
             />
           </Field>
-          <Field label="Phòng ban *">
+          <Field label="Danh mục công việc *">
             <select
               value={form.department}
               onChange={(e) => update("department", e.target.value)}
             >
-              <option>Kinh doanh</option>
-              <option>Nhân sự</option>
-              <option>Truyền thông</option>
-              <option>Hành chính</option>
-              <option>Pháp chế</option>
+              {JOB_CATEGORIES.map((category) => (
+                <option key={category} value={category}>{category}</option>
+              ))}
             </select>
           </Field>
           <Field label="Địa điểm *">

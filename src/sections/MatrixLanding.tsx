@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiGetJobs, apiGetNews, type Job, type NewsArticle } from "@/lib/api";
 import { ArticleImage } from "@/components/ui/ArticleImage";
+import { JOB_CATEGORY_FILTERS } from "@/data/jobCategories";
 
 const images = {
   house: "/images/home-villa-v2.png",
@@ -45,26 +46,6 @@ const ecosystems = [
     Icon: BriefcaseBusiness,
   },
 ] as const;
-
-const recruitmentFilters = [
-  "Tất cả",
-  "Quản trị",
-  "Chiến lược",
-  "Pháp lý",
-  "Tài chính",
-  "Vận hành",
-  "Nhân sự",
-  "Kinh doanh",
-  "Truyền thông",
-  "Công nghệ",
-  "Đào tạo",
-  "An ninh",
-  "Hải sản",
-  "Bất động sản",
-  "Cà phê",
-  "Trò chơi trực tuyến",
-  "Cửa hàng trò chơi",
-];
 
 export function MatrixLanding() {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
@@ -328,8 +309,8 @@ export function MatrixLanding() {
               <img src="/images/logo-mark.png" alt="Matrix Holding" className="relative ml-auto h-14 w-14 object-contain brightness-0 invert sm:h-20 sm:w-20" />
             </div>
             <div className="border-b border-slate-100 bg-white px-4 py-4 sm:px-6">
-              <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {recruitmentFilters.map((filter) => (
+              <div className="flex flex-wrap gap-2">
+                {JOB_CATEGORY_FILTERS.map((filter) => (
                   <button
                     key={filter}
                     type="button"
