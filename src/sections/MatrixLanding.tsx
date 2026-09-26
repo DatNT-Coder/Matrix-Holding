@@ -59,7 +59,7 @@ export function MatrixLanding() {
   const [newsLoaded, setNewsLoaded] = useState(false);
   const [jobsLoaded, setJobsLoaded] = useState(false);
   useEffect(() => {
-    apiGetNews(4)
+    apiGetNews(20)
       .then(setArticles)
       .catch(() => setArticles([]))
       .finally(() => setNewsLoaded(true));
@@ -74,6 +74,13 @@ export function MatrixLanding() {
       ? featuredJobs
       : featuredJobs.filter((job) => job.department === recruitmentFilter);
   const featuredCompanyJob = visibleFeaturedJobs[0];
+  const featuredArticle =
+    articles.find((article) =>
+      article.title.trim().toLocaleUpperCase("vi").startsWith("MATRIX HOLDING"),
+    ) ?? articles[0];
+  const supportingArticles = articles
+    .filter((article) => article.id !== featuredArticle?.id)
+    .slice(0, 3);
 
   return (
     <>
@@ -219,15 +226,15 @@ export function MatrixLanding() {
               Xem tất cả <ArrowRight size={17} />
             </Link>
           </div>
-          {articles.length > 0 ? (
+          {featuredArticle ? (
             <div className="mt-8 grid items-stretch gap-6 lg:h-[380px] lg:grid-cols-[1fr_1.1fr]">
               <Link
-                to={`/tin-tuc/${articles[0].id}`}
+                to={`/tin-tuc/${featuredArticle.id}`}
                 className="group relative h-full min-h-[340px] overflow-hidden rounded-card bg-navy text-white"
               >
                 <ArticleImage
-                  src={articles[0].image_url}
-                  alt={articles[0].title}
+                  src={featuredArticle.image_url}
+                  alt={featuredArticle.title}
                   className="absolute inset-0 h-full w-full object-cover opacity-65"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent" />
@@ -237,10 +244,10 @@ export function MatrixLanding() {
                       day: "2-digit",
                       month: "2-digit",
                       year: "numeric",
-                    }).format(new Date(articles[0].published_at))}
+                    }).format(new Date(featuredArticle.published_at))}
                   </p>
                   <h3 className="mt-3 text-2xl font-bold">
-                    {articles[0].title}
+                    {featuredArticle.title}
                   </h3>
                   <span className="mt-5 inline-flex items-center gap-1 text-sm font-bold">
                     XEM BÀI VIẾT <ArrowRight size={16} />
@@ -248,11 +255,17 @@ export function MatrixLanding() {
                 </div>
               </Link>
               <div className="grid h-full grid-rows-3 divide-y divide-navy/30 overflow-hidden">
-                {articles.slice(1).map((article) => (
+                {supportingArticles.map((article, index) => (
                   <Link
                     key={article.id}
                     to={`/tin-tuc/${article.id}`}
-                    className="flex min-h-0 items-center gap-4 py-3"
+                    className={`flex min-h-0 gap-4 ${
+                      index === 0
+                        ? "items-start pb-3"
+                        : index === supportingArticles.length - 1
+                          ? "items-end pt-3"
+                          : "items-center py-3"
+                    }`}
                   >
                     <ArticleImage
                       src={article.image_url}
