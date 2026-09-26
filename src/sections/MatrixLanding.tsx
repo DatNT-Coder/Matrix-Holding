@@ -47,6 +47,11 @@ const ecosystems = [
   },
 ] as const;
 
+const hasNoRequirement = (value?: string | null) => {
+  const normalized = value?.trim().toLocaleLowerCase("vi") ?? "";
+  return !normalized || normalized.startsWith("không yêu cầu");
+};
+
 export function MatrixLanding() {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [featuredJobs, setFeaturedJobs] = useState<Job[]>([]);
@@ -390,14 +395,29 @@ export function MatrixLanding() {
                         </h3>
                         <div className="mt-3 flex flex-wrap gap-1.5 text-[10px] leading-4 text-[#465569]">
                           {[
-                            ["Hình thức", job.employment_type],
-                            ["Lương", job.salary],
-                            ["Khu vực", job.location],
-                            ["Kinh nghiệm", job.experience_required],
-                            ["Bằng cấp", job.education_required],
-                          ].map(([label, value]) => (
+                            { label: "Hình thức", value: job.employment_type },
+                            { label: "Lương", value: job.salary },
+                            { label: "Khu vực", value: job.location },
+                            {
+                              label: "Kinh nghiệm",
+                              value: job.experience_required,
+                              emptyText: "Không yêu cầu kinh nghiệm",
+                            },
+                            {
+                              label: "Bằng cấp",
+                              value: job.education_required,
+                              emptyText: "Không yêu cầu bằng cấp",
+                            },
+                          ].map(({ label, value, emptyText }) => (
                             <span key={label} className="rounded-full bg-white px-2.5 py-1">
-                              <strong className="font-extrabold text-navy">{label}:</strong> {value}
+                              {emptyText && hasNoRequirement(value) ? (
+                                emptyText
+                              ) : (
+                                <>
+                                  <strong className="font-extrabold text-navy">{label}:</strong>{" "}
+                                  {value}
+                                </>
+                              )}
                             </span>
                           ))}
                         </div>
