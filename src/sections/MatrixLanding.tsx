@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiGetJobs, apiGetNews, type Job, type NewsArticle } from "@/lib/api";
 import { ArticleImage } from "@/components/ui/ArticleImage";
-import { HeroMedia } from "@/components/ui/HeroMedia";
 
 const images = {
   house: "/images/home-villa-v2.png",
@@ -82,80 +81,46 @@ export function MatrixLanding() {
   return (
     <>
       <section className="relative h-[100svh] min-h-[650px] overflow-hidden bg-[#001a3b] text-white">
-        <HeroMedia poster={images.house} />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,.73)_0%,rgba(0,0,0,.48)_38%,rgba(0,0,0,.12)_75%,rgba(0,0,0,.20)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent" />
-        <div className="relative mx-auto flex h-full max-w-[1220px] flex-col justify-end px-6 pb-10 pt-28 sm:px-8 sm:pb-14 lg:pb-16">
-          <div className="max-w-3xl">
-            <div className="mb-7 flex items-center gap-4">
-              <span className="h-px w-12 bg-[#bfe5ff]" />
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#c6eaff]">
+        <img
+          src={images.house}
+          alt="Không gian hiện đại của Matrix Holding"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/35 to-transparent" />
+        <div className="relative mx-auto flex h-full max-w-[1220px] items-center justify-center px-6 pb-8 pt-28 sm:px-8">
+          <div className="mx-auto w-full max-w-5xl text-center">
+            <div className="mb-7 flex items-center justify-center gap-5">
+              <span className="h-px w-12 bg-white/80 sm:w-16" />
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-white/90 sm:text-sm">
                 Matrix Holding · Vietnam
               </p>
+              <span className="h-px w-12 bg-white/80 sm:w-16" />
             </div>
-            <h1 className="max-w-[1100px] text-3xl font-bold leading-[1.16] tracking-[-0.025em] sm:text-[2.65rem] lg:text-[3rem] xl:text-[3.2rem]">
+            <h1 className="text-4xl font-bold leading-[1.12] tracking-[-0.035em] sm:text-5xl lg:text-6xl xl:text-[4.5rem]">
               <span className="block lg:whitespace-nowrap">
                 KIẾN TẠO HỆ SINH THÁI
               </span>
-              <span className="block text-white lg:whitespace-nowrap">
+              <span className="mt-2 block text-white lg:whitespace-nowrap">
                 KINH DOANH ĐA NGÀNH
               </span>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-8 text-white/82 sm:text-lg">
+            <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
               Chúng tôi tập trung xây dựng một môi trường kinh doanh hiệu quả,
               nơi các doanh nghiệp có thể tiếp cận với nhiều nguồn lực và mở ra
               cơ hội tiếp cận thị trường bền vững.
             </p>
-            <div className="mt-9 flex flex-wrap gap-4">
+            <div className="mt-10 flex justify-center">
               <a
                 href="#gioi-thieu"
-                className="inline-flex items-center gap-3 rounded-btn bg-white px-6 py-4 text-sm font-bold text-navy transition hover:bg-[#bfe5ff]"
+                className="inline-flex min-w-56 items-center justify-center gap-3 rounded-btn bg-white px-7 py-4 text-sm font-bold text-navy shadow-lg shadow-black/15 transition hover:-translate-y-0.5 hover:bg-[#bfe5ff]"
               >
-                Khám phá Matrix Holding <ArrowRight size={18} />
+                Khám phá Matrix Holding
               </a>
-              <Link
-                to="/lien-he"
-                className="inline-flex items-center gap-3 rounded-btn border border-white/70 px-6 py-4 text-sm font-bold text-white transition hover:bg-white/10"
-              >
-                Liên hệ với chúng tôi
-              </Link>
-            </div>
-          </div>
-          <div className="mt-12 grid max-w-3xl grid-cols-3 border-t border-white/30 pt-6 text-white/95">
-            <div>
-              <p className="text-2xl font-extrabold sm:text-3xl">06 +</p>
-              <p className="mt-1 text-xs leading-5 text-white/70">
-                Doanh nghiệp
-                <br />
-                Thành viên
-              </p>
-            </div>
-            <div className="border-x border-white/30 px-5">
-              <p className="text-2xl font-extrabold sm:text-3xl">10 +</p>
-              <p className="mt-1 text-xs leading-5 text-white/70">
-                Năm
-                <br />
-                Kinh nghiệm
-              </p>
-            </div>
-            <div className="pl-5">
-              <p className="text-2xl font-extrabold sm:text-3xl">1.250 +</p>
-              <p className="mt-1 text-xs leading-5 text-white/70">
-                Dự án
-                <br />
-                Thành công
-              </p>
             </div>
           </div>
         </div>
-        <a
-          href="#gioi-thieu"
-          aria-label="Cuộn xuống phần giới thiệu"
-          className="absolute bottom-8 right-6 hidden items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 lg:flex lg:right-12"
-        >
-          <span className="h-10 w-px bg-white/60" />
-          Khám phá
-        </a>
       </section>
 
       <section id="gioi-thieu" className="bg-white py-20">
@@ -197,7 +162,7 @@ export function MatrixLanding() {
       <section id="he-sinh-thai" className="bg-[#efefef] py-20 text-[#111111]">
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="text-center">
-            <p className="text-xs text-[#444444]">LĨNH VỰC HOẠT ĐỘNG</p>
+            <p className="text-sm font-extrabold text-[#444444]">LĨNH VỰC HOẠT ĐỘNG</p>
             <h2 className="mt-3 text-3xl font-extrabold">
               HỆ SINH THÁI CỦA MATRIX HOLDING
             </h2>
@@ -243,7 +208,7 @@ export function MatrixLanding() {
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="flex items-end justify-between gap-5">
             <div>
-              <p className="text-xs font-bold text-blue-brand">
+              <p className="text-sm font-extrabold text-blue-brand">
                 TIN TỨC VÀ SỰ KIỆN
               </p>
               <h2 className="mt-3 text-3xl font-extrabold text-navy">
@@ -331,7 +296,7 @@ export function MatrixLanding() {
             <div className="mb-9 text-[#111111]">
               <div className="relative flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="text-xs uppercase tracking-[.08em] text-[#444444]">
+                  <p className="text-sm font-extrabold uppercase tracking-[.08em] text-[#444444]">
                     THÔNG TIN TUYỂN DỤNG
                   </p>
                   <h2 className="mt-3 text-2xl font-extrabold text-[#111111] sm:text-3xl">
@@ -355,7 +320,6 @@ export function MatrixLanding() {
             <div className="relative flex min-h-[140px] items-center overflow-hidden bg-[#03172e] px-6 py-7 sm:px-9">
               <img src="/images/home-office-v2.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-70" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#03172e] via-[#03172e]/70 to-transparent" />
-              <div className="relative text-white"><p className="text-xs font-bold uppercase tracking-[.18em] text-yellow-brand">Matrix Holding Careers</p><p className="mt-3 text-xl font-bold sm:text-2xl">Kết nối doanh nghiệp.<br />Mở lối sự nghiệp.</p></div>
               <img src="/images/logo-mark.png" alt="Matrix Holding" className="relative ml-auto h-14 w-14 object-contain brightness-0 invert sm:h-20 sm:w-20" />
             </div>
             <div className="border-b border-slate-100 bg-white px-4 py-4 sm:px-6">

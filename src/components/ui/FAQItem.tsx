@@ -21,12 +21,15 @@ export function FAQItem({ index, question, answer, open, onToggle }: Props) {
         type="button"
         onClick={onToggle}
         aria-expanded={open}
-        className="flex w-full items-center gap-3 px-4 py-3 text-left"
+        className={cn(
+          "flex w-full items-center gap-4 px-4 text-left",
+          open ? "pb-1.5 pt-4" : "py-3",
+        )}
       >
-        <span className="flex w-7 shrink-0 items-center justify-center text-xs font-bold text-[#222222]">
+        <span className="flex h-9 w-11 shrink-0 items-center justify-center rounded-lg border border-navy/10 bg-white/55 text-base font-extrabold leading-snug tracking-[0.01em] text-navy shadow-sm lg:text-[17px]">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <span className="flex-1 text-sm font-medium text-[#222222]">{question}</span>
+        <span className="flex-1 text-base font-extrabold uppercase leading-snug tracking-[0.01em] text-[#222222] lg:text-[17px] xl:whitespace-nowrap">{question}</span>
         <span
           className={cn(
             "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors",
@@ -43,7 +46,7 @@ export function FAQItem({ index, question, answer, open, onToggle }: Props) {
         )}
       >
         <div className="overflow-hidden">
-          <p className="px-5 pb-5 pl-[68px] text-justify text-sm leading-relaxed text-muted">
+          <p className="pb-5 pl-[76px] pr-5 text-justify text-sm leading-relaxed text-muted">
             {answer}
           </p>
         </div>
