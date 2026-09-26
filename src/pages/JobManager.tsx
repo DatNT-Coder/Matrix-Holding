@@ -41,6 +41,8 @@ const initial = (): JobPayload => ({
   location: "Hà Nội",
   salary: "",
   employment_type: "Toàn thời gian",
+  experience_required: "Không yêu cầu",
+  education_required: "Không yêu cầu",
   summary: "",
   description: "",
   requirements: "",
@@ -187,6 +189,8 @@ export default function JobManager() {
       location: job.location,
       salary: job.salary,
       employment_type: job.employment_type,
+      experience_required: job.experience_required,
+      education_required: job.education_required,
       summary: job.summary,
       description: job.description,
       requirements: job.requirements,
@@ -654,6 +658,22 @@ function JobForm({
               <option>Hybrid</option>
               <option>Từ xa</option>
             </select>
+          </Field>
+          <Field label="Kinh nghiệm">
+            <input
+              required
+              placeholder="Ví dụ: 1–2 năm hoặc Không yêu cầu"
+              value={form.experience_required}
+              onChange={(e) => update("experience_required", e.target.value)}
+            />
+          </Field>
+          <Field label="Bằng cấp">
+            <input
+              required
+              placeholder="Ví dụ: Đại học hoặc Không yêu cầu"
+              value={form.education_required}
+              onChange={(e) => update("education_required", e.target.value)}
+            />
           </Field>
         </div>
         <div className="mt-5 space-y-5">

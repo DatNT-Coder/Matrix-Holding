@@ -388,8 +388,18 @@ export function MatrixLanding() {
                         <h3 className="mt-3 line-clamp-2 text-[13px] font-extrabold uppercase leading-5 text-navy transition group-hover:text-blue-brand">
                           {job.title}
                         </h3>
-                        <div className="mt-3 flex flex-wrap gap-1.5 text-[11px] leading-4 text-[#465569]">
-                          {[job.employment_type, job.salary, job.location].filter(Boolean).map((label, index) => <span key={index} className="rounded-full bg-white px-2.5 py-1">{label}</span>)}
+                        <div className="mt-3 flex flex-wrap gap-1.5 text-[10px] leading-4 text-[#465569]">
+                          {[
+                            ["Hình thức", job.employment_type],
+                            ["Lương", job.salary],
+                            ["Khu vực", job.location],
+                            ["Kinh nghiệm", job.experience_required],
+                            ["Bằng cấp", job.education_required],
+                          ].map(([label, value]) => (
+                            <span key={label} className="rounded-full bg-white px-2.5 py-1">
+                              <strong className="font-extrabold text-navy">{label}:</strong> {value}
+                            </span>
+                          ))}
                         </div>
                       </Link>
                     ))}

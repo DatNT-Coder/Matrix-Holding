@@ -79,6 +79,8 @@ export default function JobDetail() {
               <JobOverview icon={<MapPin size={22} />} label="Địa điểm" value={job.location} />
               <JobOverview icon={<BriefcaseBusiness size={22} />} label="Danh mục công việc" value={job.department} />
               <JobOverview icon={<WalletCards size={22} />} label="Hình thức" value={job.employment_type} />
+              <JobOverview icon={<BriefcaseBusiness size={22} />} label="Kinh nghiệm" value={job.experience_required} />
+              <JobOverview icon={<BriefcaseBusiness size={22} />} label="Bằng cấp" value={job.education_required} />
               <JobOverview icon={<CalendarDays size={22} />} label="Hạn ứng tuyển" value={formatDeadline(job.expires_at)} />
             </div>
 
@@ -119,6 +121,8 @@ export default function JobDetail() {
                 <span className="font-bold text-navy">Vị trí</span><span className="text-muted">{job.title}</span>
                 <span className="font-bold text-navy">Danh mục công việc</span><span className="text-muted">{job.department}</span>
                 <span className="font-bold text-navy">Hình thức</span><span className="text-muted">{job.employment_type}</span>
+                <span className="font-bold text-navy">Kinh nghiệm</span><span className="text-muted">{job.experience_required}</span>
+                <span className="font-bold text-navy">Bằng cấp</span><span className="text-muted">{job.education_required}</span>
               </div>
             </section>
             <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-7">
@@ -140,6 +144,8 @@ export default function JobDetail() {
               <InfoRow label="Mức lương" value={job.salary} />
               <InfoRow label="Địa điểm" value={job.location} />
               <InfoRow label="Hình thức" value={job.employment_type} />
+              <InfoRow label="Kinh nghiệm" value={job.experience_required} />
+              <InfoRow label="Bằng cấp" value={job.education_required} />
               <InfoRow label="Danh mục công việc" value={job.department} />
               <InfoRow label="Hạn ứng tuyển" value={formatDeadline(job.expires_at)} />
             </div>

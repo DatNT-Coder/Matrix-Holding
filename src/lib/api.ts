@@ -83,6 +83,8 @@ export type Job = {
   location: string;
   salary: string;
   employment_type: string;
+  experience_required: string;
+  education_required: string;
   summary: string;
   description: string;
   requirements: string;
