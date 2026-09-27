@@ -139,11 +139,11 @@ export function MatrixLanding() {
       <section id="gioi-thieu" className="bg-white py-20">
         <div className="mx-auto grid max-w-[1220px] gap-12 px-6 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="text-xs font-bold text-blue-brand">VỀ CHÚNG TÔI</p>
-            <h2 className="mt-3 text-3xl font-extrabold text-navy">
+            <p className="text-xs font-bold text-[#0077b6]">VỀ CHÚNG TÔI</p>
+            <h2 className="mt-3 text-3xl font-extrabold text-[#0077b6]">
               GIỚI THIỆU DOANH NGHIỆP
             </h2>
-            <h2 className="mt-3 text-3xl font-extrabold text-navy">
+            <h2 className="mt-3 text-3xl font-extrabold text-[#0077b6]">
               MATRIX HOLDING
             </h2>
             <p className="mt-5 max-w-xl text-justify text-sm leading-7 text-muted">
@@ -175,8 +175,8 @@ export function MatrixLanding() {
       <section id="he-sinh-thai" className="bg-[#efefef] py-20 text-[#111111]">
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="text-center">
-            <p className="text-sm font-extrabold text-[#444444]">LĨNH VỰC HOẠT ĐỘNG</p>
-            <h2 className="mt-3 text-3xl font-extrabold">
+            <p className="text-sm font-extrabold text-[#0077b6]">LĨNH VỰC HOẠT ĐỘNG</p>
+            <h2 className="mt-3 text-3xl font-extrabold text-[#0077b6]">
               HỆ SINH THÁI CỦA MATRIX HOLDING
             </h2>
             <p className="mt-4 text-sm text-[#444444]">
@@ -221,10 +221,10 @@ export function MatrixLanding() {
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="flex items-end justify-between gap-5">
             <div>
-              <p className="text-sm font-extrabold text-blue-brand">
+              <p className="text-sm font-extrabold text-[#0077b6]">
                 TIN TỨC VÀ SỰ KIỆN
               </p>
-              <h2 className="mt-3 text-3xl font-extrabold text-navy">
+              <h2 className="mt-3 text-3xl font-extrabold text-[#0077b6]">
                 TIN TỨC MỚI NHẤT TỪ MATRIX HOLDING
               </h2>
             </div>
@@ -315,10 +315,10 @@ export function MatrixLanding() {
             <div className="mb-9 text-[#111111]">
               <div>
                 <div>
-                  <p className="text-sm font-extrabold uppercase tracking-[.08em] text-[#444444]">
+                  <p className="text-sm font-extrabold uppercase tracking-[.08em] text-[#0077b6]">
                     THÔNG TIN TUYỂN DỤNG
                   </p>
-                  <h2 className="mt-3 text-2xl font-extrabold text-[#111111] sm:text-3xl">
+                  <h2 className="mt-3 text-2xl font-extrabold text-[#0077b6] sm:text-3xl">
                     VIỆC LÀM MỚI NHẤT TỪ MATRIX HOLDING
                   </h2>
                   <p className="mt-2 text-sm text-slate-600">

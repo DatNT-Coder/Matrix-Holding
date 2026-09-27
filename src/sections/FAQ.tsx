@@ -9,8 +9,8 @@ export function FAQ() {
   return (
     <section id="faq" className="relative overflow-hidden bg-white py-20 lg:py-28">
       <div className="container-page">
-        <p className="text-xs font-extrabold text-slate-600">CÂU HỎI THƯỜNG GẶP</p>
-        <h2 className="mt-4 text-2xl font-extrabold text-[#09172a] sm:text-3xl">GIẢI ĐÁP VỀ MATRIX HOLDING</h2>
+        <p className="text-xs font-extrabold text-[#0077b6]">CÂU HỎI THƯỜNG GẶP</p>
+        <h2 className="mt-4 text-2xl font-extrabold text-[#0077b6] sm:text-3xl">GIẢI ĐÁP VỀ MATRIX HOLDING</h2>
         <div className="mt-9 grid gap-8 lg:grid-cols-[.75fr_1.25fr]">
           <Figure
             src="/images/home-lounge-v2.png"

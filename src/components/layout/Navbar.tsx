@@ -232,7 +232,7 @@ export function Navbar() {
         ) : (
           <Link
             to="/dang-nhap"
-            className={`ml-auto hidden items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-bold transition lg:inline-flex ${heroHeader ? "border border-white/70 bg-white/10 text-white hover:bg-white hover:text-navy" : "bg-black text-white hover:bg-navy"}`}
+            className="ml-auto hidden items-center gap-2 rounded-lg bg-[#0077b6] px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#005f92] lg:inline-flex"
           >
             <LogIn size={16} /> Đăng nhập
           </Link>
@@ -264,7 +264,7 @@ export function Navbar() {
             <Link
               to="/dang-nhap"
               onClick={() => setOpen(false)}
-              className="mt-5 flex items-center justify-center gap-2 rounded-btn bg-[#bfe5ff] px-4 py-3 text-sm font-bold text-navy"
+              className="mt-5 flex items-center justify-center gap-2 rounded-btn bg-[#0077b6] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#005f92]"
             >
               <LogIn size={16} /> Đăng nhập tài khoản
             </Link>
