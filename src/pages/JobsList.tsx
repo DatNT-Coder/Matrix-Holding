@@ -6,12 +6,12 @@ import Pagination from "@/components/Pagination";
 import { JOB_CATEGORY_FILTERS } from "@/data/jobCategories";
 
 const emptyPage: PageResult<Job> = { items: [], page: 1, page_size: 8, total: 0, total_pages: 1 };
-const initials = (company: string) => company.split(/\s+/).slice(0, 2).map((word) => word[0]).join("").toUpperCase();
 const dateText = (date: string) => new Intl.DateTimeFormat("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(date));
 const accentTones = ["border-l-[#4ba4db]", "border-l-[#8b6bd6]", "border-l-[#e3a62c]", "border-l-[#32a085]"];
 
 function CompanyMark({ job }: { job: Job }) {
-  return <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#dbe5ef] bg-white text-sm font-extrabold text-blue-brand shadow-sm">{job.company_logo ? <img src={job.company_logo} alt="" className="h-full w-full object-contain p-1.5" /> : initials(job.company_name)}</span>;
+  const logo = job.company_logo || "/images/logo-mark.png";
+  return <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#dbe5ef] bg-white text-sm font-extrabold text-blue-brand shadow-sm"><img src={logo} alt={`Logo ${job.company_name}`} className="h-full w-full object-contain p-1.5" /></span>;
 }
 
 export default function JobsList() {

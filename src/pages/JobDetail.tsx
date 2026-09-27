@@ -98,7 +98,7 @@ export default function JobDetail() {
           <aside className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 sm:p-7">
             <div className="flex items-start gap-4">
               <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-[#f7faff] text-blue-brand">
-                {job.company_logo ? <img src={job.company_logo} alt="" className="h-full w-full object-contain p-2" /> : <Building2 size={32} />}
+                <img src={job.company_logo || "/images/logo-mark.png"} alt={`Logo ${job.company_name}`} className="h-full w-full object-contain p-2" />
               </div>
               <div>
                 <p className="text-lg font-extrabold leading-6 text-navy">{job.company_name}</p>
