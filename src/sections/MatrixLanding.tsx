@@ -81,7 +81,7 @@ export function MatrixLanding() {
         company.name === "Matrix Holding" ||
         company.jobs.length > 0,
     )
-    .slice(0, 12);
+    .slice(0, 9);
   const featuredCompany =
     recruitmentCompanies.find((company) => company.name === "Matrix Holding") ??
     recruitmentCompanies[0];
