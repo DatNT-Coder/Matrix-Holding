@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const members = [
   { name: "Matrix Network", role: "Giải pháp doanh nghiệp", text: "Xây dựng, quản lý và điều phối các đơn vị cung cấp dịch vụ cho doanh nghiệp.", icon: Network, tone: "bg-[#e5f4ff] text-[#0875b8] border-[#b9e2f8]", dot: "bg-[#18a4e6]" },
-  { name: "Matrix Community", role: "Cộng đồng kết nối", text: "Xây dựng, quản lý và điều phối các cộng đồng kết nối kinh doanh cho doanh nghiệp.", icon: UsersRound, tone: "bg-[#f1edff] text-[#6843d8] border-[#ddd1ff]", dot: "bg-[#8a65ef]" },
-  { name: "Matrix Capital", role: "Kết nối đầu tư", text: "Xây dựng, quản lý và điều phối các cộng đồng kết nối đầu tư cho doanh nghiệp.", icon: CircleDollarSign, tone: "bg-[#fff4dd] text-[#b56d00] border-[#f5d49a]", dot: "bg-[#f4ae2b]" },
+  { name: "Matrix Connect", role: "Cộng đồng kết nối", text: "Xây dựng, quản lý và điều phối các cộng đồng kết nối kinh doanh cho doanh nghiệp.", icon: UsersRound, tone: "bg-[#f1edff] text-[#6843d8] border-[#ddd1ff]", dot: "bg-[#8a65ef]" },
+  { name: "Matrix Ventures", role: "Kết nối đầu tư", text: "Xây dựng, quản lý và điều phối các cộng đồng kết nối đầu tư cho doanh nghiệp.", icon: CircleDollarSign, tone: "bg-[#fff4dd] text-[#b56d00] border-[#f5d49a]", dot: "bg-[#f4ae2b]" },
 ];
 
 function MemberCard({ member }: { member: (typeof members)[number] }) {

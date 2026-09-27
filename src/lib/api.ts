@@ -53,8 +53,8 @@ export type NewsArticle = {
   category:
     | "MATRIX HOLDING"
     | "MATRIX NETWORK"
-    | "MATRIX COMMUNITY"
-    | "MATRIX CAPITAL";
+    | "MATRIX CONNECT"
+    | "MATRIX VENTURES";
   is_featured?: boolean;
   published_at: string;
   author_name: string;

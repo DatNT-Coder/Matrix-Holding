@@ -28,21 +28,21 @@ const ecosystems = [
     Icon: Building2,
   },
   {
-    title: "MATRIX COMMUNITY",
+    title: "MATRIX CONNECT",
     member: "— Thành viên của Matrix Holding",
     description:
       "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối kinh doanh cho doanh nghiệp.",
     image: "/images/home-cafe-v2.png",
-    alt: "Hệ sinh thái cộng đồng Matrix Community",
+    alt: "Hệ sinh thái cộng đồng Matrix Connect",
     Icon: UsersRound,
   },
   {
-    title: "MATRIX CAPITAL",
+    title: "MATRIX VENTURES",
     member: "— Thành viên của Matrix Holding",
     description:
       "Đảm nhiệm vai trò xây dựng, quản lý và điều phối các cộng đồng kết nối đầu tư cho doanh nghiệp.",
     image: "/images/home-cafe-v2.png",
-    alt: "Hệ sinh thái đầu tư Matrix Capital",
+    alt: "Hệ sinh thái đầu tư Matrix Ventures",
     Icon: BriefcaseBusiness,
   },
 ] as const;
@@ -139,12 +139,9 @@ export function MatrixLanding() {
       <section id="gioi-thieu" className="bg-white py-20">
         <div className="mx-auto grid max-w-[1220px] gap-12 px-6 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="text-xs font-bold text-[#0077b6]">VỀ CHÚNG TÔI</p>
-            <h2 className="mt-3 text-3xl font-extrabold text-[#0077b6]">
-              GIỚI THIỆU DOANH NGHIỆP
-            </h2>
-            <h2 className="mt-3 text-3xl font-extrabold text-[#0077b6]">
-              MATRIX HOLDING
+            <p className="text-xs font-bold text-[#003b73]">VỀ CHÚNG TÔI</p>
+            <h2 className="mt-3 text-3xl font-extrabold text-[#003b73]">
+              GIỚI THIỆU MATRIX HOLDING
             </h2>
             <p className="mt-5 max-w-xl text-justify text-sm leading-7 text-muted">
               Matrix Holding là doanh nghiệp hoạt động trong lĩnh vực đầu tư và phát triển hệ sinh thái kinh doanh đa ngành tại Việt Nam. Hướng đến mục tiêu đưa các doanh nghiệp tiềm năng trở thành kỳ lân trong lĩnh vực, chúng tôi cam kết sẽ không ngừng nỗ lực, phát huy sự sáng tạo nhằm đưa ra giải pháp phù hợp với nhu cầu của từng doanh nghiệp.
@@ -175,8 +172,8 @@ export function MatrixLanding() {
       <section id="he-sinh-thai" className="bg-[#efefef] py-20 text-[#111111]">
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="text-center">
-            <p className="text-sm font-extrabold text-[#0077b6]">LĨNH VỰC HOẠT ĐỘNG</p>
-            <h2 className="mt-3 text-3xl font-extrabold text-[#0077b6]">
+            <p className="text-sm font-extrabold text-[#003b73]">LĨNH VỰC HOẠT ĐỘNG</p>
+            <h2 className="mt-3 text-3xl font-extrabold text-[#003b73]">
               HỆ SINH THÁI CỦA MATRIX HOLDING
             </h2>
             <p className="mt-4 text-sm text-[#444444]">
@@ -221,10 +218,10 @@ export function MatrixLanding() {
         <div className="mx-auto max-w-[1220px] px-6">
           <div className="flex items-end justify-between gap-5">
             <div>
-              <p className="text-sm font-extrabold text-[#0077b6]">
+              <p className="text-sm font-extrabold text-[#003b73]">
                 TIN TỨC VÀ SỰ KIỆN
               </p>
-              <h2 className="mt-3 text-3xl font-extrabold text-[#0077b6]">
+              <h2 className="mt-3 text-3xl font-extrabold text-[#003b73]">
                 TIN TỨC MỚI NHẤT TỪ MATRIX HOLDING
               </h2>
             </div>
@@ -315,10 +312,10 @@ export function MatrixLanding() {
             <div className="mb-9 text-[#111111]">
               <div>
                 <div>
-                  <p className="text-sm font-extrabold uppercase tracking-[.08em] text-[#0077b6]">
+                  <p className="text-sm font-extrabold uppercase tracking-[.08em] text-[#003b73]">
                     THÔNG TIN TUYỂN DỤNG
                   </p>
-                  <h2 className="mt-3 text-2xl font-extrabold text-[#0077b6] sm:text-3xl">
+                  <h2 className="mt-3 text-2xl font-extrabold text-[#003b73] sm:text-3xl">
                     VIỆC LÀM MỚI NHẤT TỪ MATRIX HOLDING
                   </h2>
                   <p className="mt-2 text-sm text-slate-600">

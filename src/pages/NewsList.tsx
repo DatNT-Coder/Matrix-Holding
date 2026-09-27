@@ -10,8 +10,8 @@ const categories = [
   "Tất cả",
   "MATRIX HOLDING",
   "MATRIX NETWORK",
-  "MATRIX COMMUNITY",
-  "MATRIX CAPITAL",
+  "MATRIX CONNECT",
+  "MATRIX VENTURES",
 ] as const;
 const categoryLabel = (category: NewsArticle["category"]) =>
   category.replace("MATRIX ", "");

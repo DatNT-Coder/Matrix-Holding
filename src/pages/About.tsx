@@ -11,8 +11,8 @@ const foundations = [
 
 const ecosystems = [
   { icon: Network, name: "Matrix Network", title: "Hệ sinh thái cung cấp giải pháp toàn diện", text: "Matrix Holding xây dựng Matrix Network theo mô hình hệ sinh thái khép kín, nơi các doanh nghiệp thành viên vừa là đối tác, vừa là khách hàng của nhau, cùng nhau chia sẻ nguồn lực, khai thác thế mạnh và phát triển." },
-  { icon: UsersRound, name: "Matrix Community", title: "Hệ sinh thái cộng đồng kết nối kinh doanh", text: "Matrix Holding xây dựng Matrix Community theo mô hình cộng đồng kết nối kinh doanh, nơi doanh nghiệp có cơ hội mở rộng quan hệ hợp tác và tăng trưởng doanh thu bền vững." },
-  { icon: Landmark, name: "Matrix Capital", title: "Hệ sinh thái cộng đồng kết nối đầu tư", text: "Matrix Holding xây dựng Matrix Capital theo mô hình cộng đồng kết nối đầu tư, nơi doanh nghiệp có cơ hội tiếp cận nguồn vốn đầu tư và nâng cao giá trị của doanh nghiệp." },
+  { icon: UsersRound, name: "Matrix Connect", title: "Hệ sinh thái cộng đồng kết nối kinh doanh", text: "Matrix Holding xây dựng Matrix Connect theo mô hình cộng đồng kết nối kinh doanh, nơi doanh nghiệp có cơ hội mở rộng quan hệ hợp tác và tăng trưởng doanh thu bền vững." },
+  { icon: Landmark, name: "Matrix Ventures", title: "Hệ sinh thái cộng đồng kết nối đầu tư", text: "Matrix Holding xây dựng Matrix Ventures theo mô hình cộng đồng kết nối đầu tư, nơi doanh nghiệp có cơ hội tiếp cận nguồn vốn đầu tư và nâng cao giá trị của doanh nghiệp." },
 ] as const;
 
 const milestones = [

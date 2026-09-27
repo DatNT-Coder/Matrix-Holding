@@ -1,6 +1,6 @@
-# Matrix Community
+# Matrix Connect
 
-Website giới thiệu doanh nghiệp cho **Matrix Community** — nền tảng kết nối doanh nghiệp B2B (tra cứu định danh, kết nối đối tác, xác minh pháp lý, quảng bá doanh nghiệp). Giao diện tiếng Việt.
+Website giới thiệu doanh nghiệp cho **Matrix Connect** — nền tảng kết nối doanh nghiệp B2B (tra cứu định danh, kết nối đối tác, xác minh pháp lý, quảng bá doanh nghiệp). Giao diện tiếng Việt.
 
 ## Tech stack
 

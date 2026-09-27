@@ -103,7 +103,7 @@ export const FEATURES: Feature[] = [
   },
   {
     icon: MapPin,
-    title: "Matrix Capital",
+    title: "Matrix Ventures",
     subtitle: "Thực hiện thẩm định, tư vấn và đầu tư vốn nhằm đồng hành cùng các dự án tiềm năng phát triển bền vững.",
     points: [
       "Nguồn vốn phù hợp",
@@ -172,7 +172,7 @@ export const PRICING: Pricing[] = [
   },
   {
     icon: Users,
-    name: "Matrix Community",
+    name: "Matrix Connect",
     desc: "Hệ sinh thái cộng đồng kết nối doanh nghiệp.",
     features: [
       "Cộng đồng gắn kết",
@@ -184,7 +184,7 @@ export const PRICING: Pricing[] = [
   },
   {
     icon: CircleDollarSign,
-    name: "Matrix Capital",
+    name: "Matrix Ventures",
     desc: "Hệ sinh thái kết nối nhà đầu tư và startup.",
     features: [
       "Nguồn vốn phù hợp",
@@ -331,8 +331,8 @@ export const FAQS: Faq[] = [
 export const FOOTER_LINKS = {
   services: [
     "Matrix Network",
-    "Matrix Community",
-    "Matrix Capital",
+    "Matrix Connect",
+    "Matrix Ventures",
     "Matrix Cares",
   ],
   about: [

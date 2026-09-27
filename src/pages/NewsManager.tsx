@@ -426,8 +426,8 @@ export default function NewsManager() {
                   >
                     <option>MATRIX HOLDING</option>
                     <option>MATRIX NETWORK</option>
-                    <option>MATRIX COMMUNITY</option>
-                    <option>MATRIX CAPITAL</option>
+                    <option>MATRIX CONNECT</option>
+                    <option>MATRIX VENTURES</option>
                   </select>
                 </label>
               </div>

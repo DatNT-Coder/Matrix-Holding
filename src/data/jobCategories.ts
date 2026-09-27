@@ -17,4 +17,13 @@ export const JOB_CATEGORIES = [
   "Cửa hàng trò chơi",
 ] as const;
 
-export const JOB_CATEGORY_FILTERS = ["Tất cả", ...JOB_CATEGORIES] as const;
+export const JOB_CATEGORY_FILTERS = [
+  "Tất cả",
+  "Pháp lý",
+  "Tài chính",
+  "Vận hành",
+  "Nhân sự",
+  "Kinh doanh",
+  "Truyền thông",
+  "Công nghệ",
+] as const;
