@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { apiGetJobs, apiGetNews, type Job, type NewsArticle } from "@/lib/api";
 import { ArticleImage } from "@/components/ui/ArticleImage";
 import { JOB_CATEGORY_FILTERS } from "@/data/jobCategories";
+import { canonicalCompanyName, ECOSYSTEM_COMPANIES } from "@/data/companies";
 
 const images = {
   house: "/images/home-villa-v2.png",
@@ -68,34 +69,17 @@ export function MatrixLanding() {
     recruitmentFilter === "Tất cả"
       ? featuredJobs
       : featuredJobs.filter((job) => job.department === recruitmentFilter);
-  const companyOrder = [
-    "Matrix Holding",
-    "Matrix Network",
-    "Matrix Connect",
-    "Matrix Ventures",
-  ];
-  const recruitmentCompanies = Array.from(
-    visibleFeaturedJobs.reduce((companies, job) => {
-      const name = job.company_name || "Matrix Holding";
-      const current = companies.get(name);
-      if (current) {
-        current.jobs.push(job);
-      } else {
-        companies.set(name, {
-          name,
-          logo: job.company_logo,
-          summary: job.company_summary,
-          jobs: [job],
-        });
-      }
-      return companies;
-    }, new Map<string, { name: string; logo: string | null; summary: string | null; jobs: Job[] }>()),
-  )
-    .map(([, company]) => company)
-    .sort(
-      (first, second) =>
-        companyOrder.indexOf(first.name) - companyOrder.indexOf(second.name),
-    );
+  const recruitmentCompanies = ECOSYSTEM_COMPANIES.map((company) => ({
+    ...company,
+    jobs: visibleFeaturedJobs.filter(
+      (job) => canonicalCompanyName(job.company_name) === company.name,
+    ),
+  })).filter(
+    (company) =>
+      recruitmentFilter === "Tất cả" ||
+      company.name === "Matrix Holding" ||
+      company.jobs.length > 0,
+  );
   const featuredCompany =
     recruitmentCompanies.find((company) => company.name === "Matrix Holding") ??
     recruitmentCompanies[0];
@@ -344,7 +328,7 @@ export function MatrixLanding() {
                     DOANH NGHIỆP TUYỂN DỤNG
                   </p>
                   <h2 className="mt-3 text-2xl font-extrabold text-[#003b73] sm:text-3xl">
-                    DOANH NGHIỆP NỔI BẬT TRONG HỆ SINH THÁI
+                    CÁC DOANH NGHIỆP TRONG HỆ SINH THÁI
                   </h2>
                   <p className="mt-2 text-sm text-slate-600">
                     Khám phá các doanh nghiệp đang tuyển dụng trong hệ sinh thái Matrix.
@@ -376,10 +360,10 @@ export function MatrixLanding() {
 
             <div className="bg-white p-4 text-navy sm:p-6">
               {featuredCompany ? (
-                <div className="grid gap-4 lg:grid-cols-[minmax(280px,.85fr)_minmax(0,1.65fr)] lg:grid-rows-3 lg:gap-5">
+                <div className="grid gap-4 sm:grid-cols-2 lg:auto-rows-[150px] lg:grid-cols-3 lg:gap-5">
                   <Link
-                    to="/tuyen-dung"
-                    className="group relative min-h-[430px] overflow-hidden rounded-xl bg-[#092e56] p-6 text-white lg:row-span-3"
+                    to={`/tuyen-dung/doanh-nghiep/${featuredCompany.slug}`}
+                    className="group relative min-h-[430px] overflow-hidden rounded-xl bg-[#092e56] p-6 text-white sm:col-span-2 lg:col-span-1 lg:row-span-3"
                   >
                     <img
                       src="/images/home-office-v2.png"
@@ -416,37 +400,35 @@ export function MatrixLanding() {
                     </div>
                   </Link>
 
-                  <div className="grid gap-4 lg:col-start-2 lg:row-span-3 lg:grid-rows-3 lg:gap-5">
-                    {memberCompanies.slice(0, 3).map((company) => (
-                      <Link
-                        key={company.name}
-                        to="/tuyen-dung"
-                        className="group flex min-h-[130px] items-center justify-between gap-5 rounded-xl border border-[#d8dee6] bg-[#f1f3f6] p-5 transition hover:-translate-y-0.5 hover:border-[#9baabd] hover:bg-white hover:shadow-lg"
-                      >
-                        <div className="flex min-w-0 items-center gap-4">
-                          <span className="grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-xl border border-[#dce5ee] bg-white p-2 shadow-sm">
-                            <img
-                              src={company.logo || "/images/logo-mark.png"}
-                              alt=""
-                              className="h-full w-full object-contain"
-                            />
+                  {memberCompanies.map((company) => (
+                    <Link
+                      key={company.name}
+                      to={`/tuyen-dung/doanh-nghiep/${company.slug}`}
+                      className="group flex min-h-[140px] items-center justify-between gap-4 rounded-xl border border-[#d8dee6] bg-[#f1f3f6] p-4 transition hover:-translate-y-0.5 hover:border-[#78a9cd] hover:bg-white hover:shadow-lg"
+                    >
+                      <div className="flex min-w-0 items-center gap-3">
+                        <span className="grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-xl border border-[#dce5ee] bg-white p-2 shadow-sm">
+                          <img
+                            src={company.logo}
+                            alt={company.name}
+                            className="h-full w-full object-contain"
+                          />
+                        </span>
+                        <div className="min-w-0">
+                          <h3 className="truncate text-sm font-extrabold uppercase leading-5 text-navy transition group-hover:text-blue-brand">
+                            {company.name}
+                          </h3>
+                          <p className="mt-1 text-xs font-semibold text-[#60758b]">
+                            {company.field}
+                          </p>
+                          <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[#395b7c]">
+                            <BriefcaseBusiness size={14} /> {company.jobs.length} việc làm
                           </span>
-                          <div className="min-w-0">
-                            <h3 className="text-base font-extrabold uppercase leading-6 text-navy transition group-hover:text-blue-brand">
-                              {company.name}
-                            </h3>
-                            <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#60758b]">
-                              {company.summary || "Doanh nghiệp thành viên trong hệ sinh thái Matrix Holding."}
-                            </p>
-                            <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[#395b7c]">
-                              <BriefcaseBusiness size={14} /> {company.jobs.length} việc làm
-                            </span>
-                          </div>
                         </div>
-                        <ArrowRight className="shrink-0 text-blue-brand transition group-hover:translate-x-1" size={22} />
-                      </Link>
-                    ))}
-                  </div>
+                      </div>
+                      <ArrowRight className="shrink-0 text-blue-brand transition group-hover:translate-x-1" size={20} />
+                    </Link>
+                  ))}
                 </div>
               ) : (
                 <div className="rounded-2xl bg-[#f4f8fc] px-6 py-12 text-center">
