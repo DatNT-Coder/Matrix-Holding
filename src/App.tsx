@@ -17,6 +17,7 @@ import NewsDetail from "./pages/NewsDetail";
 import NewsManager from "./pages/NewsManager";
 import JobsList from "./pages/JobsList";
 import JobDetail from "./pages/JobDetail";
+import CompanyJobs from "./pages/CompanyJobs";
 import JobManager from "./pages/JobManager";
 import ApplicationManager from "./pages/ApplicationManager";
 import ScheduleManager from "./pages/ScheduleManager";
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="/tin-tuc" element={<NewsList />} />
           <Route path="/tin-tuc/:id" element={<NewsDetail />} />
           <Route path="/tuyen-dung" element={<JobsList />} />
+          <Route path="/tuyen-dung/doanh-nghiep/:slug" element={<CompanyJobs />} />
           <Route path="/tuyen-dung/:id" element={<JobDetail />} />
           <Route path="/ho-so-ung-vien" element={<CandidateProfile />} />
         </Route>

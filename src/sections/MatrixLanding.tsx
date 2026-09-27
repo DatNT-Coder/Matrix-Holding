@@ -47,11 +47,6 @@ const ecosystems = [
   },
 ] as const;
 
-const hasNoRequirement = (value?: string | null) => {
-  const normalized = value?.trim().toLocaleLowerCase("vi") ?? "";
-  return !normalized || normalized.startsWith("không yêu cầu");
-};
-
 export function MatrixLanding() {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [featuredJobs, setFeaturedJobs] = useState<Job[]>([]);
@@ -64,7 +59,7 @@ export function MatrixLanding() {
       .catch(() => setArticles([]))
       .finally(() => setNewsLoaded(true));
     apiGetJobs()
-      .then((jobs) => setFeaturedJobs(jobs.slice(0, 7)))
+      .then(setFeaturedJobs)
       .catch(() => setFeaturedJobs([]))
       .finally(() => setJobsLoaded(true));
   }, []);
@@ -73,7 +68,40 @@ export function MatrixLanding() {
     recruitmentFilter === "Tất cả"
       ? featuredJobs
       : featuredJobs.filter((job) => job.department === recruitmentFilter);
-  const featuredCompanyJob = visibleFeaturedJobs[0];
+  const companyOrder = [
+    "Matrix Holding",
+    "Matrix Network",
+    "Matrix Connect",
+    "Matrix Ventures",
+  ];
+  const recruitmentCompanies = Array.from(
+    visibleFeaturedJobs.reduce((companies, job) => {
+      const name = job.company_name || "Matrix Holding";
+      const current = companies.get(name);
+      if (current) {
+        current.jobs.push(job);
+      } else {
+        companies.set(name, {
+          name,
+          logo: job.company_logo,
+          summary: job.company_summary,
+          jobs: [job],
+        });
+      }
+      return companies;
+    }, new Map<string, { name: string; logo: string | null; summary: string | null; jobs: Job[] }>()),
+  )
+    .map(([, company]) => company)
+    .sort(
+      (first, second) =>
+        companyOrder.indexOf(first.name) - companyOrder.indexOf(second.name),
+    );
+  const featuredCompany =
+    recruitmentCompanies.find((company) => company.name === "Matrix Holding") ??
+    recruitmentCompanies[0];
+  const memberCompanies = recruitmentCompanies.filter(
+    (company) => company.name !== featuredCompany?.name,
+  );
   const featuredArticle =
     articles.find(
       (article) =>
@@ -313,14 +341,13 @@ export function MatrixLanding() {
               <div>
                 <div>
                   <p className="text-sm font-extrabold uppercase tracking-[.08em] text-[#003b73]">
-                    THÔNG TIN TUYỂN DỤNG
+                    DOANH NGHIỆP TUYỂN DỤNG
                   </p>
                   <h2 className="mt-3 text-2xl font-extrabold text-[#003b73] sm:text-3xl">
-                    VIỆC LÀM MỚI NHẤT TỪ MATRIX HOLDING
+                    DOANH NGHIỆP NỔI BẬT TRONG HỆ SINH THÁI
                   </h2>
                   <p className="mt-2 text-sm text-slate-600">
-                    Khám phá cơ hội nghề nghiệp tại các doanh nghiệp trong hệ
-                    sinh thái Matrix.
+                    Khám phá các doanh nghiệp đang tuyển dụng trong hệ sinh thái Matrix.
                   </p>
                 </div>
               </div>
@@ -348,11 +375,11 @@ export function MatrixLanding() {
             </div>
 
             <div className="bg-white p-4 text-navy sm:p-6">
-              {featuredCompanyJob ? (
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+              {featuredCompany ? (
+                <div className="grid gap-4 lg:grid-cols-[minmax(280px,.85fr)_minmax(0,1.65fr)] lg:grid-rows-3 lg:gap-5">
                   <Link
-                    to={`/tuyen-dung/${featuredCompanyJob.id}`}
-                    className="group relative min-h-[320px] overflow-hidden rounded-xl bg-[#092e56] p-6 text-white sm:row-span-2"
+                    to="/tuyen-dung"
+                    className="group relative min-h-[430px] overflow-hidden rounded-xl bg-[#092e56] p-6 text-white lg:row-span-3"
                   >
                     <img
                       src="/images/home-office-v2.png"
@@ -364,7 +391,7 @@ export function MatrixLanding() {
                       <span className="grid h-16 w-16 place-items-center overflow-hidden rounded-xl bg-white p-2 shadow-lg">
                         <img
                           src={
-                            featuredCompanyJob.company_logo ||
+                            featuredCompany.logo ||
                             "/images/logo-mark.png"
                           }
                           alt=""
@@ -372,86 +399,51 @@ export function MatrixLanding() {
                         />
                       </span>
                       <h3 className="mt-5 max-w-[240px] text-base font-extrabold uppercase leading-6 text-white">
-                        CÔNG TY TNHH MATRIX HOLDING
+                        {featuredCompany.name === "Matrix Holding"
+                          ? "CÔNG TY TNHH MATRIX HOLDING"
+                          : featuredCompany.name}
                       </h3>
-                      <p className="text-sm font-extrabold uppercase text-white">THÔNG BÁO TUYỂN DỤNG</p>
+                      <p className="mt-2 max-w-[250px] text-sm leading-6 text-white/80">
+                        {featuredCompany.summary || "Doanh nghiệp thành viên trong hệ sinh thái Matrix Holding."}
+                      </p>
                       <span className="mt-5 inline-flex items-center gap-2 rounded-lg bg-black/75 px-4 py-2 text-xs font-bold text-white shadow-sm">
-                        <BriefcaseBusiness size={14} /> {visibleFeaturedJobs.length} việc làm
+                        <BriefcaseBusiness size={14} /> {featuredCompany.jobs.length} việc làm
                       </span>
                       <span className="mt-3 rounded-lg bg-[#ffe600] px-5 py-2 text-xs font-extrabold text-[#17213a] shadow-sm">Pro Company</span>
                       <span className="mt-3 inline-flex items-center justify-center rounded-lg bg-white px-5 py-2 text-xs font-extrabold text-navy shadow-sm transition group-hover:bg-[#eef6ff]">
-                        Đăng ký ngay
+                        Khám phá việc làm
                       </span>
                     </div>
                   </Link>
 
-                  <div className="contents">
-                    {visibleFeaturedJobs.slice(0, 7).map((job) => (
+                  <div className="grid gap-4 lg:col-start-2 lg:row-span-3 lg:grid-rows-3 lg:gap-5">
+                    {memberCompanies.slice(0, 3).map((company) => (
                       <Link
-                        key={job.id}
-                        to={`/tuyen-dung/${job.id}`}
-                        className="group rounded-xl border border-[#dedfe1] bg-[#eeeef0] p-4 transition hover:-translate-y-0.5 hover:border-[#9baabd] hover:bg-[#e4e8ee] hover:shadow-lg"
+                        key={company.name}
+                        to="/tuyen-dung"
+                        className="group flex min-h-[130px] items-center justify-between gap-5 rounded-xl border border-[#d8dee6] bg-[#f1f3f6] p-5 transition hover:-translate-y-0.5 hover:border-[#9baabd] hover:bg-white hover:shadow-lg"
                       >
-                        <div className="flex items-start gap-3">
-                          <span className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl border border-[#e1eaf2] bg-white p-1.5">
+                        <div className="flex min-w-0 items-center gap-4">
+                          <span className="grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-xl border border-[#dce5ee] bg-white p-2 shadow-sm">
                             <img
-                              src={job.company_logo || "/images/logo-mark.png"}
+                              src={company.logo || "/images/logo-mark.png"}
                               alt=""
                               className="h-full w-full object-contain"
                             />
                           </span>
                           <div className="min-w-0">
-                            <p className="line-clamp-2 text-xs font-extrabold uppercase tracking-[.02em] text-navy">
-                              {job.company_name || "Matrix Holding"}
+                            <h3 className="text-base font-extrabold uppercase leading-6 text-navy transition group-hover:text-blue-brand">
+                              {company.name}
+                            </h3>
+                            <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#60758b]">
+                              {company.summary || "Doanh nghiệp thành viên trong hệ sinh thái Matrix Holding."}
                             </p>
-                            <p className="mt-1 line-clamp-2 text-[13px] leading-5 text-[#60758b]">
-                              {job.department}
-                            </p>
+                            <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[#395b7c]">
+                              <BriefcaseBusiness size={14} /> {company.jobs.length} việc làm
+                            </span>
                           </div>
                         </div>
-                        <h3 className="mt-3 line-clamp-2 text-[13px] font-extrabold uppercase leading-5 text-navy transition group-hover:text-blue-brand">
-                          {job.title}
-                        </h3>
-                        <div className="mt-3 grid grid-cols-[1.12fr_.9fr_.78fr] gap-1.5 text-[9px] leading-4 text-[#465569] xl:text-[10px]">
-                          {[
-                            { label: "Hình thức", value: job.employment_type },
-                            { label: "Lương", value: job.salary },
-                            { label: "Khu vực", value: job.location },
-                          ].map(({ label, value }) => (
-                            <span
-                              key={label}
-                              className="min-w-0 whitespace-nowrap rounded-full bg-white px-1.5 py-1 text-center"
-                            >
-                              <strong className="font-extrabold text-navy">{label}:</strong>{" "}
-                              {value}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="mt-1.5 flex flex-wrap gap-1.5 text-[10px] leading-4 text-[#465569]">
-                          {[
-                            {
-                              label: "Kinh nghiệm",
-                              value: job.experience_required,
-                              emptyText: "Không yêu cầu kinh nghiệm",
-                            },
-                            {
-                              label: "Bằng cấp",
-                              value: job.education_required,
-                              emptyText: "Không yêu cầu bằng cấp",
-                            },
-                          ].map(({ label, value, emptyText }) => (
-                            <span key={label} className="rounded-full bg-white px-2.5 py-1">
-                              {hasNoRequirement(value) ? (
-                                emptyText
-                              ) : (
-                                <>
-                                  <strong className="font-extrabold text-navy">{label}:</strong>{" "}
-                                  {value}
-                                </>
-                              )}
-                            </span>
-                          ))}
-                        </div>
+                        <ArrowRight className="shrink-0 text-blue-brand transition group-hover:translate-x-1" size={22} />
                       </Link>
                     ))}
                   </div>
@@ -476,7 +468,7 @@ export function MatrixLanding() {
                   </Link>
                 </div>
               )}
-              {featuredCompanyJob && (
+              {featuredCompany && (
                 <div className="mt-5 flex items-center justify-between border-t border-[#e5edf4] pt-4">
                   <p className="text-xs text-[#687d91]">
                     Các tin tuyển dụng được cập nhật trực tiếp từ hệ thống tuyển
