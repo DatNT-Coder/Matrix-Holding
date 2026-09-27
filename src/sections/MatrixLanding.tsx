@@ -74,12 +74,14 @@ export function MatrixLanding() {
     jobs: visibleFeaturedJobs.filter(
       (job) => canonicalCompanyName(job.company_name) === company.name,
     ),
-  })).filter(
-    (company) =>
-      recruitmentFilter === "Tất cả" ||
-      company.name === "Matrix Holding" ||
-      company.jobs.length > 0,
-  );
+  }))
+    .filter(
+      (company) =>
+        recruitmentFilter === "Tất cả" ||
+        company.name === "Matrix Holding" ||
+        company.jobs.length > 0,
+    )
+    .slice(0, 12);
   const featuredCompany =
     recruitmentCompanies.find((company) => company.name === "Matrix Holding") ??
     recruitmentCompanies[0];
