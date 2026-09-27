@@ -8,6 +8,7 @@ import { ArticleImage } from "@/components/ui/ArticleImage";
 
 const categories = [
   "Tất cả",
+  "MATRIX HOLDING",
   "MATRIX NETWORK",
   "MATRIX COMMUNITY",
   "MATRIX CAPITAL",

@@ -75,9 +75,15 @@ export function MatrixLanding() {
       : featuredJobs.filter((job) => job.department === recruitmentFilter);
   const featuredCompanyJob = visibleFeaturedJobs[0];
   const featuredArticle =
+    articles.find(
+      (article) =>
+        article.is_featured && article.category === "MATRIX HOLDING",
+    ) ??
+    articles.find((article) => article.category === "MATRIX HOLDING") ??
     articles.find((article) =>
       article.title.trim().toLocaleUpperCase("vi").startsWith("MATRIX HOLDING"),
-    ) ?? articles[0];
+    ) ??
+    articles[0];
   const supportingArticles = articles
     .filter((article) => article.id !== featuredArticle?.id)
     .slice(0, 3);
@@ -110,10 +116,13 @@ export function MatrixLanding() {
                 KINH DOANH ĐA NGÀNH
               </span>
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
-              Chúng tôi tập trung xây dựng một môi trường kinh doanh hiệu quả,
-              nơi các doanh nghiệp có thể tiếp cận với nhiều nguồn lực và mở ra
-              cơ hội tiếp cận thị trường bền vững.
+            <p className="mx-auto mt-8 max-w-4xl text-base leading-7 text-white/90 sm:text-lg sm:leading-8">
+              <span className="lg:block lg:whitespace-nowrap">
+                Chúng tôi tập trung xây dựng một môi trường kinh doanh hiệu quả,
+              </span>{" "}
+              <span className="lg:block lg:whitespace-nowrap">
+                nơi các doanh nghiệp có thể tiếp cận với nhiều nguồn lực và mở ra cơ hội tiếp cận thị trường bền vững.
+              </span>
             </p>
             <div className="mt-10 flex justify-center">
               <a

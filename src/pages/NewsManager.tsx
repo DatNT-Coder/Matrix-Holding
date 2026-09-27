@@ -9,12 +9,14 @@ import {
   Plus,
   RotateCcw,
   Search,
+  Star,
   X,
 } from "lucide-react";
 import {
   apiArchiveNews,
   apiCreateNews,
   apiGetManagedNews,
+  apiSetFeaturedNews,
   apiUpdateNews,
   apiUploadNewsImage,
   getStoredUser,
@@ -27,7 +29,7 @@ const empty: NewsArticlePayload = {
   excerpt: "",
   content: "",
   image_url: "",
-  category: "MATRIX NETWORK",
+  category: "MATRIX HOLDING",
 };
 const formatDate = (value: string) =>
   new Intl.DateTimeFormat("vi-VN", {
@@ -170,6 +172,17 @@ export default function NewsManager() {
       );
     }
   };
+  const setFeatured = async (article: ManagedNewsArticle) => {
+    setError("");
+    try {
+      await apiSetFeaturedNews(article.id, !article.is_featured);
+      load();
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Không thể cập nhật tin nổi bật.",
+      );
+    }
+  };
 
   return (
     <div className="min-h-full bg-[#f5f8fc] px-5 py-8 sm:px-8 lg:px-10">
@@ -289,7 +302,14 @@ export default function NewsManager() {
                   {visible.map((article) => (
                     <tr key={article.id} className="hover:bg-[#fbfcfe]">
                       <td className="max-w-[420px] px-5 py-4">
-                        <p className="font-bold text-navy">{article.title}</p>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <p className="font-bold text-navy">{article.title}</p>
+                          {article.is_featured && (
+                            <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-extrabold text-amber-700">
+                              <Star size={11} fill="currentColor" /> Tin nổi bật
+                            </span>
+                          )}
+                        </div>
                         <p className="mt-1 line-clamp-1 text-sm text-muted">
                           {article.excerpt}
                         </p>
@@ -307,6 +327,24 @@ export default function NewsManager() {
                       </td>
                       <td className="px-5 py-4">
                         <div className="flex justify-end gap-2">
+                          {user.role === "DIRECTOR" &&
+                            !article.is_archived &&
+                            article.category === "MATRIX HOLDING" && (
+                              <button
+                                onClick={() => setFeatured(article)}
+                                className={`inline-flex items-center gap-1 rounded-lg border px-3 py-2 text-xs font-bold ${
+                                  article.is_featured
+                                    ? "border-amber-300 bg-amber-50 text-amber-700"
+                                    : "border-slate-200 text-navy hover:border-amber-400"
+                                }`}
+                              >
+                                <Star
+                                  size={14}
+                                  fill={article.is_featured ? "currentColor" : "none"}
+                                />
+                                {article.is_featured ? "Bỏ nổi bật" : "Đặt nổi bật"}
+                              </button>
+                            )}
                           <button
                             onClick={() => beginEdit(article)}
                             className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-bold text-navy hover:border-blue-brand"
@@ -386,6 +424,7 @@ export default function NewsManager() {
                     onChange={(e) => update("category", e.target.value)}
                     className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal outline-none focus:border-blue-brand"
                   >
+                    <option>MATRIX HOLDING</option>
                     <option>MATRIX NETWORK</option>
                     <option>MATRIX COMMUNITY</option>
                     <option>MATRIX CAPITAL</option>

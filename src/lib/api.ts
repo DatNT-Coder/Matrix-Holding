@@ -50,7 +50,12 @@ export type NewsArticle = {
   excerpt: string;
   content: string;
   image_url: string;
-  category: "MATRIX NETWORK" | "MATRIX COMMUNITY" | "MATRIX CAPITAL";
+  category:
+    | "MATRIX HOLDING"
+    | "MATRIX NETWORK"
+    | "MATRIX COMMUNITY"
+    | "MATRIX CAPITAL";
+  is_featured?: boolean;
   published_at: string;
   author_name: string;
 };
@@ -286,6 +291,15 @@ export function apiArchiveNews(id: number, restore = false) {
     `/api/news/${id}/${restore ? "restore" : "archive"}`,
     { method: "PATCH", headers: token ? { Authorization: token } : {} },
   );
+}
+
+export function apiSetFeaturedNews(id: number, isFeatured: boolean) {
+  const token = getStoredToken();
+  return request<ManagedNewsArticle>(`/api/news/${id}/featured`, {
+    method: "PATCH",
+    headers: token ? { Authorization: token } : {},
+    body: JSON.stringify({ is_featured: isFeatured }),
+  });
 }
 
 export function apiGetJobs(search = "", department?: string) {
